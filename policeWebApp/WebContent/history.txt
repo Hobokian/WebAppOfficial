@@ -1,0 +1,75 @@
+This file for keep tracking history
+
+!!!!be specific!!!!!
+
+
+--------------------------------------------------HISTORY---------------------------------------------------------------
+-------------------------Iaroslav Malyshev -01/30/2015------------------------------------------------------------------
+1. add file: DataBaseConnection.java - for class to connect to database
+			add class: DataBaseConnections - database connection class
+				add function: getConnection() - function for connect to database
+
+2. add file: DataBaseQuery.java - for class to execute query 
+			add class: DataBaseQuery - class for executing query
+				add function: executeQuery - function to execute select query
+				add function: updateQuery  - function to execute insent, update and drop query
+				
+3. add file: DataBaseStandardUtilities.java - for class with standard function for working with database
+			add class: DataBaseStandardUtilities - class working with database
+				add function: validate					- function to check password
+				add function: getProvince				- function to list of province
+				add function: getCity					- function to list of cities
+				add function: makeDynamicProvinceCity	- function to make dynamic array for javascript of cities
+				add function: checkAccessCode			- function to check access code
+				add function: getSelectedIncidents		- function to find incidents
+				add function: getUserName				- function to get user name
+				add function: createLocation			- function to add location
+				add function: addUser					- not ready
+				add function: createReport				- not ready
+
+4. add file: LoginServlet.java - for servlet class
+			add class: LoginServlet - class to verify password and login
+				add function: doPost - function is called from index.jsp  to check password
+				
+5. add file:SignUpPageServlet.java - for sign up servlet
+			add class: SignUpPageServlet - class for sign up user
+				add function: doPost - function open signUp.jsp page
+				add function: doGet  - function to add user in database
+				
+6. add file: CreateComplainServlet.java - for create eport servlet
+			add class: CreateComplainServlet - class for creating report
+				add function: doPost - function open report.jsp page
+				add function: doGet  - function to add location and incident in database 
+				
+7. add file: web.xml - for realese servlet map
+		add login servlet - reference on LoginServlet
+		add report servlet - reference on CreateComplainServlet
+		add signUp servlet - reference on SignUpServlet
+
+8. add file: index.jsp - for creating login page
+
+9. add file: report.jsp - for add report in database
+
+10. add file: signUp.jsp - for add user in database
+
+-------------------------Iaroslav Malyshev -01/31/2015------------------------------------------------------------------
+11. modify file: DataBaseStandardUtilities - add and modify more functions 
+			modify class: DataBaseStandardUtilities - add and modify more functions
+				modify function: addUser				- function to add user
+				modify function: createReport			- function to add report
+				add function: changeStatusCase			- not ready
+				add function: takeCase					- not ready
+
+12. modify file: report.jsp
+				- add javascript function
+				
+13. modify file: signUp.jsp
+				- add javascript function
+				
+14. add file: UtilsDB.java - file for class with common functions
+			add class: UtilsDB - class for common functions
+				add function: createSelectListProvince - function to create list of province
+				add function: createSelectListCity    - function to create list of cities
+				add function: createIncidentReportTable - create incident table
+				
+				
