@@ -7,34 +7,34 @@
 </head>  
 <body>  
     <h4>your info <%=session.getAttribute("email")%>  <%=session.getAttribute("phone")%></h4>  
-    <form action="createReport" method="GET"> 
-        <table>  
-            <tr>  
-                <td>Plate Number</td>  
-                <td><input type="text" name="plateNumber" value="<%=session.getAttribute("plateNumber") %>" /></td>  
-            </tr>
-            <tr>  
-                <td>URL Link</td>  
-                <td><input type="text" name="URLlink" value="<%=session.getAttribute("URLlink") %>" /></td>  
-            </tr>
-            <tr>  
-                <td>Street</td>  
-                <td><input type="text" name="street" value="<%=session.getAttribute("street") %>" /></td>  
-            </tr>
- 			<%=DataBaseStandardUtilities.makeDynamicProvinceCity() %>
-            <tr>  
-                <td>Postal Code</td>  
-                <td><input type="text" name="postalCode" value="<%=session.getAttribute("postalCode") %>" /></td>  
-            </tr>
-            <tr>  
-                <td>Description</td>  
-                <td><textarea name="description" rows="4" cols="50"><%=session.getAttribute("description") %></textarea></td>  
-            </tr>
-            <tr>  
-                <td><input type="submit" value="Report" /></td>  
-            </tr>  
-        </table>  
-    </form> 
+		    <form action="createReport" method="GET"> 
+		        <table>  
+		            <tr>  
+		                <td>Plate Number</td>  
+		                <td><input type="text" name="plateNumber" value="<%=session.getAttribute("plateNumber") %>" /></td>  
+		            </tr>
+		            <tr>  
+		                <td>URL Link</td>  
+		                <td><input type="text" name="URLlink" value="<%=session.getAttribute("URLlink") %>" /></td>  
+		            </tr>
+		            <tr>  
+		                <td>Street</td>  
+		                <td><input type="text" name="street" value="<%=session.getAttribute("street") %>" /></td>  
+		            </tr>
+		 			<%=DataBaseStandardUtilities.makeDynamicProvinceCity() %>
+		            <tr>  
+		                <td>Postal Code</td>  
+		                <td><input type="text" name="postalCode" value="<%=session.getAttribute("postalCode") %>" /></td>  
+		            </tr>
+		            <tr>  
+		                <td>Description</td>  
+		                <td><textarea name="description" rows="4" cols="50"><%=session.getAttribute("description") %></textarea></td>  
+		            </tr>
+		            <tr>  
+		                <td><input type="submit" name="action" value="Report" /></td>  
+		            </tr>  
+		        </table>  
+		    </form> 
     <script>
     function addCityList(array) {
 	    var selectedProvinceIndex = document.getElementById("province").selectedIndex;
@@ -45,6 +45,24 @@
 	    for (var i = 0; i < array[selectedProvinceIndex-1].length; i++) {
 	    	cityElement.options[cityElement.length] = new Option(array[selectedProvinceIndex-1][i],(i+1) );
 	    }
+	    cityElement.options[cityElement.length]=new Option('add city',i+1 );
+    }
+    </script>
+    
+    <script>
+    function addCityFunction() {
+		var selectedCityIndex = document.getElementById("city").selectedIndex;
+		var cityElement = document.getElementById("city");
+		if(selectedCityIndex==(cityElement.length-1))
+		{
+			document.getElementById("addCity").style.visibility = "visible";
+			document.getElementById("addCityButton").style.visibility = "visible";
+		}
+		else
+		{
+			document.getElementById("addCity").style.visibility = "hidden";
+			document.getElementById("addCityButton").style.visibility = "hidden";
+		}
     }
     </script>
 </body>  

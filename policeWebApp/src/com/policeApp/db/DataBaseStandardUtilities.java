@@ -71,10 +71,11 @@ public class DataBaseStandardUtilities {
 	 public static String makeDynamicProvinceCity()
 	 {
 		 String aaa ="<tr><td>Province</td><td><select id=\"province\" name=\"province\" onchange=\"addCityList("+DataBaseStandardUtilities.getCity()+")\">"
-         	+ DataBaseStandardUtilities.getProvince()+"</select></td>  </tr><tr>"  
-            + "<td>City</td>  <td><select id=\"city\" name=\"city\"></select></td>  </tr>";
-		 return aaa;
-		 
+         	+ DataBaseStandardUtilities.getProvince()+"</select></td>  </tr><tr><td>City</td>  <td><select id=\"city\" name=\"city\" onchange=\"addCityFunction()\"></select></td>"
+         			 + "<td><form action=\"addCity\" method=\"post\"><input type=\"text\" id=\"addCity\" name=\"addCity\"  style=\"visibility: hidden\"/>"
+         			 + "<input type=\"submit\" id=\"addCityButton\" name=\"action\" value=\"Add City\"  style=\"visibility: hidden\"/></form></td>  </tr>";
+//         	+"</tr>";
+		 return aaa;  
 	 }
 	 
 	 /**
@@ -227,6 +228,20 @@ public class DataBaseStandardUtilities {
 			return Integer.parseInt(array.get(0)[0]);
 		 else
 			return 0; 
+	 }
+	 
+	 /**
+	  * 
+	  * @param city
+	  * @param province
+	  * @return
+	  */
+	 public static boolean addCity(String city, String province)
+	 {
+		 String query = "INSERT INTO citylookup (cityName, province_id) VALUES (" +
+  				"\"" +	city		+ "\"," +
+ 		  		"\"" +	province	+ "\")";
+		 return DataBaseQuery.updateQuery(query);
 	 }
 	 
 	 /**

@@ -61,15 +61,36 @@ This file for keep tracking history
 				add function: takeCase					- not ready
 
 12. modify file: report.jsp
-				- add javascript function
+				add javascript function:
 				
 13. modify file: signUp.jsp
-				- add javascript function
+				add javascript function:
 				
 14. add file: UtilsDB.java - file for class with common functions
 			add class: UtilsDB - class for common functions
 				add function: createSelectListProvince - function to create list of province
 				add function: createSelectListCity    - function to create list of cities
 				add function: createIncidentReportTable - create incident table
+-------------------------Iaroslav Malyshev -02/01/2015------------------------------------------------------------------				
+15. modify file: report.jsp 
+				add javascript function: AddCityFunction - function to make visible elements to add city		
+
+16. modify file: signUp.jsp 
+				add javascript function: AddCityFunction - function to make visible elements to add city	
 				
+17. modify file: UtilsDB.java
+			modify class: UtilsDB
+				add function: addCity - function to add city in database
+
+18. modify file: DataBaseStandardUtilites.java
+			modify class: DataBaseStandardUtilites
+				add function: addCity - function to add city in database
+				modify function: makeDynamicProvinceCity - added field for add city and button
 				
+19. modify file: CreateComplainServlet.java
+			modify class: CreateComplainServlet
+				modify function: doGet - add check which button was called servlet and if it add city button call function to add city 
+				
+20. modify file: SignUpServlet.java
+			modify class: SignUpServlet
+				modify function: doGet - add check which button was called servlet and if it add city button call function to add city 

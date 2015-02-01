@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import utils.UtilsDB;
+
 import com.policeApp.db.DataBaseStandardUtilities;
 
 /**
@@ -65,6 +67,11 @@ public class CreateComplainServlet extends HttpServlet{
      */
     public void doGet(HttpServletRequest request, HttpServletResponse response)    
             throws ServletException, IOException {  
+    	 String action = request.getParameter("action");
+         if (action.compareTo("Add City")==0) {
+         	UtilsDB.addCity(request, response);
+         	return;
+         }
     	 boolean badArg=false;
     	 String user;
     	 int caseNumber;

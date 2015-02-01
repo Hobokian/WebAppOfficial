@@ -8,42 +8,42 @@
 <%@ page import= "com.policeApp.db.DataBaseStandardUtilities" %>
 </head>
 <body>
-	<form action="signUpPage" method="GET"> 
-        <table>  
-            <tr>  
-                <td>budge ID</td>  
-                <td><input type="text" name="budge" value="<%=session.getAttribute("budge") %>"/></td>  
-            </tr>
-            <tr>  
-                <td>Access Code</td>  
-                <td><input type="text" name="accessCode"  value="<%=session.getAttribute("accessCode") %>"/></td>  
-            </tr>
-            <tr>  
-                <td>First and Last Name</td>  
-                <td><input type="text" name="userName" value="<%=session.getAttribute("userName") %>" /></td>  
-            </tr>
-            <tr>  
-                <td>Email Address</td>  
-                <td><input type="text" name="email" value="<%=session.getAttribute("email") %>" /></td>  
-            </tr>
-            <tr>  
-                <td>Phone Number</td>  
-                <td><input type="text" name="phoneNumber" value="<%=session.getAttribute("phone") %>" /></td>  
-            </tr>
-            <tr>  
-                <td>Password</td>  
-                <td><input type="text" name="password" /></td>  
-            </tr>
-            <tr>  
-                <td>Confirm Password</td>  
-                <td><input type="text" name="confirmPassword" /></td>  
-            </tr>
- 			<%=DataBaseStandardUtilities.makeDynamicProvinceCity() %>
-            <tr>  
-                <td><input type="submit" value="signUp" /></td>  
-            </tr>  
-        </table>  
-    </form> 
+			<form action="signUpPage" method="GET"> 
+		        <table>  
+		            <tr>  
+		                <td>budge ID</td>  
+		                <td><input type="text" name="budge" value="<%=session.getAttribute("budge") %>"/></td>  
+		            </tr>
+		            <tr>  
+		                <td>Access Code</td>  
+		                <td><input type="text" name="accessCode"  value="<%=session.getAttribute("accessCode") %>"/></td>  
+		            </tr>
+		            <tr>  
+		                <td>First and Last Name</td>  
+		                <td><input type="text" name="userName" value="<%=session.getAttribute("userName") %>" /></td>  
+		            </tr>
+		            <tr>  
+		                <td>Email Address</td>  
+		                <td><input type="text" name="email" value="<%=session.getAttribute("email") %>" /></td>  
+		            </tr>
+		            <tr>  
+		                <td>Phone Number</td>  
+		                <td><input type="text" name="phoneNumber" value="<%=session.getAttribute("phone") %>" /></td>  
+		            </tr>
+		            <tr>  
+		                <td>Password</td>  
+		                <td><input type="text" name="password" /></td>  
+		            </tr>
+		            <tr>  
+		                <td>Confirm Password</td>  
+		                <td><input type="text" name="confirmPassword" /></td>  
+		            </tr>
+		 			<%=DataBaseStandardUtilities.makeDynamicProvinceCity() %>
+		            <tr>  
+		                <td><input type="submit" name="action" value="signUp" /></td>  
+		            </tr>  
+		        </table>  
+		    </form> 
     <script>
     function addCityList(array) {
 	    var selectedProvinceIndex = document.getElementById("province").selectedIndex;
@@ -54,6 +54,24 @@
 	    for (var i = 0; i < array[selectedProvinceIndex-1].length; i++) {
 	    	cityElement.options[cityElement.length] = new Option(array[selectedProvinceIndex-1][i],(i+1) );
 	    }
+	    cityElement.options[cityElement.length]=new Option('add city',i+1 );
+    }
+    </script>
+    
+    <script>
+    function addCityFunction() {
+		var selectedCityIndex = document.getElementById("city").selectedIndex;
+		var cityElement = document.getElementById("city");
+		if(selectedCityIndex==(cityElement.length-1))
+		{
+			document.getElementById("addCity").style.visibility = "visible";
+			document.getElementById("addCityButton").style.visibility = "visible";
+		}
+		else
+		{
+			document.getElementById("addCity").style.visibility = "hidden";
+			document.getElementById("addCityButton").style.visibility = "hidden";
+		}
     }
     </script>
 </body>
