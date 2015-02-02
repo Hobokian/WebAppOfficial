@@ -76,16 +76,47 @@ public class UtilsDB {
 	 * @return
 	 * @throws SQLException
 	 */
-	public static String createIncidentReportTable(ArrayList<String[]> rset) {
+	public static String createIncidentReportTable(ArrayList<String[]> rset, String user_id) {
         StringBuffer sb = new StringBuffer();
         int i;
+        String info_button="";
         sb.append("<table frame=\"box\" border=2 >");
-        sb.append("<tr><td>user</td><td>plateNumber</td><td>description</td><td>URL</td></tr>");
+        sb.append(	"<tr><td>user</td>"		+
+        			"<td>plateNumber</td>"	+
+        			"<td>URL</td>"			+
+        			"<td>description</td>"	+
+        			"<td>strret</td>"		+
+        			"<td>postal code</td>"	+
+        			"<td>province</td>"		+
+        			"<td>city</td>"			+
+        			"<td>status</td>"		+
+        			"<td>action</td></tr>");
         if(rset.size()>0)
         {
         	for(i=0;i<rset.size();i++) 
         	{  
-        		sb.append("<tr><td>"+rset.get(i)[1]+"</td><td>"+rset.get(i)[2]+"</td><td>"+rset.get(i)[4]+"</td><td>"+rset.get(i)[3]+"</td></tr>");
+        		if(rset.get(i)[9].compareTo("new")==0)
+        		{
+        			info_button="<input type=\"submit\" name=\"action\" value=\"take case\">";
+        		}
+        		if(rset.get(i)[9].compareTo("in progress")==0)
+        		{
+        			info_button="<input type=\"submit\" name=\"action\" value=\"close case\"><input type=\"submit\" name=\"action\" value=\"decline case\">";
+        		}
+        		
+        		sb.append(	"<form action=\"caseServlet\" method=\"post\">"+
+        					"<input type=\"hidden\" name=\"hdn_case_id\" value=\""+ rset.get(i)[0] + "\"/>" +
+        					"<input type=\"hidden\" name=\"hdn_user_id\" value=\""+user_id+"\"/>" +
+        					"<tr><td>"+rset.get(i)[1]+"</td>"+
+        						"<td>"+rset.get(i)[2]+"</td>"+
+        						"<td>"+rset.get(i)[3]+"</td>"+
+        						"<td>"+rset.get(i)[4]+"</td>"+
+        						"<td>"+rset.get(i)[5]+"</td>"+
+        						"<td>"+rset.get(i)[6]+"</td>"+
+        						"<td>"+rset.get(i)[7]+"</td>"+
+        						"<td>"+rset.get(i)[8]+"</td>"+
+        						"<td>"+rset.get(i)[9]+"</td>"+
+        					"<td>"+info_button+"</td></tr></form>");
         	} 
         }
         sb.append("</table>"); 

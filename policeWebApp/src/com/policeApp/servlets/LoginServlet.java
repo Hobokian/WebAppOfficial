@@ -40,8 +40,8 @@ public class LoginServlet extends HttpServlet{
         if(DataBaseStandardUtilities.validate(budge, password)){  
             if(session!=null)  
             {
-            	session.setAttribute("table", DataBaseStandardUtilities.getSelectedIncidents(null));
             	session.setAttribute("name", DataBaseStandardUtilities.getUserName(budge));
+            	session.setAttribute("table", DataBaseStandardUtilities.getSelectedIncidents(null,DataBaseStandardUtilities.getUserId(budge)));
             }
             RequestDispatcher rd=request.getRequestDispatcher("welcome.jsp");    
             rd.forward(request,response);    

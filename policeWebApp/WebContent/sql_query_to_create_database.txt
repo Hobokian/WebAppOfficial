@@ -81,7 +81,7 @@ DROP TABLE IF EXISTS `incident_action`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `incident_action` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `decription` varchar(45) DEFAULT NULL,
+  `decription` varchar(1023) DEFAULT NULL,
   `userInfos_id` int(11) NOT NULL,
   `incidentReports_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
@@ -137,7 +137,7 @@ CREATE TABLE `incidentreports` (
   `user` varchar(45) DEFAULT NULL,
   `plateNumber` varchar(45) DEFAULT NULL,
   `url` varchar(45) DEFAULT NULL,
-  `description` varchar(45) DEFAULT NULL,
+  `description` varchar(1023) DEFAULT NULL,
   `incident_status_id` int(11) NOT NULL,
   `location_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),

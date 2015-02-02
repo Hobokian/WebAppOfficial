@@ -2,7 +2,10 @@ package com.policeApp.db;
 
 import com.policeApp.db.DataBaseQuery;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import utils.UtilsDB;
 
@@ -106,19 +109,30 @@ public class DataBaseStandardUtilities {
 	  * @param filter string 
 	  * @return string with html table tag with all results
 	  */
-	 public static String getSelectedIncidents(String filter)
+	 public static String getSelectedIncidents(String filter, String user_id)
 	 {
 		 StringBuffer sb = new StringBuffer();
 		 String table;
-		 sb.append("select * from webapp.incidentreports inner join webapp.location on incidentreports.location_id=location.id");
+		 sb.append("	select * from																					");
+		 sb.append("	(select incidentreports.id as 'id',incidentreports.user  as 'userName', 						");
+		 sb.append("	incidentreports.plateNumber as 'plateNumber', incidentreports.url as 'url', 					");
+		 sb.append("	incidentreports.description as 'description', location.street_intersection as 'street',			"); 
+		 sb.append("	location.postal_code as 'postalCode', province.province as 'province', 							");
+		 sb.append("	citylookup.cityName as 'city', incident_status.status as 'status'								");
+		 sb.append("	from incidentreports, location, province, citylookup, incident_status							");
+		 sb.append("	where incidentreports.location_id=location.id AND 												");
+		 sb.append("	location.province_id=province.id AND 															");
+		 sb.append("	location.citylookup_id=citylookup.id AND														");
+		 sb.append("	incidentreports.incident_status_id=incident_status.id)											");
+		 sb.append("	as fullTable																					");
+		 //sb.append("select * from webapp.incidentreports inner join webapp.location on incidentreports.location_id=location.id");
 		 if(filter!=null)
 		 {
 			 sb.append(" where "+filter);
 		 }
 		 ArrayList<String[]> array=DataBaseQuery.executeQuery(sb.toString());
-		 table=UtilsDB.createIncidentReportTable(array);
+		 table=UtilsDB.createIncidentReportTable(array, user_id);
 		 return table;
-		 
 	 }
 	 
 	 /**
@@ -130,8 +144,16 @@ public class DataBaseStandardUtilities {
 		 String userName=null;
 		 ArrayList<String[]> array=DataBaseQuery.executeQuery("select * from webapp.userinfos where budgeNumber='"+ budge +"'");
 		 if(array.size()==1)
-			 userName=array.get(0)[2];
+			 userName=array.get(0)[1];
 		 return userName;
+	 }
+	 
+	 public static String getUserId(String budge){
+		 String userId=null;
+		 ArrayList<String[]> array=DataBaseQuery.executeQuery("select * from webapp.userinfos where budgeNumber='"+ budge +"'");
+		 if(array.size()==1)
+			 userId=array.get(0)[0];
+		 return userId;
 	 }
 	  
 	 /**
@@ -246,21 +268,104 @@ public class DataBaseStandardUtilities {
 	 
 	 /**
 	  * 
+	  * @param case_id
 	  * @param newStatus
 	  * @return
 	  */
-	 public static boolean changeStatusCase(int newStatus)
+	 public static boolean changeStatusCase(String case_id, String newStatus)
 	 {
-		return false;
+		 String query = "UPDATE incidentreports SET incident_status_id="+newStatus+" WHERE id="+case_id;
+		 return DataBaseQuery.updateQuery(query);
+	 }
+	 
+	 public static ArrayList<String[]> getCaseAndUserConnection(String case_id,String user_id)
+	 {
+		 String query = "select * from incident_action WHERE " +
+					"userInfos_id=\"" 		+ user_id +  "\" AND " +
+					"incidentReports_id=" + case_id;
+		 return DataBaseQuery.executeQuery(query);
 	 }
 	 
 	 /**
 	  * 
-	  * @param report_id
+	  * @param case_id
 	  * @param user_id
 	  * @return
 	  */
-	 public static boolean takeCase(int report_id, int user_id){
-		return false;
+	 public static boolean connectCaseAndUser(String case_id,String user_id)
+	 {
+		 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		 Date date = new Date();
+		 String query = "INSERT INTO incident_action (decription, userInfos_id, incidentReports_id) VALUES (" +
+		 		"\"Case was taken - " + dateFormat.format(date) +  "\"," +
+				"\"" + user_id +  "\"," +
+				"\"" + case_id +  "\")";
+		 return DataBaseQuery.updateQuery(query);
+	 }
+	 
+	 /**
+	  * 
+	  * @param case_id
+	  * @param user_id
+	  * @return
+	  */
+	 public static boolean addCommentCaseAndUser(String case_id,String user_id, String comment)
+	 {
+		 String description="";
+		 ArrayList<String[]> array = getCaseAndUserConnection(case_id, user_id);
+		 if(array.size()!=1)
+			 return false;
+		 description=array.get(0)[1] + "\n" + comment;
+		 String query = "UPDATE incident_action SET decription=\""+description+"\" WHERE " +
+				"userInfos_id=\"" 		+ user_id +  "\" AND " +
+				"incidentReports_id=" + case_id;
+		 return DataBaseQuery.updateQuery(query);
+	 }
+	 
+	 /**
+	  * 
+	  * @param case_id
+	  * @param user_id
+	  * @return
+	  */
+	 public static boolean takeCase(String case_id, String user_id){
+		 if(!connectCaseAndUser(case_id,user_id))
+			 return false;
+		 if(!changeStatusCase(case_id, String.format("%d", 2)))
+			 return false;
+		 return true;
+
+	 }
+	 
+	 /**
+	  * 
+	  * @param case_id
+	  * @param user_id
+	  * @return
+	  */
+	 public static boolean closeCase(String case_id, String user_id){
+		 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		 Date date = new Date();
+		 if(!addCommentCaseAndUser(case_id, user_id, "\nCase was closed - "+dateFormat.format(date)))
+			 return false;
+		 if(!changeStatusCase(case_id, String.format("%d", 5)))
+			 return false;
+		 return true;
+	 }
+	 
+	 /**
+	  * 
+	  * @param case_id
+	  * @param user_id
+	  * @return
+	  */
+	 public static boolean declineCase(String case_id, String user_id){
+		 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		 Date date = new Date();
+		 if(!addCommentCaseAndUser(case_id, user_id, "\nCase was declined - "+dateFormat.format(date)))
+			 return false;
+		 if(!changeStatusCase(case_id, String.format("%d", 4)))
+			 return false;
+		 return true;
 	 }
 }

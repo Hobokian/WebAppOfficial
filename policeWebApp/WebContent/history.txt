@@ -71,6 +71,7 @@ This file for keep tracking history
 				add function: createSelectListProvince - function to create list of province
 				add function: createSelectListCity    - function to create list of cities
 				add function: createIncidentReportTable - create incident table
+				
 -------------------------Iaroslav Malyshev -02/01/2015------------------------------------------------------------------				
 15. modify file: report.jsp 
 				add javascript function: AddCityFunction - function to make visible elements to add city		
@@ -94,3 +95,35 @@ This file for keep tracking history
 20. modify file: SignUpServlet.java
 			modify class: SignUpServlet
 				modify function: doGet - add check which button was called servlet and if it add city button call function to add city 
+				
+-------------------------Iaroslav Malyshev -02/02/2015------------------------------------------------------------------	
+21. modify file: web.xml
+				add CaseServlet 
+
+22. modify file: UtilsDB.java
+			modify class: UtilsDB
+				modify function: createIncidentReportTable - add buttons "take case" , "close case" and "decline case"	
+
+23. modify file: LoginServlet.java
+			modify class: LoginServlet
+				modify function: doPost
+
+24. modify file DataBaseStandardUtilities.java
+			modify class: DataBaseStandardUtilities
+				modify function: takeCase 				- create connection between case and user and change status of case
+				add function: getCaseAndUserConnection 	- get info from incident_action
+				add function: connectCaseAndUser 		- add record in incident_action
+				add function: addCommentCaseAndUser 	- add comment into incident_action
+				add function: changeStatusCase 			- modify status of case
+				add function: closeCase 				- close case
+				add function: declineCase 				- decline case
+				
+25. add file: CaseServlet.java
+			add class: CaseServlet
+				ad function: doPost - function to modified case status. 
+				
+26. modify file: sql_query_to_create_database.txt
+			modify table: incident_action
+				modify field: description - size was changed to 1023
+			modify table: incidentreports
+				modify field: description - size was changed to 1023
