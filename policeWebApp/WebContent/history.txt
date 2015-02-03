@@ -127,3 +127,8 @@ This file for keep tracking history
 				modify field: description - size was changed to 1023
 			modify table: incidentreports
 				modify field: description - size was changed to 1023
+
+-------------------------Joseph Barber -02/03/2015------------------------------------------------------------------
+
+27. Modify file: sql_query_to_create_database.txt
+				 Add commands to add and use database	
