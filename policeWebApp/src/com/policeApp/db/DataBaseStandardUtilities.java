@@ -144,7 +144,7 @@ public class DataBaseStandardUtilities {
 		 String userName=null;
 		 ArrayList<String[]> array=DataBaseQuery.executeQuery("select * from webapp.userinfos where budgeNumber='"+ budge +"'");
 		 if(array.size()==1)
-			 userName=array.get(0)[1];
+			 userName=array.get(0)[2];
 		 return userName;
 	 }
 	 

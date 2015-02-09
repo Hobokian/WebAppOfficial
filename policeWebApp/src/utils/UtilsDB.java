@@ -3,7 +3,6 @@ package utils;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -74,19 +73,16 @@ public class UtilsDB {
 	 * 
 	 * @param rset
 	 * @return
-	 * @throws SQLException
 	 */
 	public static String createIncidentReportTable(ArrayList<String[]> rset, String user_id) {
         StringBuffer sb = new StringBuffer();
         int i;
+        String actionButons="";
         String info_button="";
-        sb.append("<table frame=\"box\" border=2 >");
-        sb.append(	"<tr><td>user</td>"		+
-        			"<td>plateNumber</td>"	+
-        			"<td>URL</td>"			+
+        String popUpWindow="";
+        sb.append("<table class=\"table table-hover\">");
+        sb.append(  "<td>plateNumber</td>"	+
         			"<td>description</td>"	+
-        			"<td>strret</td>"		+
-        			"<td>postal code</td>"	+
         			"<td>province</td>"		+
         			"<td>city</td>"			+
         			"<td>status</td>"		+
@@ -95,28 +91,42 @@ public class UtilsDB {
         {
         	for(i=0;i<rset.size();i++) 
         	{  
+        		
         		if(rset.get(i)[9].compareTo("new")==0)
         		{
-        			info_button="<input type=\"submit\" name=\"action\" value=\"take case\">";
+        			actionButons="<input type=\"submit\" name=\"action\" class=\"btn btn-primary btnView\" value=\"take case\">";
         		}
         		if(rset.get(i)[9].compareTo("in progress")==0)
         		{
-        			info_button="<input type=\"submit\" name=\"action\" value=\"close case\"><input type=\"submit\" name=\"action\" value=\"decline case\">";
+        			actionButons="<input type=\"submit\" name=\"action\" class=\"btn btn-primary btnView\" value=\"close case\"><input type=\"submit\" name=\"action\" class=\"btn btn-primary btnView\" value=\"decline case\">";
         		}
         		
+        		info_button="<a href=\"#myModal"+i+"\" class=\"btn btn-primary btnView\" data-toggle=\"modal\">view</a>";
+        		popUpWindow="<div id=\"myModal"+i+"\" class=\"modal fade\">" 
+        					+	"<div class=\"modal-dialog\" style=\"width:60%\">" 
+        					+ 		"<div class=\"modal-content\">" 
+        					+			"<div class=\"modal-header\">" 
+			                +				"<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>"
+			                +				"<h4 class=\"modal-title\">record id:"+rset.get(i)[0]+"</h4>"
+			                +			"</div>"
+			                +			"<div class=\"modal-body\">"
+			                +				"<iframe width=\"600\" height=\"338\" src=\""+rset.get(i)[3]+"\" frameborder=\"0\"></iframe>"+actionButons
+			                +			"</div>"
+			                +			"<div class=\"modal-footer\">"
+			                +				"<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>"
+			                +			"</div>"
+			                +		"</div>"
+			                +	"</div>"
+			                +"</div>";
         		sb.append(	"<form action=\"caseServlet\" method=\"post\">"+
         					"<input type=\"hidden\" name=\"hdn_case_id\" value=\""+ rset.get(i)[0] + "\"/>" +
         					"<input type=\"hidden\" name=\"hdn_user_id\" value=\""+user_id+"\"/>" +
-        					"<tr><td>"+rset.get(i)[1]+"</td>"+
-        						"<td>"+rset.get(i)[2]+"</td>"+
-        						"<td>"+rset.get(i)[3]+"</td>"+
+        					"<tr><td>"+rset.get(i)[2]+"</td>"+
         						"<td>"+rset.get(i)[4]+"</td>"+
-        						"<td>"+rset.get(i)[5]+"</td>"+
-        						"<td>"+rset.get(i)[6]+"</td>"+
         						"<td>"+rset.get(i)[7]+"</td>"+
         						"<td>"+rset.get(i)[8]+"</td>"+
         						"<td>"+rset.get(i)[9]+"</td>"+
-        					"<td>"+info_button+"</td></tr></form>");
+        					"<td>"+info_button+popUpWindow+"</td></tr></form>");
         	} 
         }
         sb.append("</table>"); 
