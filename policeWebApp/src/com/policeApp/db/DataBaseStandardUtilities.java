@@ -1,6 +1,6 @@
 package com.policeApp.db;
 
-import com.policeApp.db.DataBaseQuery;
+import com.policeApp.db.DataBaseQuery; 
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -73,12 +73,8 @@ public class DataBaseStandardUtilities {
 	  */
 	 public static String makeDynamicProvinceCity()
 	 {
-		 String aaa ="<tr><td>Province</td><td><select id=\"province\" name=\"province\" onchange=\"addCityList("+DataBaseStandardUtilities.getCity()+")\">"
-         	+ DataBaseStandardUtilities.getProvince()+"</select></td>  </tr><tr><td>City</td>  <td><select id=\"city\" name=\"city\" onchange=\"addCityFunction()\"></select></td>"
-         			 + "<td><form action=\"addCity\" method=\"post\"><input type=\"text\" id=\"addCity\" name=\"addCity\"  style=\"visibility: hidden\"/>"
-         			 + "<input type=\"submit\" id=\"addCityButton\" name=\"action\" value=\"Add City\"  style=\"visibility: hidden\"/></form></td>  </tr>";
-//         	+"</tr>";
-		 return aaa;  
+		 String aaa ="onchange=\"addCityList("+DataBaseStandardUtilities.getCity()+")\"";
+		 return aaa;   
 	 }
 	 
 	 /**

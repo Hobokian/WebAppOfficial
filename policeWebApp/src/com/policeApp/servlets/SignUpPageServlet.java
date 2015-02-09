@@ -61,6 +61,13 @@ public class SignUpPageServlet extends HttpServlet{
         	UtilsDB.addCity(request, response);
         	return;
         }
+        if (action.compareTo("Back")==0) {
+        	HttpSession session = request.getSession();
+        	if(session!=null) session.setAttribute("bFirst", 1);
+        	RequestDispatcher rd=request.getRequestDispatcher("index.jsp");    
+            rd.forward(request,response);
+          	return;
+         }
     	boolean badArg=false;
     	response.setContentType("text/html");    
         PrintWriter out = response.getWriter();  
