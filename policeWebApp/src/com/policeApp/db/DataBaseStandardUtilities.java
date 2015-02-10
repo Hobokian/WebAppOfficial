@@ -364,4 +364,15 @@ public class DataBaseStandardUtilities {
 			 return false;
 		 return true;
 	 }
+	 
+	 
+	 public static String getRealIndexOfCity(String province, String encrypted_city)
+	 {
+		 String query = "SELECT * FROM webapp.citylookup where province_id="+province+
+				 		" limit 1 offset " + (Integer.parseInt(encrypted_city)-1);
+		 ArrayList<String[]> array=DataBaseQuery.executeQuery(query);
+		 if(array.size()==0)
+			 return null;
+		 return array.get(0)[0];
+	 }
 }

@@ -8,7 +8,9 @@
 	<link href="http://fonts.googleapis.com/css?family=Oswald:400,300" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-	<%if(session.getAttribute("bFirst")==null){%>
+	<%if(session.getAttribute("bFirst")==null){
+		session.setAttribute("bFirst", 1);
+	%>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$("#myModal").modal('show');

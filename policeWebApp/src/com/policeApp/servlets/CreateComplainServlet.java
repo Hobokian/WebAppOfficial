@@ -73,8 +73,6 @@ public class CreateComplainServlet extends HttpServlet{
          	return;
          }
          if (action.compareTo("Back")==0) {
-        	HttpSession session = request.getSession();
-        	if(session!=null) session.setAttribute("bFirst", 1);
         	RequestDispatcher rd=request.getRequestDispatcher("index.jsp");    
             rd.forward(request,response);
           	return;
@@ -122,6 +120,7 @@ public class CreateComplainServlet extends HttpServlet{
          }
          else
          {
+        	 selectCity=DataBaseStandardUtilities.getRealIndexOfCity(selectProvince, selectCity);
         	 caseNumber=DataBaseStandardUtilities.createReport(user, plateNumber, URLlink, description, street, postalCode, selectCity, selectProvince);
         	 if(caseNumber!=0)
         	 {
