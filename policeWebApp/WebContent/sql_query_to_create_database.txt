@@ -123,7 +123,7 @@ CREATE TABLE `incident_status` (
 
 LOCK TABLES `incident_status` WRITE;
 /*!40000 ALTER TABLE `incident_status` DISABLE KEYS */;
-INSERT INTO `incident_status` VALUES (1,'new'),(2,'in progress'),(3,'reviewed'),(4,'declined'),(5,'complited');
+INSERT INTO `incident_status` VALUES (1,'new'),(2,'in progress'),(3,'reviewed'),(4,'declined'),(5,'completed');
 /*!40000 ALTER TABLE `incident_status` ENABLE KEYS */;
 UNLOCK TABLES;
 
