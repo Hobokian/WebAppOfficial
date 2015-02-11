@@ -83,7 +83,6 @@ public class UtilsDB {
         String popUpWindow="";
         sb.append("<table class=\"table table-hover\">");
         sb.append(  "<td>plateNumber</td>"	+
-        			"<td>description</td>"	+
         			"<td>province</td>"		+
         			"<td>city</td>"			+
         			"<td>status</td>"		+
@@ -111,7 +110,13 @@ public class UtilsDB {
 			                +				"<h4 class=\"modal-title\">record id:"+rset.get(i)[0]+"</h4>"
 			                +			"</div>"
 			                +			"<div class=\"modal-body\">"
-			                +				"<iframe width=\"600\" height=\"338\" src=\""+rset.get(i)[3]+"\" frameborder=\"0\"></iframe>"+actionButons
+			                +				"<iframe width=\"300\" height=\"169\" src=\""+rset.get(i)[3]+"\" frameborder=\"0\"></iframe>"
+			                +			"</div>"
+			                +			"<div>"
+			                
+			                +			"</div>"
+			                +			"<div>"
+			                +			actionButons
 			                +			"</div>"
 			                +			"<div class=\"modal-footer\">"
 			                +				"<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>"
@@ -123,7 +128,6 @@ public class UtilsDB {
         					"<input type=\"hidden\" name=\"hdn_case_id\" value=\""+ rset.get(i)[0] + "\"/>" +
         					"<input type=\"hidden\" name=\"hdn_user_id\" value=\""+user_id+"\"/>" +
         					"<tr><td>"+rset.get(i)[2]+"</td>"+
-        						"<td>"+rset.get(i)[4]+"</td>"+
         						"<td>"+rset.get(i)[7]+"</td>"+
         						"<td>"+rset.get(i)[8]+"</td>"+
         						"<td>"+rset.get(i)[9]+"</td>"+
