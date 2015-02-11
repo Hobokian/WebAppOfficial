@@ -27,7 +27,7 @@
                 </div>
                 <div class="modal-body">
                 	<br><br><br><br><br>
-                    <h1>This is non-profit project to make our road saver</h1>
+                    <h1>This is non-profit project to make our road safer</h1>
                     <br><br><br><br><br>
                 </div>
                 <div class="modal-footer">

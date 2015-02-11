@@ -132,3 +132,9 @@ This file for keep tracking history
 
 27. Modify file: sql_query_to_create_database.txt
 				 Add commands to add and use database	
+				 
+-------------------------Joseph Barber -02/10/2015------------------------------------------------------------------
+
+28. Modify files: index.jsp, report.jsp, signUp.jsp
+
+29. Added files: CSS, Fonts, Images, and LESS
