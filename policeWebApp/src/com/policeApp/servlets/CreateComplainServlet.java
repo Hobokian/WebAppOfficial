@@ -72,7 +72,7 @@ public class CreateComplainServlet extends HttpServlet{
          	UtilsDB.addCity(request, response);
          	return;
          }
-         if (action.compareTo("Back")==0) {
+         if (action.compareTo("Back")==0 || action.compareTo("Finish")==0) {
         	RequestDispatcher rd=request.getRequestDispatcher("index.jsp");    
             rd.forward(request,response);
           	return;
@@ -124,7 +124,7 @@ public class CreateComplainServlet extends HttpServlet{
         	 caseNumber=DataBaseStandardUtilities.createReport(user, plateNumber, URLlink, description, street, postalCode, selectCity, selectProvince);
         	 if(caseNumber!=0)
         	 {
-        		 //out.print("<p>Thank you for your report.<br> Report id is "+caseNumber+"</p>");
+        		 session.setAttribute("newCaseID", caseNumber);
         		 RequestDispatcher rd=request.getRequestDispatcher("Thanks.jsp");    
                  rd.forward(request,response); 
         	 }
