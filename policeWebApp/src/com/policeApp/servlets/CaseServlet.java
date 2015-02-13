@@ -42,6 +42,11 @@ public class CaseServlet extends HttpServlet{
         	if(!DataBaseStandardUtilities.declineCase(caseId, userId))
         		out.print("<p style=\"color:red\">DataBase failed</p>");  
         } 
+        if (action.compareTo("close modal")==0)
+        {
+        	//do nothing for now
+        } 
+
         HttpSession session = request.getSession(false);  
         if(session!=null)  
         {

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
+
 import com.policeApp.db.DataBaseStandardUtilities;
 
 /**
@@ -78,52 +79,39 @@ public class UtilsDB {
 	public static String createIncidentReportTable(ArrayList<String[]> rset, String user_id) {
         StringBuffer sb = new StringBuffer();
         int i;
-        String actionButons="";
         String info_button="";
         String popUpWindow="";
-        sb.append("<table class=\"table table-hover\">");
-        sb.append(  "<td>plateNumber</td>"	+
-        			"<td>province</td>"		+
-        			"<td>city</td>"			+
-        			"<td>status</td>"		+
-        			"<td>action</td></tr>");
+        // generates the beginning of the table
+        sb.append("<table name=\"caseTable\" class=\"table table-hover\">");
+        sb.append(  "<thead style=\"display:block; width:750px;\">"	+
+        			"<style>th{ width:150px;}</style>" 	+
+        			"<style>td{ width:150px;}</style>" 	+
+        			"<tr><th>plateNumber</th>"	+
+        			"<th>province</th>"		+
+        			"<th>city</th>"			+
+        			"<th>status</th>"		+
+        			"<th>action</th></tr></thead>");
+        sb.append(	"<tbody style=\" display:block; overflow-y:auto; height:350px; width:765px; \">");
+        
+        // generates each row of the table based on query results set
         if(rset.size()>0)
         {
         	for(i=0;i<rset.size();i++) 
         	{  
-        		
+                String actionButtons="";        		
         		if(rset.get(i)[9].compareTo("new")==0)
         		{
-        			actionButons="<input type=\"submit\" name=\"action\" class=\"btn btn-primary btnView\" value=\"take case\">";
-        		}
-        		if(rset.get(i)[9].compareTo("in progress")==0)
+        			actionButtons="<input type=\"submit\" name=\"action\" class=\"btn btn-primary btnView\" value=\"take case\">";
+        		}else if(rset.get(i)[9].compareTo("in progress")==0)
         		{
-        			actionButons="<input type=\"submit\" name=\"action\" class=\"btn btn-primary btnView\" value=\"close case\"><input type=\"submit\" name=\"action\" class=\"btn btn-primary btnView\" value=\"decline case\">";
+        			actionButtons="<input type=\"submit\" name=\"action\" class=\"btn btn-primary btnView\" value=\"close case\"><input type=\"submit\" name=\"action\" class=\"btn btn-primary btnView\" value=\"decline case\">";
+        		}else if(rset.get(i)[9].compareTo("completed")==0){
+        			
         		}
         		
-        		info_button="<a href=\"#myModal"+i+"\" class=\"btn btn-primary btnView\" data-toggle=\"modal\">view</a>";
-        		popUpWindow="<div id=\"myModal"+i+"\" class=\"modal fade\">" 
-        					+	"<div class=\"modal-dialog\" style=\"width:60%\">" 
-        					+ 		"<div class=\"modal-content\">" 
-        					+			"<div class=\"modal-header\">" 
-			                +				"<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>"
-			                +				"<h4 class=\"modal-title\">record id:"+rset.get(i)[0]+"</h4>"
-			                +			"</div>"
-			                +			"<div class=\"modal-body\">"
-			                +				"<iframe width=\"300\" height=\"169\" src=\""+rset.get(i)[3]+"\" frameborder=\"0\"></iframe>"
-			                +			"</div>"
-			                +			"<div>"
-			                
-			                +			"</div>"
-			                +			"<div>"
-			                +			actionButons
-			                +			"</div>"
-			                +			"<div class=\"modal-footer\">"
-			                +				"<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>"
-			                +			"</div>"
-			                +		"</div>"
-			                +	"</div>"
-			                +"</div>";
+        		// generates the view button for each case row
+        		info_button="<a href=\"#myModal"+rset.get(i)[0]+"\" class=\"btn btn-primary btnView\" data-toggle=\"modal\">view</a>";
+        		popUpWindow= UtilsDB.createPopUpWindow(rset.get(i), actionButtons, rset.get(i)[0], Long.parseLong(user_id));
         		sb.append(	"<form action=\"caseServlet\" method=\"post\">"+
         					"<input type=\"hidden\" name=\"hdn_case_id\" value=\""+ rset.get(i)[0] + "\"/>" +
         					"<input type=\"hidden\" name=\"hdn_user_id\" value=\""+user_id+"\"/>" +
@@ -134,9 +122,70 @@ public class UtilsDB {
         					"<td>"+info_button+popUpWindow+"</td></tr></form>");
         	} 
         }
-        sb.append("</table>"); 
+        sb.append("</tbody></table>"); 
         return sb.toString();
     }
+	
+	public static String createPopUpWindow(String[] caseDetails, String actionButtons, String modalNumber, long user_id){
+		StringBuffer sbPopUp = new StringBuffer();
+		ArrayList<String[]> caseActions = DataBaseStandardUtilities.getIncidentActions(caseDetails[0]);
+		sbPopUp.append("<div id=\"myModal"+modalNumber+"\" class=\"modal fade\">");
+		sbPopUp.append(		"<div class=\"modal-dialog\" style=\"width:60%\">");
+		sbPopUp.append(			"<div class=\"modal-content\">");
+		sbPopUp.append(				"<div class=\"modal-header\">");
+		sbPopUp.append(					"<button type=\"submit\" name=\"action\" class=\"close\" value=\"close modal\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>");
+		sbPopUp.append(					"<h4 class=\"modal-title\">record id:"+caseDetails[0]+"</h4>");
+		sbPopUp.append(				"</div>");
+		sbPopUp.append(				"<div class=\"modal-body\">");
+		sbPopUp.append(					"<div class=\"row\">");
+		sbPopUp.append(						"<section class=\"col-md-10\">");
+		sbPopUp.append(							"<iframe width=\"300\" height=\"169\" src=\""+caseDetails[3]+"\" frameborder=\"0\"></iframe>");
+		sbPopUp.append(						"</section>");
+		sbPopUp.append(						"<section class=\"col-md-10\">");
+		sbPopUp.append(							"<label for=\"userDescription\">User Description</label><br>");
+		sbPopUp.append(							"<style>textarea[name=userDescription] {resize: none; font-size: 12px; border: none;}</style>");
+		sbPopUp.append(							"<textarea name=\"userDescription\" rows=\"7\" cols=\"40\" readonly wrap=\"soft\">"+caseDetails[4]+"</textarea>");
+		sbPopUp.append(						"</section>");
+		sbPopUp.append(					"</div>");//close row
+		sbPopUp.append(					"<div class\"row\">");
+		if (caseActions.size() != 0){ 
+		// if case action has details
+			boolean userActionFound=false;
+			for(int j=0; j< caseActions.size(); ++j){ 
+			//go through the multiple incident action to find the user action
+				Long caseActionUserID = Long.parseLong(caseActions.get(j)[0]);
+				if ( caseActionUserID == user_id){
+				// if one is found add it to popup window
+					sbPopUp.append(							"<label for=\"officerNotes\">Officer Notes</label><br>");
+					sbPopUp.append(							"<textarea style=\"resize: none; font-size: 12px;\" name=\"officerNotes\" rows=\"5\" cols=\"95\" wrap=\"soft\">"+caseActions.get(0)[2]+"</textarea>");
+					userActionFound = true;
+					break;
+				}
+			}
+			if(!userActionFound){
+			// if none are found put default
+				sbPopUp.append(							"<label for=\"officerNotes\">Officer Notes</label><br>");
+				sbPopUp.append(							"<textarea style=\"resize: none; font-size: 12px;\" name=\"officerNotes\" rows=\"5\" cols=\"95\" readonly wrap=\"soft\"></textarea>");				
+			}
+		}else{ 
+		// it doesn't have details and is probably new so put default
+			sbPopUp.append(							"<label for=\"officerNotes\">Officer Notes</label><br>");
+			sbPopUp.append(							"<textarea style=\"resize: none; font-size: 12px;\" name=\"officerNotes\" rows=\"5\" cols=\"95\" readonly wrap=\"soft\"></textarea>");
+		}
+		sbPopUp.append(					"</div>");
+		sbPopUp.append(					"<div>");
+		sbPopUp.append(					actionButtons);
+		sbPopUp.append(					"</div>");
+		sbPopUp.append(				"</div>"); // modal body end
+		sbPopUp.append(				"<div class=\"modal-footer\">");
+		sbPopUp.append(					"<button type=\"submit\" name=\"action\" class=\"btn btn-default\" value=\"close modal\" data-dismiss=\"modal\">Close</button>");
+		sbPopUp.append(				"</div>"); // modal footer end
+		sbPopUp.append(			"</div>"); // modal content end
+		sbPopUp.append(		"</div>"); // modal-dialog end
+		sbPopUp.append("</div>"); // modal end
+		
+		return sbPopUp.toString();
+	}
 	
 	
 	public static void addCity(HttpServletRequest request, HttpServletResponse response)    

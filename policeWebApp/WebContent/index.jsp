@@ -84,21 +84,20 @@
 			</section>
 			<section class="col-md-1"></section>
 			<section class="col-md-1"></section>
-			<section class="col-md-1"></section>
 			<section class="col-md-6">
 			  <form action="loginServlet" method="post"> 
 			    <h4 style=" text-align: center;">Enter</h4>
 				<div class="row">
-					<section class="col-md-4">
+					<section class="col-md-6">
 						<div class="form-group">
-							<h5>Email</h5>
+							<h5>Badge#</h5>
 			    		</div>
 			    		<br>
 			    		<div class="form-group">
-							<h5>Phone</h5>
+							<h5>Password</h5>
 			    		</div>
 					</section>
-					<section class="col-md-20">
+					<section class="col-md-18">
 						<div class="form-group">
 							<input type="text" name="username" id="username" class="form-control input-sm" placeholder="badge" >
 			    		</div>

@@ -160,4 +160,24 @@ This file for keep tracking history
 	Modify file: LoginServlet
 					Added session attribute twitterProv
 					
+-------------------------Aaron Deslauriers -02/12/2015--------------------------------------------------------------
+	
+32. DataBaseStandardUtilities.java
+		changed getSelectedIncidents query
+		added getIncidentActions method
+			handles getting incident information for a case
+	
+33. UtilsDB.java
+		moved initialization of "actionButtons" inside for loop to correct error on closed cases
+		modified createIncidentReportTable()
+			table formatting for table body scrolling
+			modified pop-up window creation by calling new function
+		added createpopUpWindow()
+			handles creating the code for the pop-up window for cases
+	
+34. index.jsp
+		corrected tags for police user login to say badge# and password
+
+35. CaseServlet.java
+		modified doPost function to include a catch for Close Modal button.	
 					

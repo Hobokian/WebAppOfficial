@@ -109,26 +109,70 @@ public class DataBaseStandardUtilities {
 	 {
 		 StringBuffer sb = new StringBuffer();
 		 String table;
-		 sb.append("	select * from																					");
-		 sb.append("	(select incidentreports.id as 'id',incidentreports.user  as 'userName', 						");
-		 sb.append("	incidentreports.plateNumber as 'plateNumber', incidentreports.url as 'url', 					");
-		 sb.append("	incidentreports.description as 'description', location.street_intersection as 'street',			"); 
-		 sb.append("	location.postal_code as 'postalCode', province.province as 'province', 							");
-		 sb.append("	citylookup.cityName as 'city', incident_status.status as 'status'								");
-		 sb.append("	from incidentreports, location, province, citylookup, incident_status							");
-		 sb.append("	where incidentreports.location_id=location.id AND 												");
-		 sb.append("	location.province_id=province.id AND 															");
-		 sb.append("	location.citylookup_id=citylookup.id AND														");
-		 sb.append("	incidentreports.incident_status_id=incident_status.id)											");
-		 sb.append("	as fullTable																					");
+		 sb.append("select "
+				 + "incidentreports.id as 'id',"
+				 + "incidentreports.user as 'userName',"
+				 + "incidentreports.plateNumber as 'plateNumber',"
+				 + "incidentreports.url as 'url',"
+				 + "incidentreports.description as 'description',"
+				 + "location.street_intersection as 'street',"
+				 + "location.postal_code as 'postalCode',"
+				 + "province.province as 'province',"
+				 + "citylookup.cityName as 'city',"
+				 + "incident_status.status as 'status' "
+				 + "from incidentreports "
+				 + "join "
+				 + "location "
+				 + "on "
+				 + "incidentreports.location_id = location.id "
+				 + "join "
+				 + "province "
+				 + "on "
+				 + "location.province_id = province.id "
+				 + "join "
+				 + "citylookup "
+				 + "on "
+				 + "location.citylookup_id = citylookup.id "
+				 + "join "
+				 + "incident_status "
+				 + "on "
+				 + "incidentreports.incident_status_id = incident_status.id");
 		 //sb.append("select * from webapp.incidentreports inner join webapp.location on incidentreports.location_id=location.id");
 		 if(filter!=null)
 		 {
 			 sb.append(" where "+filter);
 		 }
-		 ArrayList<String[]> array=DataBaseQuery.executeQuery(sb.toString());
-		 table=UtilsDB.createIncidentReportTable(array, user_id);
+		 ArrayList<String[]> incidentData=DataBaseQuery.executeQuery(sb.toString());
+		 table=UtilsDB.createIncidentReportTable(incidentData, user_id);
 		 return table;
+	 }
+	 
+	 /**
+	  * Function takes in a case_id and returns all database 
+	  * information for the actions against the case
+	  * 
+	  * @param case_id
+	  * @return arrayList<String[]> of all actions for a case
+	  */
+	 // new
+	 public static ArrayList<String[]> getIncidentActions(String case_id){
+		 
+		 StringBuffer query = new StringBuffer();
+		 query.append("select "
+				+ "incident_action.userInfos_id as 'User ID', "
+		 		+ "userinfos.username as 'User Name', "
+		 		+ "incident_action.decription as 'Description' "
+		 		+ "from incident_action "
+		 		+ "join "
+		 		+ "userinfos "
+		 		+ "on "
+		 		+ "incident_action.userInfos_id = userinfos.id "
+		 		+ "where "
+		 		+ "incident_action.incidentReports_id = ");
+		 query.append(case_id);
+
+		 ArrayList<String[]> incidentActions = DataBaseQuery.executeQuery(query.toString());
+		 return incidentActions; 
 	 }
 	 
 	 /**
