@@ -139,10 +139,25 @@ This file for keep tracking history
 
 29. Added files: CSS, Fonts, Images, and LESS
 
--------------------------Joseph Barber -02/10/2015------------------------------------------------------------------
 
-30. Modify file: DataBaseStandardUtilities
+-------------------------Aaron Deslauriers -02/10/2015--------------------------------------------------------------
+
+28. Modified file: 	UtilsDB.java
+			modified function:	createIncidentReportTable 
+				modified table generation for modal window to change the formatting
+				 
+29. Modified file:	CreateComplaintServlet.java
+			modified function: doGet 
+				modified if statement:  Added a condition to include a finish button catch
+					
+30. added file:		Thanks.jsp - to a respond to the complainant submission  
+
+
+-------------------------Joseph Barber -02/12/2015------------------------------------------------------------------
+
+31. Modify file: DataBaseStandardUtilities
 					Added function getUsersProvince()
 	Modify file: LoginServlet
 					Added session attribute twitterProv
+					
 					
