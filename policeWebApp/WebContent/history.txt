@@ -138,3 +138,11 @@ This file for keep tracking history
 28. Modify files: index.jsp, report.jsp, signUp.jsp
 
 29. Added files: CSS, Fonts, Images, and LESS
+
+-------------------------Joseph Barber -02/10/2015------------------------------------------------------------------
+
+30. Modify file: DataBaseStandardUtilities
+					Added function getUsersProvince()
+	Modify file: LoginServlet
+					Added session attribute twitterProv
+					

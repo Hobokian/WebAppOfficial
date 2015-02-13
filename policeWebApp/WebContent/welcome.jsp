@@ -41,7 +41,7 @@
 				<div class="panel panel-primary">
 					<div class="panel-heading">police news</div>
 					<div class="panel-body">
-						list of news
+						News Here						
 					</div>
 				</div>
 			</aside>

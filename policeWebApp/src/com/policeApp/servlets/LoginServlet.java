@@ -42,6 +42,8 @@ public class LoginServlet extends HttpServlet{
             {
             	session.setAttribute("name", DataBaseStandardUtilities.getUserName(budge));
             	session.setAttribute("table", DataBaseStandardUtilities.getSelectedIncidents(null,DataBaseStandardUtilities.getUserId(budge)));
+            	session.setAttribute("twitterProv", DataBaseStandardUtilities.getUsersProvince(DataBaseStandardUtilities.getUserId(budge)));
+            	
             }
             RequestDispatcher rd=request.getRequestDispatcher("welcome.jsp");    
             rd.forward(request,response);    

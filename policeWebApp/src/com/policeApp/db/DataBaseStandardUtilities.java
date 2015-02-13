@@ -15,7 +15,7 @@ import utils.UtilsDB;
  *  
  *  
  *  
- * @author Iaroslav Malyshev, ... (add your name if you add functions)
+ * @author Iaroslav Malyshev, Joseph Barber, Aaron Deslauriers (add your name if you add functions)
  *
  */
 public class DataBaseStandardUtilities {
@@ -375,4 +375,13 @@ public class DataBaseStandardUtilities {
 			 return null;
 		 return array.get(0)[0];
 	 }
+	 
+	 public static String getUsersProvince(String badge_id)
+	 {
+		 String province = "";
+		 ArrayList<String[]> array=DataBaseQuery.executeQuery("select province.province from userinfos join province on userinfos.province_id = province.id where userinfos.id = " + badge_id);
+		 province= array.get(0)[0];
+		 return province;
+	 }
+	 
 }
