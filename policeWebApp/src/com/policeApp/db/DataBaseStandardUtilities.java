@@ -1,5 +1,5 @@
 package com.policeApp.db;
-
+//
 import com.policeApp.db.DataBaseQuery; 
 
 import java.text.DateFormat;
@@ -332,35 +332,15 @@ public class DataBaseStandardUtilities {
 	  * @param user_id
 	  * @return
 	  */
-	 public static boolean connectCaseAndUser(String case_id,String user_id)
+	 public static boolean createIncidentAction(String case_id,String user_id, String comment)
 	 {
-		 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		 Date date = new Date();
-		 String query = "INSERT INTO incident_action (decription, userInfos_id, incidentReports_id) VALUES (" +
-		 		"\"Case was taken - " + dateFormat.format(date) +  "\"," +
-				"\"" + user_id +  "\"," +
-				"\"" + case_id +  "\")";
+		 String query = "INSERT INTO incident_action ( userInfos_id, incidentReports_id, decription) VALUES (\""
+				 + user_id +  "\",\""
+				 + case_id +  "\",\""
+				 + comment + "\")";
 		 return DataBaseQuery.updateQuery(query);
 	 }
 	 
-	 /**
-	  * 
-	  * @param case_id
-	  * @param user_id
-	  * @return
-	  */
-	 public static boolean addCommentCaseAndUser(String case_id,String user_id, String comment)
-	 {
-		 String description="";
-		 ArrayList<String[]> array = getCaseAndUserConnection(case_id, user_id);
-		 if(array.size()!=1)
-			 return false;
-		 description=array.get(0)[1] + "\n" + comment;
-		 String query = "UPDATE incident_action SET decription=\""+description+"\" WHERE " +
-				"userInfos_id=\"" 		+ user_id +  "\" AND " +
-				"incidentReports_id=" + case_id;
-		 return DataBaseQuery.updateQuery(query);
-	 }
 	 
 	 /**
 	  * 
@@ -369,7 +349,9 @@ public class DataBaseStandardUtilities {
 	  * @return
 	  */
 	 public static boolean takeCase(String case_id, String user_id){
-		 if(!connectCaseAndUser(case_id,user_id))
+		 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		 Date date = new Date();
+		 if(!createIncidentAction(case_id,user_id, "\nCase was taken - "+dateFormat.format(date)))
 			 return false;
 		 if(!changeStatusCase(case_id, String.format("%d", 2)))
 			 return false;
@@ -383,10 +365,10 @@ public class DataBaseStandardUtilities {
 	  * @param user_id
 	  * @return
 	  */
-	 public static boolean closeCase(String case_id, String user_id){
+	 public static boolean closeCase(String case_id, String user_id, String comment){
 		 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		 Date date = new Date();
-		 if(!addCommentCaseAndUser(case_id, user_id, "\nCase was closed - "+dateFormat.format(date)))
+		 if(!updateCaseComment(case_id, user_id, comment+"\nCase was closed - "+dateFormat.format(date)))
 			 return false;
 		 if(!changeStatusCase(case_id, String.format("%d", 5)))
 			 return false;
@@ -402,7 +384,7 @@ public class DataBaseStandardUtilities {
 	 public static boolean declineCase(String case_id, String user_id){
 		 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		 Date date = new Date();
-		 if(!addCommentCaseAndUser(case_id, user_id, "\nCase was declined - "+dateFormat.format(date)))
+		 if(!createIncidentAction(case_id, user_id, "\nCase was declined - "+dateFormat.format(date)))
 			 return false;
 		 if(!changeStatusCase(case_id, String.format("%d", 4)))
 			 return false;
@@ -427,5 +409,22 @@ public class DataBaseStandardUtilities {
 		 province= array.get(0)[0];
 		 return province;
 	 }
-	 
+	 /**
+	  * 
+	  * @param case_id
+	  * @param user_id
+	  * @param comment
+	  * @return
+	  */
+	 public static boolean updateCaseComment(String case_id,String user_id, String comment)
+	 {
+		 ArrayList<String[]> array = getCaseAndUserConnection(case_id, user_id);
+		 if(array.size()!=1)
+			 return false;
+		 String query = "UPDATE incident_action SET decription=\""+comment+"\" WHERE " +
+				"userInfos_id=\"" 		+ user_id +  "\" AND " +
+				"incidentReports_id=" + case_id;
+		 return DataBaseQuery.updateQuery(query);
+	 }
+
 }

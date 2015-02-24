@@ -180,4 +180,30 @@ This file for keep tracking history
 
 35. CaseServlet.java
 		modified doPost function to include a catch for Close Modal button.	
+		
+-------------------------Aaron Deslauriers -02/24/2015--------------------------------------------------------------
+
+36.	DatabaseStandardUtilities.java
+		added updateCaseComment() method
+			designed to save changes by the officer to the case's notes
+		renamed connectCaseAndUser() to createIncidentAction()
+			also added a parameter to catch and save the action 'description' (case notes)
+		removed addCommentCaseAndUser()
+		modified takeCase(), declineCase()
+			These methods now call createIncidentAction() to create incident
+		modified closeCase()
+			now calls updateCaseComment() to insert closed comment before closing case
+			
+		
+37. UtilsDB.java
+		Modified createPopUpWindow()
+			Modified the Officer Notes text area for adding save functionality
+		Modified createIncidentReportTable()
+			Modified the button generator to allow declining case without taking it first
+			Modified the button generator to add a save change function after taking the case
+
+38. CaseServlet.java
+		modified doPost()
+			modified if statement catches for takeCase, closeCase, declinesCase
+			Added if statement catch for Save Changes
 					

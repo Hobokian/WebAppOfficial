@@ -1,6 +1,6 @@
 package utils;
 /***/
-
+//
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -10,6 +10,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+
 
 
 
@@ -98,13 +100,13 @@ public class UtilsDB {
         {
         	for(i=0;i<rset.size();i++) 
         	{  
-                String actionButtons="";        		
+        		String actionButtons="";        		
         		if(rset.get(i)[9].compareTo("new")==0)
         		{
-        			actionButtons="<input type=\"submit\" name=\"action\" class=\"btn btn-primary btnView\" value=\"take case\">";
+        			actionButtons="<input type=\"submit\" name=\"action\" class=\"btn btn-primary btnView\" value=\"Take Case\"><input type=\"submit\" name=\"action\" class=\"btn btn-primary btnView\" value=\"Decline Case\">";
         		}else if(rset.get(i)[9].compareTo("in progress")==0)
         		{
-        			actionButtons="<input type=\"submit\" name=\"action\" class=\"btn btn-primary btnView\" value=\"close case\"><input type=\"submit\" name=\"action\" class=\"btn btn-primary btnView\" value=\"decline case\">";
+        			actionButtons="<input type=\"submit\" name=\"action\" class=\"btn btn-primary btnView\" value=\"Save Changes\"><input type=\"submit\" name=\"action\" class=\"btn btn-primary btnView\" value=\"Close Case\">";
         		}else if(rset.get(i)[9].compareTo("completed")==0){
         			
         		}
@@ -157,7 +159,7 @@ public class UtilsDB {
 				if ( caseActionUserID == user_id){
 				// if one is found add it to popup window
 					sbPopUp.append(							"<label for=\"officerNotes\">Officer Notes</label><br>");
-					sbPopUp.append(							"<textarea style=\"resize: none; font-size: 12px;\" name=\"officerNotes\" rows=\"5\" cols=\"95\" wrap=\"soft\">"+caseActions.get(0)[2]+"</textarea>");
+					sbPopUp.append(							"<textarea class=\"form-control\" name=\"officerNotes\" style=\"resize: none; font-size: 12px;\" rows=\"5\" cols=\"95\">" +caseActions.get(0)[2]+"</textarea>");
 					userActionFound = true;
 					break;
 				}
