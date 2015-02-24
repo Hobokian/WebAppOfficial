@@ -29,7 +29,7 @@ public class DataBaseConnection {
 	        String dbName = "webapp";  
 	        String driver = "com.mysql.jdbc.Driver";  
 	        String userName = "root";  
-	        String password = "Password";  
+	        String password = "root";  
 
 	        try {
 				Class.forName(driver).newInstance();
