@@ -21,7 +21,7 @@ import utils.UtilsDB;
 public class DataBaseStandardUtilities {
 	
 	/**
-	 * function to validate budge and password
+	 * function to validate budge and password  
 	 * @param budge     - officer budge
 	 * @param password  - officer password
 	 * @return  true if username and password are correct

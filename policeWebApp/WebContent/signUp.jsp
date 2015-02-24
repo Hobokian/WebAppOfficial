@@ -13,8 +13,8 @@
 		</header>
 		<div class="heading">
 			<h1>Registration Form</h1>
-		</div>
-	  <form action="createReport" method="GET"> 
+		</div>   
+	  <form action="createReport" method="post"> 
 		<div class="row">
 			<section class="col-md-3"></section>
 			<section class="col-md-4">

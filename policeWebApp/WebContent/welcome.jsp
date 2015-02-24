@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/styles.css" rel="stylesheet">
 	<link href="http://fonts.googleapis.com/css?family=Oswald:400,300" rel="stylesheet">
-  </head>
+  </head>   
   <body>
   <%  %>
 	<div class="wrapper container">
@@ -17,9 +17,9 @@
 			<div class="dropdown col-md-4 sitemap">
 		        <button class="btn dropdown-toggle logOut" type="button" id="menu1" data-toggle="dropdown">Hi, <%=session.getAttribute("name")%>
 		        <span class="caret"></span></button>
-		        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" onclick="logOutMenu()" style="position: absolute; right: 0px; top: 35px;">
-			        <li role="presentation"><a role="menuitem" tabindex="1">menu1</a></li>
-			        <li role="presentation"><a role="menuitem" tabindex="2">menu2</a></li>
+		        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" style="position: absolute; right: 0px; top: 35px;">
+			        <li role="presentation"><a role="menuitem" tabindex="1" onclick="editUser()">edit profile</a></li>
+			        <li role="presentation"><a role="menuitem" tabindex="2" onclick="fun()">menu2</a></li>
 			        <li role="presentation" class="divider"></li>
 			        <li role="presentation"><a role="menuitem" tabindex="3" onclick="logOutMenu()">Log Out</a></li>
 		        </ul>
@@ -96,6 +96,15 @@
     function logOutMenu()
     {
     	window.location.href = 'index.jsp';
+    	//TODO clean session
+    	
+    }
+    </script>
+    
+    <script>
+    function editUser()
+    {
+    	window.location.href = 'editProfile.jsp';
     }
     </script>
 
