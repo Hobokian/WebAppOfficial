@@ -111,7 +111,7 @@
 					<input type="submit" name="action" class="btn btn-primary" value="Sign In" style="width:100%" />
 				</div>
 			  </form>
-			  <form action="signUpPage" method="post"> 
+			  <form action="signUpPage" method="get"> 
 				<div class="form-group">
 					<input type="submit" name="action" class="btn btn-primary" value="Sign Up" style="width:100%" />
 				</div>
