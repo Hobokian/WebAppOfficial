@@ -206,6 +206,4 @@ This file for keep tracking history
 		modified doPost()
 			modified if statement catches for takeCase, closeCase, declinesCase
 			Added if statement catch for Save Changes
-
-		
 					

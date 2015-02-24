@@ -1,5 +1,5 @@
 package com.policeApp.db;
-
+//
 import com.policeApp.db.DataBaseQuery; 
 
 import java.text.DateFormat;
