@@ -27,19 +27,25 @@ public class CaseServlet extends HttpServlet{
     	String caseId = request.getParameter("hdn_case_id");
     	String userId = request.getParameter("hdn_user_id");
     	String action = request.getParameter("action");
-        if (action.compareTo("take case")==0)
+    	String notes = request.getParameter("officerNotes");
+        if (action.compareTo("Take Case")==0)
         {
         	if(!DataBaseStandardUtilities.takeCase(caseId, userId))
         		out.print("<p style=\"color:red\">DataBase failed</p>");  
         } 
-        if (action.compareTo("close case")==0)
+        if (action.compareTo("Close Case")==0)
         {
-        	if(!DataBaseStandardUtilities.closeCase(caseId, userId))
+        	if(!DataBaseStandardUtilities.closeCase(caseId, userId, notes))
         		out.print("<p style=\"color:red\">DataBase failed</p>");  
         } 
-        if (action.compareTo("decline case")==0)
+        if (action.compareTo("Decline Case")==0)
         {
         	if(!DataBaseStandardUtilities.declineCase(caseId, userId))
+        		out.print("<p style=\"color:red\">DataBase failed</p>");  
+        }
+        if (action.compareTo("Save Changes")==0)
+        {
+        	if(!DataBaseStandardUtilities.updateCaseComment(caseId, userId, notes))
         		out.print("<p style=\"color:red\">DataBase failed</p>");  
         } 
         if (action.compareTo("close modal")==0)
