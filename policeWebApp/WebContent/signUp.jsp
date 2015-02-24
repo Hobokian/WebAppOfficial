@@ -13,7 +13,7 @@
 		</header>
 		<div class="heading">
 			<h1>Registration Form</h1>
-		</div>
+		</div>   
 	  <form action="createReport" method="post"> 
 		<div class="row">
 			<section class="col-md-3"></section>

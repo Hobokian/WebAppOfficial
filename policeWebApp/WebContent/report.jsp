@@ -7,7 +7,7 @@
     <link href="css/styles.css" rel="stylesheet">
 	<link href="http://fonts.googleapis.com/css?family=Oswald:400,300" rel="stylesheet">
   </head>
-  <body>
+  <body>  
 	<div class="wrapper container">
 		<header>
 		</header>

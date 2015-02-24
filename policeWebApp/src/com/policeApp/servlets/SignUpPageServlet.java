@@ -37,7 +37,7 @@ public class SignUpPageServlet extends HttpServlet{
         HttpSession session = request.getSession(false);  
         if(session!=null)
         {
-        	session.setAttribute("budge", "");
+        	session.setAttribute("budge", "");  
         	session.setAttribute("accessCode", "");
         	session.setAttribute("userName", "");
         	session.setAttribute("email", "");

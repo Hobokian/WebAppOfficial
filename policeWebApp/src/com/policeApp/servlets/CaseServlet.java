@@ -23,7 +23,7 @@ public class CaseServlet extends HttpServlet{
     public void doPost(HttpServletRequest request, HttpServletResponse response)    
             throws ServletException, IOException { 
     	response.setContentType("text/html");    
-        PrintWriter out = response.getWriter();  
+        PrintWriter out = response.getWriter();    
     	String caseId = request.getParameter("hdn_case_id");
     	String userId = request.getParameter("hdn_user_id");
     	String action = request.getParameter("action");
