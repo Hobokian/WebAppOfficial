@@ -206,4 +206,22 @@ This file for keep tracking history
 		modified doPost()
 			modified if statement catches for takeCase, closeCase, declinesCase
 			Added if statement catch for Save Changes
+
+-------------------------Iaroslav Malyshev -02/27/2015------------------------------------------------------------------
+
+39. Add file footer.jsp - for moving all footer code to there and avoid redundent on a pages
+
+40. UtilsDB.java
+        add function getTwit()
+             function connect to official twitter of Ottawa police and get last post
+ 
+41. UtilsDB.java
+        add function getWord()
+             function go to language dictionary maps and find word for chosen language  
+
+42. add file Languages.java
+        create class Languages
+             create final static Object of Languages
+             create two maps for Russian and English words
+             create function to get specific word
 					
