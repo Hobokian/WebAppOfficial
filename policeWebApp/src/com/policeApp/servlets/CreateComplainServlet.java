@@ -3,7 +3,6 @@ package com.policeApp.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +25,7 @@ public class CreateComplainServlet extends HttpServlet{
     /**
      * 
      */
-    public void doPost(HttpServletRequest request, HttpServletResponse response)    
+    public void doGet(HttpServletRequest request, HttpServletResponse response)    
             throws ServletException, IOException {    
 		response.setContentType("text/html");    
 	    PrintWriter out = response.getWriter();    
@@ -45,18 +44,20 @@ public class CreateComplainServlet extends HttpServlet{
 	    	session.setAttribute("URLlink", "");
 	    	session.setAttribute("street", "");
 	    	session.setAttribute("postalCode", "");
-	    	session.setAttribute("description", "describe situation");
+	    	session.setAttribute("description", "");
 	    }
 	    if (email.compareTo("")==0 && phone.compareTo("")==0)
 	    {
 	    	out.print("<p style=\"color:red\">Please use Anonymous access or enter email or phone</p>");
-	    	RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
-	    	rd.include(request,response); 
+	    	//RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
+	    	//rd.include(request,response); 
+	    	response.sendRedirect("report.jsp");
 	    }
 	    else
 	    {
-	    	RequestDispatcher rd=request.getRequestDispatcher("report.jsp");    
-	        rd.forward(request,response); 
+	    	//RequestDispatcher rd=request.getRequestDispatcher("report.jsp");    
+	        //rd.forward(request,response); 
+	        response.sendRedirect("report.jsp");
 	    }   
 	    
 	    out.close(); 
@@ -65,16 +66,20 @@ public class CreateComplainServlet extends HttpServlet{
     /**
      * 
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response)    
-            throws ServletException, IOException {  
+    public void doPost(HttpServletRequest request, HttpServletResponse response)    
+            throws ServletException, IOException { 
+    	 HttpSession session = request.getSession(false);  
+    	 String language = (String)session.getAttribute("language");
+    	 request.setCharacterEncoding("UTF-8");
     	 String action = request.getParameter("action");
-         if (action.compareTo("Add City")==0) {
+         if (action.compareTo(UtilsDB.getWord(language, "addCity"))==0) {
          	UtilsDB.addCity(request, response);
          	return;
          }
-         if (action.compareTo("Back")==0 || action.compareTo("Finish")==0) {
-        	RequestDispatcher rd=request.getRequestDispatcher("index.jsp");    
-            rd.forward(request,response);
+         if (action.compareTo(UtilsDB.getWord(language, "backButton"))==0) {
+        	//RequestDispatcher rd=request.getRequestDispatcher("index.jsp");    
+            //rd.forward(request,response);
+            response.sendRedirect("index.jsp");
           	return;
          }
     	 boolean badArg=false;
@@ -82,8 +87,7 @@ public class CreateComplainServlet extends HttpServlet{
     	 int caseNumber;
     	 response.setContentType("text/html");    
          PrintWriter out = response.getWriter();
-         
-    	 HttpSession session = request.getSession();
+        
     	 String email = (String) session.getAttribute("email");
          String phone = (String) session.getAttribute("phone");
          String plateNumber=request.getParameter("plateNumber");    
@@ -115,8 +119,9 @@ public class CreateComplainServlet extends HttpServlet{
          if(badArg)
          {
         	 out.print("<p style=\"color:red\">wrong or missed filed</p>");    
-             RequestDispatcher rd=request.getRequestDispatcher("report.jsp");    
-             rd.include(request,response); 
+             //RequestDispatcher rd=request.getRequestDispatcher("report.jsp");    
+             //rd.include(request,response); 
+             response.sendRedirect("report.jsp");
          }
          else
          {
@@ -125,14 +130,16 @@ public class CreateComplainServlet extends HttpServlet{
         	 if(caseNumber!=0)
         	 {
         		 session.setAttribute("newCaseID", caseNumber);
-        		 RequestDispatcher rd=request.getRequestDispatcher("Thanks.jsp");    
-                 rd.forward(request,response); 
+        		 //RequestDispatcher rd=request.getRequestDispatcher("Thanks.jsp");    
+                 //rd.forward(request,response); 
+        		 response.sendRedirect("Thanks.jsp");
         	 }
         	 else
         	 {
         		 out.print("<p style=\"color:red\">Fail database. please try again later</p>");
-        		 RequestDispatcher rd=request.getRequestDispatcher("report.jsp");    
-                 rd.include(request,response); 
+        		 //RequestDispatcher rd=request.getRequestDispatcher("report.jsp");    
+                 //rd.include(request,response); 
+        		 response.sendRedirect("report.jsp");
         	 }
          }
          out.close();

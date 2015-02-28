@@ -1,10 +1,8 @@
-package com.policeApp.servlets;  
+ package com.policeApp.servlets;  
   
 import java.io.IOException;  
 import java.io.PrintWriter;  
-  
-
-import javax.servlet.RequestDispatcher;  
+ 
 import javax.servlet.ServletException;  
 import javax.servlet.http.HttpServlet;  
 import javax.servlet.http.HttpServletRequest;  
@@ -40,18 +38,20 @@ public class LoginServlet extends HttpServlet{
         if(DataBaseStandardUtilities.validate(budge, password)){  
             if(session!=null)  
             {
+            	session.setAttribute("id", DataBaseStandardUtilities.getUserId(budge));
             	session.setAttribute("name", DataBaseStandardUtilities.getUserName(budge));
             	session.setAttribute("table", DataBaseStandardUtilities.getSelectedIncidents(null,DataBaseStandardUtilities.getUserId(budge)));
             	session.setAttribute("twitterProv", DataBaseStandardUtilities.getUsersProvince(DataBaseStandardUtilities.getUserId(budge)));
-            	
             }
-            RequestDispatcher rd=request.getRequestDispatcher("welcome.jsp");    
-            rd.forward(request,response);    
+            //RequestDispatcher rd=request.getRequestDispatcher("welcome.jsp");    
+            //rd.forward(request,response);
+            response.sendRedirect("welcome.jsp");
         }    
         else{    
             out.print("<p style=\"color:red\">Sorry username or password error</p>");    
-            RequestDispatcher rd=request.getRequestDispatcher("index.jsp");    
-            rd.include(request,response);    
+            //RequestDispatcher rd=request.getRequestDispatcher("index.jsp");    
+            //rd.include(request,response);  
+            response.sendRedirect("index.jsp");
         }    
   
         out.close();    

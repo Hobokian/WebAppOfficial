@@ -224,4 +224,14 @@ This file for keep tracking history
              create final static Object of Languages
              create two maps for Russian and English words
              create function to get specific word
+
+-------------------------Iaroslav Malyshev -02/28/2015------------------------------------------------------------------
+
+43. add file menu.jsp  - for make menu
+
+44. add file header.jsp  - for make header
+
+45. add languages to index, signUp, Thanks and report pages
+
+             
 					

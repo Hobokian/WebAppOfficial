@@ -12,21 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
-
-
-
 import twitter4j.Paging;
 import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
-import twitter4j.auth.AccessToken;
-import twitter4j.auth.RequestToken;
-
-
-
-
 import twitter4j.conf.ConfigurationBuilder;
 
 import com.policeApp.db.DataBaseStandardUtilities;
@@ -68,7 +58,7 @@ public class UtilsDB {
         try 
         {
 	        Paging paging = new Paging(1, 10);
-	        List<Status> statuses = unauthenticatedTwitter.getUserTimeline(23937894, paging);
+	        List<Status> statuses = unauthenticatedTwitter.getUserTimeline(39728435, paging);
 	        if(statuses.get(0).getText() != null){
 		        tweet = "<time>" + statuses.get(0).getCreatedAt().toString() + "</time><p>" + statuses.get(0).getText() + "</p>";
 		        return tweet;
