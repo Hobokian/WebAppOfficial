@@ -83,7 +83,7 @@ DROP TABLE IF EXISTS `incident_action`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `incident_action` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `decription` varchar(1023) DEFAULT NULL,
+  `description` varchar(1023) DEFAULT NULL,
   `userInfos_id` int(11) NOT NULL,
   `incidentReports_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
@@ -201,6 +201,7 @@ DROP TABLE IF EXISTS `province`;
 CREATE TABLE `province` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `province` varchar(45) DEFAULT NULL,
+  `twitter_id` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -211,7 +212,7 @@ CREATE TABLE `province` (
 
 LOCK TABLES `province` WRITE;
 /*!40000 ALTER TABLE `province` DISABLE KEYS */;
-INSERT INTO `province` VALUES (1,'Ontario'),(2,'Alberta'),(3,'British Columbia'),(4,'Manitoba'),(5,'New Brunswick'),(6,'Newfoundland and Labrador'),(7,'Northwest Territories'),(8,'Nova Scotia'),(9,'Nunavut'),(10,'Prince Edward Island'),(11,'Quebec'),(12,'Saskatchewan'),(13,'Yukon');
+INSERT INTO `province` VALUES (1,'Ontario','106470258'),(2,'Alberta','2535425082'),(3,'British Columbia','58360124'),(4,'Manitoba','1580783731'),(5,'New Brunswick','96176697'),(6,'Newfoundland and Labrador','2320904928'),(7,'Northwest Territories','481308864'),(8,'Nova Scotia','33671152'),(9,'Nunavut','55576995'),(10,'Prince Edward Island','2329278007'),(11,'Quebec','92858317'),(12,'Saskatchewan','575646270'),(13,'Yukon','78752164');
 /*!40000 ALTER TABLE `province` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,6 +227,8 @@ CREATE TABLE `userinfos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `budgeNumber` varchar(45) DEFAULT NULL,
   `username` varchar(45) DEFAULT NULL,
+  `first_name` varchar(45) DEFAULT NULL,
+  `last_name` varchar(45) DEFAULT NULL,
   `password` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
   `phoneNumber` varchar(45) DEFAULT NULL,
@@ -245,7 +248,7 @@ CREATE TABLE `userinfos` (
 
 LOCK TABLES `userinfos` WRITE;
 /*!40000 ALTER TABLE `userinfos` DISABLE KEYS */;
-INSERT INTO `userinfos` VALUES (1,'123456','admin','admin','police@mail.com','911',1,1),(3,'12345','me','12345','me','911',1,1);
+INSERT INTO `userinfos` VALUES (1,'123456','admin','admin','admin','admin','police@mail.com','911',1,1);
 /*!40000 ALTER TABLE `userinfos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

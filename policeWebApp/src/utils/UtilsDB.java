@@ -43,7 +43,12 @@ public class UtilsDB {
 		return aaa;
 	}
 	
-	public static String getTwit()
+	/**
+	 * 
+	 * @param twitter_id
+	 * @return
+	 */
+	public static String getTwit(long twitter_id, int number)
 	{
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 	    cb.setDebugEnabled(true)
@@ -58,8 +63,8 @@ public class UtilsDB {
         try 
         {
 	        Paging paging = new Paging(1, 10);
-	        List<Status> statuses = unauthenticatedTwitter.getUserTimeline(39728435, paging);
-	        if(statuses.get(0).getText() != null){
+	        List<Status> statuses = unauthenticatedTwitter.getUserTimeline(twitter_id, paging);
+	        if(statuses.get((number-1)).getText() != null){
 		        tweet = "<time>" + statuses.get(0).getCreatedAt().toString() + "</time><p>" + statuses.get(0).getText() + "</p>";
 		        return tweet;
 	        }

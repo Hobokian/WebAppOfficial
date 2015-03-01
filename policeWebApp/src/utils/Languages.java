@@ -52,6 +52,28 @@ public class Languages {
 		 frLanguage.put("headerLogout", "");
 		rusLanguage.put("headerLogout", "Выход");
 		//menu page Strings
+		 enLanguage.put("menuPoliceNews", "police news");
+		 frLanguage.put("menuPoliceNews", "");
+		rusLanguage.put("menuPoliceNews", "Новости");
+		 enLanguage.put("menuHome", "Home");
+		 frLanguage.put("menuHome", "");
+		rusLanguage.put("menuHome", "домашняя станица");
+		 enLanguage.put("menuMyCases", "My Cases");
+		 frLanguage.put("menuMyCases", "");
+		rusLanguage.put("menuMyCases", "Мои дела");
+		 enLanguage.put("menuMyCityCases", "My City's Cases");
+		 frLanguage.put("menuMyCityCases", "");
+		rusLanguage.put("menuMyCityCases", "Городские Дела");
+		 enLanguage.put("menuMyProvinceCases", "My Province's Cases");
+		 frLanguage.put("menuMyProvinceCases", "");
+		rusLanguage.put("menuMyProvinceCases", "Провинциальные дела");
+		 enLanguage.put("menuHistory", "History");
+		 frLanguage.put("menuHistory", "");
+		rusLanguage.put("menuHistory", "История");
+		 enLanguage.put("menuAdvancedSearch", "Advanced Search");
+		 frLanguage.put("menuAdvancedSearch", "");
+		rusLanguage.put("menuAdvancedSearch", "Поиск");
+		
 		
 		//splash screen Strings
 		 enLanguage.put("splashScreenTitle", "Hello");

@@ -46,6 +46,12 @@
 					<h5 style="height:28px;"><%=UtilsDB.getWord(language, "signUpName") %></h5>
 			    </div>
 			    <div class="form-group">
+					<h5 style="height:28px;"><%=UtilsDB.getWord(language, "signFirstName") %></h5>
+			    </div>
+			    <div class="form-group">
+					<h5 style="height:28px;"><%=UtilsDB.getWord(language, "signLastName") %></h5>
+			    </div>
+			    <div class="form-group">
 					<h5 style="height:28px;"><%=UtilsDB.getWord(language, "signUpEmail") %></h5>
 			    </div>
 			    <div class="form-group">
@@ -73,6 +79,12 @@
 			    </div>
 			    <div class="form-group">
 					<input type="text" name="userName" id="userName" class="form-control input-sm" placeholder="<%=UtilsDB.getWord(language, "signUpName") %>" value="<%=session.getAttribute("userName") %>">
+			    </div>
+			    <div class="form-group">
+					<input type="text" name="userFirstName" id="userFirstName" class="form-control input-sm" placeholder="<%=UtilsDB.getWord(language, "signFirstName") %>" value="<%=session.getAttribute("userFirstName") %>">
+			    </div>
+			    <div class="form-group">
+					<input type="text" name="userLastName" id="userLastName" class="form-control input-sm" placeholder="<%=UtilsDB.getWord(language, "signLastName") %>" value="<%=session.getAttribute("userLastName") %>">
 			    </div>
 			    <div class="form-group">
 					<input type="text" name="email" id="email" class="form-control input-sm" placeholder="<%=UtilsDB.getWord(language, "signUpEmail") %>" value="<%=session.getAttribute("email") %>">

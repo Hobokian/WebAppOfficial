@@ -233,5 +233,19 @@ This file for keep tracking history
 
 45. add languages to index, signUp, Thanks and report pages
 
-             
+46. modified database: added first and last name for user
+
+47. modified signUp.jsp 
+			added fields for first and last name
+
+48. modified SignUpPageServlet.java
+			modified doPost function
+			
+49. modified UtilsDB.java
+			add function to get first and last name
+			
+50. modified menu.jsp
+			create menu 
+			added javascripts for menu
+			added province twitter             
 					

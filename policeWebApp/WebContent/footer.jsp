@@ -23,7 +23,7 @@
 			<div class="row">
 				<div class="col-md-8 twitter">
 					<h3><%=UtilsDB.getWord(language, "footerTwitter") %></h3>
-						<%=UtilsDB.getTwit() %>
+						<%=UtilsDB.getTwit(39728435,1) %>
 				</div>
 				<div class="col-md-4 sitemap">
 					<h3><%=UtilsDB.getWord(language, "footerSitemap") %></h3>

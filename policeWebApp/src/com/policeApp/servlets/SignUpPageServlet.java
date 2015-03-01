@@ -79,6 +79,8 @@ public class SignUpPageServlet extends HttpServlet{
         String accessCode=request.getParameter("accessCode");
         String userName=request.getParameter("email");  
         String email=request.getParameter("userName");  
+        String firstName=request.getParameter("userFirstName"); 
+        String lastName=request.getParameter("userLastName"); 
         String phone=request.getParameter("phoneNumber");  
         String password=request.getParameter("password");
         String passwordConfirm=request.getParameter("confirmPassword");  
@@ -91,6 +93,10 @@ public class SignUpPageServlet extends HttpServlet{
         else session.setAttribute("accessCode", accessCode);
         if(userName.length()<=0)badArg=true;
         else session.setAttribute("userName", userName);
+        if(firstName.length()<=0)badArg=true;
+        else session.setAttribute("userFirstName", firstName);
+        if(lastName.length()<=0)badArg=true;
+        else session.setAttribute("userLastName", lastName);
         if(email.length()<=0)badArg=true;
         else session.setAttribute("email", email);
         if(phone.length()<=0)badArg=true;
@@ -123,7 +129,7 @@ public class SignUpPageServlet extends HttpServlet{
 	        {
 	        	if(password.compareTo(passwordConfirm)==0)
 	        	{
-	        		if(DataBaseStandardUtilities.addUser(budge, userName, email, phone, password, selectProvince, selectCity))
+	        		if(DataBaseStandardUtilities.addUser(budge, userName, firstName, lastName, email, phone, password, selectProvince, selectCity))
 	        		{
 	        			//RequestDispatcher rd=request.getRequestDispatcher("index.jsp");    
 	                    //rd.forward(request,response); 

@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet{
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response)    
             throws ServletException, IOException {      
-  
+    	String id;
         response.setContentType("text/html");    
         PrintWriter out = response.getWriter();    
           
@@ -38,10 +38,11 @@ public class LoginServlet extends HttpServlet{
         if(DataBaseStandardUtilities.validate(budge, password)){  
             if(session!=null)  
             {
-            	session.setAttribute("id", DataBaseStandardUtilities.getUserId(budge));
-            	session.setAttribute("name", DataBaseStandardUtilities.getUserName(budge));
-            	session.setAttribute("table", DataBaseStandardUtilities.getSelectedIncidents(null,DataBaseStandardUtilities.getUserId(budge)));
-            	session.setAttribute("twitterProv", DataBaseStandardUtilities.getUsersProvince(DataBaseStandardUtilities.getUserId(budge)));
+            	id =DataBaseStandardUtilities.getUserId(budge);
+            	session.setAttribute("id", id);
+            	session.setAttribute("name", DataBaseStandardUtilities.getName(id));
+            	session.setAttribute("table", DataBaseStandardUtilities.getSelectedIncidents(null,id));
+            	session.setAttribute("twitterProv", DataBaseStandardUtilities.getUsersProvinceTwiterId(id));
             }
             //RequestDispatcher rd=request.getRequestDispatcher("welcome.jsp");    
             //rd.forward(request,response);
