@@ -9,7 +9,7 @@ import javax.crypto.spec.SecretKeySpec;
 import com.sun.mail.util.BASE64DecoderStream;
 import com.sun.mail.util.BASE64EncoderStream;
 
-public class WebSecurity {
+class WebSecurity {
 	
 	public final static WebSecurity webSecurity = new WebSecurity();
 	
