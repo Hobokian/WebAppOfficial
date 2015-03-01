@@ -203,6 +203,9 @@ public class Languages {
 		rusLanguage.put("backButton", "Назад");
 		 frLanguage.put("backButton", "");
 		 enLanguage.put("backButton", "Back");
+		rusLanguage.put("lisenceAgreement", "Я прочитал и согласен с согланием.");
+		 frLanguage.put("lisenceAgreement", "");
+		 enLanguage.put("lisenceAgreement", "I read and accept the term in license agreement.");
 	}
 	
 

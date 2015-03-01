@@ -96,7 +96,7 @@
 		<section class="col-md-3"></section>
 		<section class="col-md-9">
 			<div class="form-group">
-				<input type="checkbox" id="accept" name="accept" onClick="EnableSubmit(this)"> <a href="reportAgreement.jsp" onclick="window.open('reportAgreement.jsp', 'newwindow', 'width=800, height=800'); return false;">I read and accept the term in license agreement</a> <br><br><br><br>
+				<input type="checkbox" id="accept" name="accept" onClick="EnableSubmit(this)"> <a href="reportAgreement.jsp" onclick="window.open('reportAgreement.jsp', 'newwindow', 'width=800, height=800'); return false;"><%=UtilsDB.getWord(language, "lisenceAgreement") %></a> <br><br><br><br>
 				<input type="submit" id="report" name="action" class="btn btn-primary" value="<%=UtilsDB.getWord(language, "reportButton") %>" disabled/>
 				<input type="submit" name="action" class="btn btn-primary" value="<%=UtilsDB.getWord(language, "backButton") %>" />
 			</div>
