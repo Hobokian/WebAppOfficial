@@ -1,8 +1,10 @@
 package utils;
 
+import java.security.MessageDigest;
+import java.util.Arrays;
+
 import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 
 import com.sun.mail.util.BASE64DecoderStream;
 import com.sun.mail.util.BASE64EncoderStream;
@@ -11,7 +13,11 @@ public class WebSecurity {
 	
 	public final static WebSecurity webSecurity = new WebSecurity();
 	
-	private static SecretKey key;
+    private final static String password = "root";
+    private final static String SALT2 = "web police app";
+    private final static String criptType = "AES";
+	
+	private static SecretKeySpec key;
 	private static Cipher ecipher;
 	private static Cipher dcipher;
 
@@ -19,9 +25,13 @@ public class WebSecurity {
 	private WebSecurity()
 	{
 		try {
-			key = KeyGenerator.getInstance("DES").generateKey();
-			ecipher = Cipher.getInstance("DES");
-			dcipher = Cipher.getInstance("DES");
+			byte[] keyString = (SALT2 + password).getBytes("UTF-8");
+			MessageDigest sha = MessageDigest.getInstance("SHA-1");
+			keyString = sha.digest(keyString);
+			keyString = Arrays.copyOf(keyString, 16);
+			key = new SecretKeySpec(keyString, criptType);
+			ecipher = Cipher.getInstance(criptType);
+			dcipher = Cipher.getInstance(criptType);
 			ecipher.init(Cipher.ENCRYPT_MODE, key);
 			dcipher.init(Cipher.DECRYPT_MODE, key);
 		} catch (Exception e) {
