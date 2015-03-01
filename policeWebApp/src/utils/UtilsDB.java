@@ -45,6 +45,26 @@ public class UtilsDB {
 	
 	/**
 	 * 
+	 * @param text
+	 * @return
+	 */
+	public static String encript(String text)
+	{
+		return WebSecurity.webSecurity.encript(text);
+	}
+	
+	/**
+	 * 
+	 * @param text
+	 * @return
+	 */
+	public static String decript(String text)
+	{
+		return WebSecurity.webSecurity.decript(text);
+	}
+	
+	/**
+	 * 
 	 * @param twitter_id
 	 * @return
 	 */
@@ -127,8 +147,8 @@ public class UtilsDB {
 	
 	/**
 	 * 
-	 * 
 	 * @param rset
+	 * @param user_id
 	 * @return
 	 */
 	public static String createIncidentReportTable(ArrayList<String[]> rset, String user_id) {
@@ -181,6 +201,14 @@ public class UtilsDB {
         return sb.toString();
     }
 	
+	/**
+	 * 
+	 * @param caseDetails
+	 * @param actionButtons
+	 * @param modalNumber
+	 * @param user_id
+	 * @return
+	 */
 	public static String createPopUpWindow(String[] caseDetails, String actionButtons, String modalNumber, long user_id){
 		StringBuffer sbPopUp = new StringBuffer();
 		ArrayList<String[]> caseActions = DataBaseStandardUtilities.getIncidentActions(caseDetails[0]);
@@ -242,7 +270,13 @@ public class UtilsDB {
 		return sbPopUp.toString();
 	}
 	
-	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	public static void addCity(HttpServletRequest request, HttpServletResponse response)    
             throws ServletException, IOException { 
 		response.setContentType("text/html");    
@@ -300,8 +334,9 @@ public class UtilsDB {
         if(!DataBaseStandardUtilities.addCity(addCity, selectProvince))
         	out.print("<p style=\"color:red\">fail adding city</p>");
         
-        RequestDispatcher rd=request.getRequestDispatcher(pageJSP);    
-        rd.include(request,response); 
+        //RequestDispatcher rd=request.getRequestDispatcher(pageJSP);    
+        //rd.include(request,response);
+        response.sendRedirect(pageJSP);
 	    out.close();
     }
 
