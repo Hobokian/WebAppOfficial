@@ -247,5 +247,18 @@ This file for keep tracking history
 50. modified menu.jsp
 			create menu 
 			added javascripts for menu
-			added province twitter             
+			added province twitter      
+			
+51. create signUpAgreement.jsp for sign up license agreement       
+
+52. create reportAgreement.jsp for report license agreement   
+
+53. create file WebSecurity.java
+           create class WebSecurity
+           		create function encript for encripting text
+           		create function decript for decripting text
+
+54. modified file signUp.jsp - added checkbox for license agreement
+
+55. modified file report.jsp - added checkbox for license agreement
 					

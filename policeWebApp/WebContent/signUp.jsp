@@ -109,7 +109,7 @@
 			    </div>
 			</section>
 			<section class="col-md-10">
-				<div class="form-group" style="height: 63.5%;">
+				<div class="form-group" style="height: 50%;">
 				</div>
 				<div class="form-group">
 					<section class="col-md-8">
@@ -124,7 +124,8 @@
 		<section class="col-md-3"></section>
 		<section class="col-md-9">
 			<div class="form-group">
-				<input type="submit" name="action" class="btn btn-primary" value="<%=UtilsDB.getWord(language, "signUpButton") %>" />
+				<input type="checkbox" id="accept" name="accept" onClick="EnableSubmit(this)"> <a href="signUpAgreement.jsp" onclick="window.open('signUpAgreement.jsp', 'newwindow', 'width=800, height=800'); return false;">I read and accept the term in license agreement</a> <br><br><br><br>
+				<input type="submit" id="signUp" name="action" class="btn btn-primary" value="<%=UtilsDB.getWord(language, "signUpButton") %>" disabled/>
 				<input type="submit" name="action" class="btn btn-primary" value="<%=UtilsDB.getWord(language, "backButton") %>" />
 			</div>
 		</section>
@@ -135,6 +136,23 @@
 	</footer>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    
+    <script>
+    function EnableSubmit(val)
+    {
+        var sbmt = document.getElementById("signUp");
+
+        if (val.checked == true)
+        {
+            sbmt.disabled = false;
+        }
+        else
+        {
+            sbmt.disabled = true;
+        }
+    } 
+    </script>
+    
     <script>
     function addCityList(array) {
 	    var selectedProvinceIndex = document.getElementById("province").selectedIndex;
