@@ -4,7 +4,22 @@
     pageEncoding="UTF-8"%>  
 <html>
   <head>
-    <title>Welcome</title>
+  <%
+  if(request.getParameter("language")!=null) {
+		session.setAttribute("language",request.getParameter("language"));
+	}
+  if(session.getAttribute("language")==null){
+  	if(request.getParameter("language")==null) {
+  		session.setAttribute("language",Languages.ENGLISH_LANGUAGE);
+  	}
+  	else
+  	{
+  		session.setAttribute("language",request.getParameter("language"));
+  	}
+  }
+  String language = (String)session.getAttribute("language");
+  %>
+    <title><%=UtilsDB.getWord(language, "splashScreenTitle") %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/styles.css" rel="stylesheet">
 	<link href="http://fonts.googleapis.com/css?family=Oswald:400,300" rel="stylesheet">
@@ -18,21 +33,7 @@
 			$("#myModal").modal('show');
 		});
     </script>
-    <%} 
-	if(request.getParameter("language")!=null) {
-		session.setAttribute("language",request.getParameter("language"));
-	}
-    if(session.getAttribute("language")==null){
-    	if(request.getParameter("language")==null) {
-    		session.setAttribute("language",Languages.ENGLISH_LANGUAGE);
-    	}
-    	else
-    	{
-    		session.setAttribute("language",request.getParameter("language"));
-    	}
-    }
-    String language = (String)session.getAttribute("language");
-    %>
+    <%}%>
   </head>
   <body onunload="cleanSession()">
     <div id="myModal" class="modal fade">
@@ -41,10 +42,15 @@
                 <div class="modal-header">
                     <h4 class="modal-title"><%=UtilsDB.getWord(language, "splashScreenTitle") %></h4>
                 </div>
-                <div class="modal-body">
-                	<br><br><br><br><br>
+                <div class="modal-body" align="center">
+                	<br><br><br>
                     <h1><%=UtilsDB.getWord(language, "splashScreenInfo") %></h1>
-                    <br><br><br><br><br>
+                    <br><br>
+                    <div align="center">
+                    	<input type="image" src="images/Russia_flag.PNG" 									width="100" height="100" name="languageRus" id="languageRus" onClick="funLanguage('RUS')"/>
+						<input type="image" src="images/Great_Britain_flag_clothing_icon_ID_503.png" 		width="100" height="100" name="languageEng" id="languageEng" onClick="funLanguage('EN')"/>
+						<input type="image" src="images/53e3a35e6ba7c4173e977b89_france_french_flag.png" 	width="100" height="100" name="languageFra" id="languageFra" onClick="funLanguage('FR')"/>
+					</div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal"><%=UtilsDB.getWord(language, "splashScreenClose") %></button>
@@ -54,6 +60,7 @@
     </div>
 	<div class="wrapper container">
 		<header>
+			<jsp:include page="header.jsp" />
 		</header>
 		<div class="heading">
 			<h1><%=UtilsDB.getWord(language, "indexWelcome") %></h1>
@@ -62,7 +69,7 @@
 		<div class="row">
 			<section class="col-md-4"></section>
 			<section class="col-md-6">
-			  <form action="createReport" method="post"> 
+			  <form action="createReport" method="get"> 
 			    <h4 style=" text-align: center;"><%=UtilsDB.getWord(language, "indexComplaint") %></h4>
 				<div class="row">
 					<section class="col-md-4">
@@ -90,7 +97,7 @@
 					<input type="submit" name="action" class="btn btn-primary" value="<%=UtilsDB.getWord(language, "indexCreateComplaint") %>" style="width:100%" />
 				</div>
 			  </form>
-			  <form action="createReport" method="post"> 
+			  <form action="createReport" method="get"> 
 				<hr size=4><br>
 				<h4 style=" text-align: center;"><%=UtilsDB.getWord(language, "indexAnonymous") %></h4>
 				<div class="form-group">
@@ -138,5 +145,17 @@
 	<footer>
 		<jsp:include page="footer.jsp" />
 	</footer>
+	<script>
+    function funLanguage(language)
+    {
+    	var url = window.location.href;    
+    	if (url.indexOf("?")>-1)
+    	{
+    		url = url.substr(0,url.indexOf("?"));
+    	}
+    	url += '?language=' + language;
+    	window.location.href = url;
+    }
+    </script>
   </body>
 </html>
