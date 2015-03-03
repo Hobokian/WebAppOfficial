@@ -224,4 +224,41 @@ This file for keep tracking history
              create final static Object of Languages
              create two maps for Russian and English words
              create function to get specific word
+
+-------------------------Iaroslav Malyshev -02/28/2015------------------------------------------------------------------
+
+43. add file menu.jsp  - for make menu
+
+44. add file header.jsp  - for make header
+
+45. add languages to index, signUp, Thanks and report pages
+
+46. modified database: added first and last name for user
+
+47. modified signUp.jsp 
+			added fields for first and last name
+
+48. modified SignUpPageServlet.java
+			modified doPost function
+			
+49. modified UtilsDB.java
+			add function to get first and last name
+			
+50. modified menu.jsp
+			create menu 
+			added javascripts for menu
+			added province twitter      
+			
+51. create signUpAgreement.jsp for sign up license agreement       
+
+52. create reportAgreement.jsp for report license agreement   
+
+53. create file WebSecurity.java
+           create class WebSecurity
+           		create function encript for encripting text
+           		create function decript for decripting text
+
+54. modified file signUp.jsp - added checkbox for license agreement
+
+55. modified file report.jsp - added checkbox for license agreement
 					

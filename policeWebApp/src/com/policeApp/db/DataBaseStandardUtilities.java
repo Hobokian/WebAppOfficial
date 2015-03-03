@@ -188,6 +188,14 @@ public class DataBaseStandardUtilities {
 		 return userName;
 	 }
 	 
+	 public static String getName(String id){
+		 String userName=null;
+		 ArrayList<String[]> array=DataBaseQuery.executeQuery("select * from webapp.userinfos where id='"+ id +"'");
+		 if(array.size()==1)
+			 userName=array.get(0)[3] + " " +array.get(0)[4];
+		 return userName;
+	 }
+	 
 	 public static String getUserId(String budge){
 		 String userId=null;
 		 ArrayList<String[]> array=DataBaseQuery.executeQuery("select * from webapp.userinfos where budgeNumber='"+ budge +"'");
@@ -241,12 +249,14 @@ public class DataBaseStandardUtilities {
 	  * @param city
 	  * @return
 	  */
-	 public static boolean addUser(String budge,String userName,String email,String phone,String password,String province,String city){
-		 String query = "INSERT INTO userinfos (budgeNumber, password,username,"+
+	 public static boolean addUser(String budge,String userName, String firstName, String lastName, String email,String phone,String password,String province,String city){
+		 String query = "INSERT INTO userinfos (budgeNumber, password, username, fisrt_name, last_name,"+
          				" email, phoneNumber, cityLookup_id, province_id) VALUES (" +
          				"\"" +	budge		+ "\"," +
          				"\"" +	password	+ "\"," +
          				"\"" +	userName 	+ "\"," +
+         				"\"" +	firstName 	+ "\"," +
+         				"\"" +	lastName 	+ "\"," +
          				"\"" +	email		+ "\"," +
          				"\"" +	phone		+ "\"," +
          				"\"" +	province	+ "\"," +
@@ -408,6 +418,14 @@ public class DataBaseStandardUtilities {
 		 ArrayList<String[]> array=DataBaseQuery.executeQuery("select province.province from userinfos join province on userinfos.province_id = province.id where userinfos.id = " + badge_id);
 		 province= array.get(0)[0];
 		 return province;
+	 }
+	 
+	 public static String getUsersProvinceTwiterId(String id)
+	 {
+		 String twitter = "";
+		 ArrayList<String[]> array=DataBaseQuery.executeQuery("select province.twitter_id from userinfos join province on userinfos.province_id = province.id where userinfos.id = " + id);
+		 twitter= array.get(0)[0];
+		 return twitter;
 	 }
 	 /**
 	  * 
