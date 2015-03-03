@@ -161,7 +161,7 @@ public class DataBaseStandardUtilities {
 		 query.append("select "
 				+ "incident_action.userInfos_id as 'User ID', "
 		 		+ "userinfos.username as 'User Name', "
-		 		+ "incident_action.decription as 'Description' "
+		 		+ "incident_action.description as 'Description' "
 		 		+ "from incident_action "
 		 		+ "join "
 		 		+ "userinfos "

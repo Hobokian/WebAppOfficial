@@ -100,6 +100,7 @@
 				<input type="submit" id="report" name="action" class="btn btn-primary" value="<%=UtilsDB.getWord(language, "reportButton") %>" disabled/>
 				<input type="submit" name="action" class="btn btn-primary" value="<%=UtilsDB.getWord(language, "backButton") %>" />
 			</div>
+			<br><br><br><br><br><br><br>
 		</section>
 	  </form>
 	</div>

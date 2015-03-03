@@ -40,6 +40,8 @@ public class SignUpPageServlet extends HttpServlet{
         	session.setAttribute("budge", "");  
         	session.setAttribute("accessCode", "");
         	session.setAttribute("userName", "");
+        	session.setAttribute("userFirstName", "");
+        	session.setAttribute("userLastName", "");
         	session.setAttribute("email", "");
         	session.setAttribute("phone", "");
         }
