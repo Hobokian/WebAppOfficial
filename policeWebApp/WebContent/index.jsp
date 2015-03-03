@@ -1,8 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"  
-    pageEncoding="ISO-8859-1"%>  
+<%@page import="utils.UtilsDB"%>
+<%@page import="utils.Languages"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"  
+    pageEncoding="UTF-8"%>  
 <html>
   <head>
-    <title>Welcome</title>
+  <%
+  if(request.getParameter("language")!=null) {
+		session.setAttribute("language",request.getParameter("language"));
+	}
+  if(session.getAttribute("language")==null){
+  	if(request.getParameter("language")==null) {
+  		session.setAttribute("language",Languages.ENGLISH_LANGUAGE);
+  	}
+  	else
+  	{
+  		session.setAttribute("language",request.getParameter("language"));
+  	}
+  }
+  String language = (String)session.getAttribute("language");
+  %>
+    <title><%=UtilsDB.getWord(language, "splashScreenTitle") %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/styles.css" rel="stylesheet">
 	<link href="http://fonts.googleapis.com/css?family=Oswald:400,300" rel="stylesheet">
@@ -16,69 +33,75 @@
 			$("#myModal").modal('show');
 		});
     </script>
-    <%} %>
+    <%}%>
   </head>
   <body onunload="cleanSession()">
     <div id="myModal" class="modal fade">
         <div class="modal-dialog" style="width:75%; top:15%;">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Hello</h4>
+                    <h4 class="modal-title"><%=UtilsDB.getWord(language, "splashScreenTitle") %></h4>
                 </div>
-                <div class="modal-body">
-                	<br><br><br><br><br>
-                    <h1>This is non-profit project to make our road safer</h1>
-                    <br><br><br><br><br>
+                <div class="modal-body" align="center">
+                	<br><br><br>
+                    <h1><%=UtilsDB.getWord(language, "splashScreenInfo") %></h1>
+                    <br><br>
+                    <div align="center">
+                    	<input type="image" src="images/Russia_flag.PNG" 									width="100" height="100" name="languageRus" id="languageRus" onClick="funLanguage('RUS')"/>
+						<input type="image" src="images/Great_Britain_flag_clothing_icon_ID_503.png" 		width="100" height="100" name="languageEng" id="languageEng" onClick="funLanguage('EN')"/>
+						<input type="image" src="images/53e3a35e6ba7c4173e977b89_france_french_flag.png" 	width="100" height="100" name="languageFra" id="languageFra" onClick="funLanguage('FR')"/>
+					</div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><%=UtilsDB.getWord(language, "splashScreenClose") %></button>
                 </div>
             </div>
         </div>
     </div>
 	<div class="wrapper container">
 		<header>
+			<jsp:include page="header.jsp" />
 		</header>
 		<div class="heading">
-			<h1>Welcome</h1>
+			<h1><%=UtilsDB.getWord(language, "indexWelcome") %></h1>
 		</div>
 		<br><br><br>
 		<div class="row">
 			<section class="col-md-4"></section>
 			<section class="col-md-6">
-			  <form action="createReport" method="post"> 
-			    <h4 style=" text-align: center;">Compliant</h4>
+			  <form action="createReport" method="get"> 
+			    <h4 style=" text-align: center;"><%=UtilsDB.getWord(language, "indexComplaint") %></h4>
 				<div class="row">
 					<section class="col-md-4">
 						<div class="form-group">
-							<h5>Email</h5>
+							<h5><%=UtilsDB.getWord(language, "indexEmail") %></h5>
 			    		</div>
 			    		<div class="form-group">
-							<h5>or</h5>
+							<h5><%=UtilsDB.getWord(language, "indexOr") %></h5>
 			    		</div>
 			    		<div class="form-group">
-							<h5>Phone</h5>
+							<h5><%=UtilsDB.getWord(language, "indexPhone") %></h5>
 			    		</div>
 					</section>
 					<section class="col-md-20">
 						<div class="form-group">
-							<input type="text" name="email" id="email" class="form-control input-sm" placeholder="email" >
+							<input type="text" name="email" id="email" class="form-control input-sm" placeholder="<%=UtilsDB.getWord(language, "indexEmail") %>" >
 			    		</div>
 			    		<br>
 			    		<div class="form-group">
-							<input type="text" name="phone" id="phone" class="form-control input-sm" placeholder="phone" >
+							<input type="text" name="phone" id="phone" class="form-control input-sm" placeholder="<%=UtilsDB.getWord(language, "indexPhone") %>" >
 			    		</div>
 					</section>
 				</div>
 				<div class="form-group">
-					<input type="submit" name="action" class="btn btn-primary" value="Create complaint" style="width:100%" />
+					<input type="submit" name="action" class="btn btn-primary" value="<%=UtilsDB.getWord(language, "indexCreateComplaint") %>" style="width:100%" />
 				</div>
 			  </form>
-			  <form action="createReport" method="post"> 
+			  <form action="createReport" method="get"> 
 				<hr size=4><br>
-				<h4 style=" text-align: center;">Anonymous</h4>
+				<h4 style=" text-align: center;"><%=UtilsDB.getWord(language, "indexAnonymous") %></h4>
 				<div class="form-group">
-					<input type="submit" name="action" class="btn btn-primary" value="Create anonumus complaint" style="width:100%" />
+					<input type="submit" name="action" class="btn btn-primary" value="<%=UtilsDB.getWord(language, "indexCreateAnonymousComplaint") %>" style="width:100%" />
 				</div>
 			  </form>
 			</section>
@@ -86,78 +109,53 @@
 			<section class="col-md-1"></section>
 			<section class="col-md-6">
 			  <form action="loginServlet" method="post"> 
-			    <h4 style=" text-align: center;">Enter</h4>
+			    <h4 style=" text-align: center;"><%=UtilsDB.getWord(language, "indexEnter") %></h4>
 				<div class="row">
 					<section class="col-md-6">
 						<div class="form-group">
-							<h5>Badge#</h5>
+							<h5><%=UtilsDB.getWord(language, "indexBadge") %>#</h5>
 			    		</div>
 			    		<br>
 			    		<div class="form-group">
-							<h5>Password</h5>
+							<h5><%=UtilsDB.getWord(language, "indexPassword") %></h5>
 			    		</div>
 					</section>
 					<section class="col-md-18">
 						<div class="form-group">
-							<input type="text" name="username" id="username" class="form-control input-sm" placeholder="badge" >
+							<input type="text" name="username" id="username" class="form-control input-sm" placeholder="<%=UtilsDB.getWord(language, "indexBadge") %>" >
 			    		</div>
 			    		<br>
 			    		<div class="form-group">
-							<input type="password" name="userpass" id="userpass" class="form-control input-sm" placeholder="password" >
+							<input type="password" name="userpass" id="userpass" class="form-control input-sm" placeholder="<%=UtilsDB.getWord(language, "indexPassword") %>" >
 			    		</div>
 					</section>
 				</div>
 			    <div class="form-group">
-					<input type="submit" name="action" class="btn btn-primary" value="Sign In" style="width:100%" />
+					<input type="submit" name="action" class="btn btn-primary" value="<%=UtilsDB.getWord(language, "indexSignIn") %>" style="width:100%" />
 				</div>
 			  </form>
 			  <form action="signUpPage" method="get"> 
 				<div class="form-group">
-					<input type="submit" name="action" class="btn btn-primary" value="Sign Up" style="width:100%" />
+					<input type="submit" name="action" class="btn btn-primary" value="<%=UtilsDB.getWord(language, "indexSignUp") %>" style="width:100%" />
 				</div>
 			  </form>
 			</section>
 		</div>		
 	</div>  
 	<footer>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 twitter">
-					<h3>Twitter feed</h3>
-					<time datetime="2015-02-10"><a href="#">10 feb</a></time>
-					<p>
-						I made website
-					</p>
-				</div>
-				<div class="col-md-4 sitemap">
-					<h3>Sitemap</h3>
-					<div class="row">
-						<div class="col-md-12">
-							<a href="">About</a>
-							<a href="">Services</a>
-						</div>
-						<div class="col-md-12">
-							<a href="">Support</a>
-							<a href="">Contact</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 social">
-					<h3>Social networks</h3>
-					<a href="http://twitter.com/" class="social-icon twitter"></a>
-					<a href="http://facebook.com/" class="social-icon facebook"></a>
-					<a href="http://plus.google.com/" class="social-icon google-plus"></a>
-					<a href="http://vimeo.com/" class="social-icon-small vimeo"></a>
-					<a href="http://youtube.com/" class="social-icon-small youtube"></a>
-					<a href="http://flickr.com/" class="social-icon-small flickr"></a>
-					<a href="http://instagram.com/" class="social-icon-small instagram"></a>
-					<a href="/rss/" class="social-icon-small rss"></a>
-				</div>
-				<div class="col-md-8 footer-logo">
-					some picture here
-				</div>
-			</div>
-		</div>
+		<jsp:include page="footer.jsp" />
 	</footer>
+	<script>
+    function funLanguage(language)
+    {
+    	var url = window.location.href;    
+    	if (url.indexOf("?")>-1)
+    	{
+    		url = url.substr(0,url.indexOf("?"));
+    	}
+    	url += '?language=' + language;
+    	window.location.href = url;
+    }
+    </script>
   </body>
 </html>

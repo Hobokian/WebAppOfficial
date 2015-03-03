@@ -4,16 +4,19 @@ package utils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
-
-
+import twitter4j.Paging;
+import twitter4j.Status;
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
+import twitter4j.conf.ConfigurationBuilder;
 
 import com.policeApp.db.DataBaseStandardUtilities;
 
@@ -26,6 +29,75 @@ import com.policeApp.db.DataBaseStandardUtilities;
 public class UtilsDB {
 	
 	private UtilsDB(){};
+	
+	/**
+	 * 
+	 * @param language
+	 * @param index
+	 * @return
+	 */
+	public static String getWord(String language, String index)
+	{
+		String aaa = Languages.language.getWord(language, index);
+		return aaa;
+	}
+	
+	/**
+	 * 
+	 * @param text
+	 * @return
+	 */
+	public static String encript(String text)
+	{
+		return WebSecurity.webSecurity.encript(text);
+	}
+	
+	/**
+	 * 
+	 * @param text
+	 * @return
+	 */
+	public static String decript(String text)
+	{
+		return WebSecurity.webSecurity.decript(text);
+	}
+	
+	/**
+	 * 
+	 * @param twitter_id
+	 * @return
+	 */
+	public static String getTwit(long twitter_id, int number)
+	{
+		ConfigurationBuilder cb = new ConfigurationBuilder();
+	    cb.setDebugEnabled(true)
+	            		.setOAuthConsumerKey("OD24FWoKJ7U2WzG26gqwhO4g3")
+	            		.setOAuthConsumerSecret("pPQqPTwCUycv4MxxWptzyDoSLIsbKCbqCP4cQCx6SJNpx096HV")
+	            		.setOAuthAccessToken("2319024174-WnEjIfO9b2VIRLyfLIKPVwlZNYFgYBUDpfd7Kzv")
+	            		.setOAuthAccessTokenSecret("hHPkfpTE91hYdxN0MALdZmIU1uTWziMO0f54eaxTwRxQT");
+
+	    TwitterFactory tf = new TwitterFactory(cb.build());
+	    Twitter unauthenticatedTwitter = tf.getInstance();
+		final String tweet;
+        try 
+        {
+	        Paging paging = new Paging(1, 10);
+	        List<Status> statuses = unauthenticatedTwitter.getUserTimeline(twitter_id, paging);
+	        if(statuses.get((number-1)).getText() != null){
+		        tweet = "<time>" + statuses.get(0).getCreatedAt().toString() + "</time><p>" + statuses.get(0).getText() + "</p>";
+		        return tweet;
+	        }
+	        else
+	        {
+	        	return "User has no tweets";
+	        }
+        } catch (TwitterException te) {
+	        System.out.println("Failed to get TwitterUser's Status (TwitterException) : "
+	                                        + te.getMessage());
+	        te.printStackTrace();
+        }
+        return null;
+	}
 	
 	/**
 	 * function convert result from DB to select list
@@ -74,8 +146,8 @@ public class UtilsDB {
 	
 	/**
 	 * 
-	 * 
 	 * @param rset
+	 * @param user_id
 	 * @return
 	 */
 	public static String createIncidentReportTable(ArrayList<String[]> rset, String user_id) {
@@ -128,6 +200,14 @@ public class UtilsDB {
         return sb.toString();
     }
 	
+	/**
+	 * 
+	 * @param caseDetails
+	 * @param actionButtons
+	 * @param modalNumber
+	 * @param user_id
+	 * @return
+	 */
 	public static String createPopUpWindow(String[] caseDetails, String actionButtons, String modalNumber, long user_id){
 		StringBuffer sbPopUp = new StringBuffer();
 		ArrayList<String[]> caseActions = DataBaseStandardUtilities.getIncidentActions(caseDetails[0]);
@@ -189,7 +269,13 @@ public class UtilsDB {
 		return sbPopUp.toString();
 	}
 	
-	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	public static void addCity(HttpServletRequest request, HttpServletResponse response)    
             throws ServletException, IOException { 
 		response.setContentType("text/html");    
@@ -247,8 +333,9 @@ public class UtilsDB {
         if(!DataBaseStandardUtilities.addCity(addCity, selectProvince))
         	out.print("<p style=\"color:red\">fail adding city</p>");
         
-        RequestDispatcher rd=request.getRequestDispatcher(pageJSP);    
-        rd.include(request,response); 
+        //RequestDispatcher rd=request.getRequestDispatcher(pageJSP);    
+        //rd.include(request,response);
+        response.sendRedirect(pageJSP);
 	    out.close();
     }
 
