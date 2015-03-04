@@ -19,6 +19,12 @@
     	}
     }
     String language = (String)session.getAttribute("language");
+    String province;
+    String city;
+    if(session.getAttribute("province")==null){ province = "0";}
+    else {province = (String)session.getAttribute("province");}
+    if(session.getAttribute("city")==null){ city = "0";}
+    else { city = (String)session.getAttribute("city");}
     %>
     <title><%=UtilsDB.getWord(language, "signUpTitle") %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0; text/html; charset=UTF-8">
@@ -46,10 +52,10 @@
 					<h5 style="height:28px;"><%=UtilsDB.getWord(language, "signUpName") %></h5>
 			    </div>
 			    <div class="form-group">
-					<h5 style="height:28px;"><%=UtilsDB.getWord(language, "signFirstName") %></h5>
+					<h5 style="height:28px;"><%=UtilsDB.getWord(language, "signUpFirstName") %></h5>
 			    </div>
 			    <div class="form-group">
-					<h5 style="height:28px;"><%=UtilsDB.getWord(language, "signLastName") %></h5>
+					<h5 style="height:28px;"><%=UtilsDB.getWord(language, "signUpLastName") %></h5>
 			    </div>
 			    <div class="form-group">
 					<h5 style="height:28px;"><%=UtilsDB.getWord(language, "signUpEmail") %></h5>
@@ -101,11 +107,13 @@
 			    
 			    <div class="form-group">
 			    	<select id="province" name="province" class="form-control"  <%=DataBaseStandardUtilities.makeDynamicProvinceCity() %> >
-						<%=DataBaseStandardUtilities.getProvince()%>
+						<%=DataBaseStandardUtilities.getProvince(province)%>
 					</select>
 				</div>
 			    <div class="form-group">
-					<select id="city" name="city" class="form-control"  onchange="addCityFunction()"></select>
+					<select id="city" name="city" class="form-control"  onchange="addCityFunction()">
+					<%=UtilsDB.createSelectListCity(DataBaseStandardUtilities.getCityArray(), province, city) %>
+					</select>
 			    </div>
 			</section>
 			<section class="col-md-10">
@@ -128,6 +136,7 @@
 				<input type="submit" id="signUp" name="action" class="btn btn-primary" value="<%=UtilsDB.getWord(language, "signUpButton") %>" disabled/>
 				<input type="submit" name="action" class="btn btn-primary" value="<%=UtilsDB.getWord(language, "backButton") %>" />
 			</div>
+			<br><br><br><br><br><br><br>
 		</section>
 	  </form>
 	</div>
@@ -164,6 +173,8 @@
 	    	cityElement.options[cityElement.length] = new Option(array[selectedProvinceIndex-1][i],(i+1) );
 	    }
 	    cityElement.options[cityElement.length]=new Option('add city',i+1 );
+	    document.getElementById("addCity").style.visibility = "hidden";
+		document.getElementById("addCityButton").style.visibility = "hidden";
     }
     </script>
     
