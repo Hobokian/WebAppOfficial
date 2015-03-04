@@ -166,6 +166,14 @@ public class Languages {
 		rusLanguage.put("signUpButton", "Регистрация");
 		 frLanguage.put("signUpButton", "");
 		 enLanguage.put("signUpButton", "SignUp");
+		 
+		 //EDIT
+		 enLanguage.put("editOldPassword", "Old Password");
+		 rusLanguage.put("editOldPassword", ":D");
+		 frLanguage.put("editOldPassword", "");
+		 enLanguage.put("editNewPassword", "New Password");
+		 rusLanguage.put("editNewPassword", ":(");
+		 frLanguage.put("editNewPassword", "");
 		
 		//report page String
 		 enLanguage.put("reportTitle", "Complaint Form");

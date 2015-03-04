@@ -161,7 +161,7 @@ public class DataBaseStandardUtilities {
 		 query.append("select "
 				+ "incident_action.userInfos_id as 'User ID', "
 		 		+ "userinfos.username as 'User Name', "
-		 		+ "incident_action.decription as 'Description' "
+		 		+ "incident_action.description as 'Description' "
 		 		+ "from incident_action "
 		 		+ "join "
 		 		+ "userinfos "
@@ -344,7 +344,7 @@ public class DataBaseStandardUtilities {
 	  */
 	 public static boolean createIncidentAction(String case_id,String user_id, String comment)
 	 {
-		 String query = "INSERT INTO incident_action ( userInfos_id, incidentReports_id, decription) VALUES (\""
+		 String query = "INSERT INTO incident_action ( userInfos_id, incidentReports_id, description) VALUES (\""
 				 + user_id +  "\",\""
 				 + case_id +  "\",\""
 				 + comment + "\")";
@@ -439,10 +439,15 @@ public class DataBaseStandardUtilities {
 		 ArrayList<String[]> array = getCaseAndUserConnection(case_id, user_id);
 		 if(array.size()!=1)
 			 return false;
-		 String query = "UPDATE incident_action SET decription=\""+comment+"\" WHERE " +
+		 String query = "UPDATE incident_action SET description=\""+comment+"\" WHERE " +
 				"userInfos_id=\"" 		+ user_id +  "\" AND " +
 				"incidentReports_id=" + case_id;
 		 return DataBaseQuery.updateQuery(query);
+	 }
+	 
+	 public static String[] getUserInfo(String id){
+		 ArrayList<String[]> array=DataBaseQuery.executeQuery("select * from webapp.userinfos where id='"+ id +"'");
+		 return array.get(0);
 	 }
 
 }

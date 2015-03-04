@@ -68,6 +68,7 @@
             function editUser()
             {
             	window.location.href = 'editProfile.jsp';
+            	
             }
             </script>
 </body>
