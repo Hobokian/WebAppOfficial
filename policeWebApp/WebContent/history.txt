@@ -267,4 +267,10 @@ This file for keep tracking history
 
 54. modified file signUp.jsp - added checkbox for license agreement
 
+<<<<<<< HEAD
 55. modified file report.jsp - added checkbox for license agreement
+=======
+55. modified file report.jsp - added checkbox for license agreement
+
+-------------------------Iaroslav Malyshev -03/03/2015------------------------------------------------------------------
+add ability to set city and province from servlet

@@ -148,9 +148,15 @@ public class Languages {
 		rusLanguage.put("signUpAccessCode", "Коде Доступа");
 		 frLanguage.put("signUpAccessCode", "");
 		 enLanguage.put("signUpAccessCode", "Access Code");
-		rusLanguage.put("signUpName", "ФИО");
+		rusLanguage.put("signUpName", "Ник");
 		 frLanguage.put("signUpName", "");
-		 enLanguage.put("signUpName", "First and Last Name");
+		 enLanguage.put("signUpName", "User Name");
+		rusLanguage.put("signUpFirstName", "Имя");
+		 frLanguage.put("signUpFirstName", "");
+		 enLanguage.put("signUpFirstName", "First Name");
+		rusLanguage.put("signUpLastName", "Фамилия");
+		 frLanguage.put("signUpLastName", "");
+		 enLanguage.put("signUpLastName", "Last Name");
 		rusLanguage.put("signUpEmail", "Имаил адрес");
 		 frLanguage.put("signUpEmail", "");
 		 enLanguage.put("signUpEmail", "Email Address");
@@ -197,6 +203,11 @@ public class Languages {
 		 enLanguage.put("reportButton", "Report");
 		 frLanguage.put("reportButton", "");
 		rusLanguage.put("reportButton", "Отправить Отчет");
+		
+		//welocme page Strings
+		 enLanguage.put("welcomeTitle", "Police Application");
+		 frLanguage.put("welcomeTitle", "");
+		rusLanguage.put("welcomeTitle", "Полицейское приложение");
 		
 		//common Strings
 		rusLanguage.put("addCity", "Добавить Город");
