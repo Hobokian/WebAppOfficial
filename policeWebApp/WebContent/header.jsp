@@ -23,7 +23,10 @@
     %>
 </head>
 <body>
-			<div class="col-md-17 sitemap"></div>
+			<div class="col-md-17 sitemap">
+			<form id="callEditProfileServlet" name="callEditProfileServlet" action="editProfile" method="get">
+			</form>
+      		</div>
 			<div class="col-md-3 sitemap">
 				<input type="image" src="images/Russia_flag.PNG" 									width="20" height="20" name="languageRus" id="languageRus" onClick="funLanguage('RUS')"/>
 				<input type="image" src="images/Great_Britain_flag_clothing_icon_ID_503.png" 		width="20" height="20" name="languageEng" id="languageEng" onClick="funLanguage('EN')"/>
@@ -67,7 +70,7 @@
             <script>
             function editUser()
             {
-            	window.location.href = 'editProfile.jsp';
+            	document.getElementById("callEditProfileServlet").submit();
             	
             }
             </script>
