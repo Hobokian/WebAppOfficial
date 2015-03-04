@@ -44,6 +44,8 @@ public class SignUpPageServlet extends HttpServlet{
         	session.setAttribute("userLastName", "");
         	session.setAttribute("email", "");
         	session.setAttribute("phone", "");
+        	session.setAttribute("province", "0");
+        	session.setAttribute("city", "0");
         }
   
         
@@ -106,9 +108,9 @@ public class SignUpPageServlet extends HttpServlet{
         if(password.length()<=0)badArg=true;
         if(passwordConfirm.length()<=0)badArg=true;
         if(selectProvince==null)badArg=true;
-        else{if(selectProvince.length()<=0 || selectProvince.compareTo("0")==0)badArg=true;}
+        else{if(selectProvince.length()<=0 || selectProvince.compareTo("0")==0)badArg=true;else session.setAttribute("province", selectProvince);}
         if(selectCity==null)badArg=true;
-        else{if(selectCity.length()<=0 || selectCity.compareTo("0")==0)badArg=true;}
+        else{if(selectCity.length()<=0 || selectCity.compareTo("0")==0)badArg=true; else session.setAttribute("city", selectCity);}
         
         
         if(badArg)

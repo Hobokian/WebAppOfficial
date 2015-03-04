@@ -48,6 +48,14 @@ public class DataBaseStandardUtilities {
 		 return provinces;
 	 }
 	 
+	 public static String getProvince(String province)
+	 {
+		 String provinces = "<select></select>"; 
+		 ArrayList<String[]> array=DataBaseQuery.executeQuery("select * from webapp.province");
+		 provinces=UtilsDB.createSelectListProvince(array,province);
+		 return provinces;
+	 }
+	 
 	 /**
 	  * get all city for chosen province
 	  * @return string with html select tag of cities
@@ -67,6 +75,25 @@ public class DataBaseStandardUtilities {
 		 return sb.toString();
 	 }
 	 
+	 public static ArrayList<String[]> getCityArray()
+	 {
+		 ArrayList<String[]> cities = new ArrayList<String[]>();
+		 int i;
+		 for(i=0;i<13;i++)
+		 {
+		 	ArrayList<String[]> array=DataBaseQuery.executeQuery("select * from webapp.citylookup where province_id='"+(i+1)+"'");
+		 	int j;
+		 	String ct[]=new String[array.size()];
+		 	for(j=0;j<array.size();j++)
+		 	{
+		 		ct[j]=array.get(j)[1];
+		 	}
+		 	cities.add(ct);
+		 }
+		 return cities;
+		
+	 }
+	 
 	 /**
 	  * 
 	  * @return
@@ -76,6 +103,7 @@ public class DataBaseStandardUtilities {
 		 String aaa ="onchange=\"addCityList("+DataBaseStandardUtilities.getCity()+")\"";
 		 return aaa;   
 	 }
+
 	 
 	 /**
 	  * check access code

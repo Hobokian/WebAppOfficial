@@ -35,7 +35,9 @@ public class CreateComplainServlet extends HttpServlet{
 	    if(email==null)email="Anonymous";
 	    if(phone==null)phone="Anonymous";
 	    
-	    HttpSession session = request.getSession(false);  
+	    HttpSession session= null;
+	    session = request.getSession(false);
+	    if(session!=null) session = request.getSession(true);
 	    if(session!=null)  
 	    {
 	    	session.setAttribute("email", email); 
@@ -45,6 +47,8 @@ public class CreateComplainServlet extends HttpServlet{
 	    	session.setAttribute("street", "");
 	    	session.setAttribute("postalCode", "");
 	    	session.setAttribute("description", "");
+	    	session.setAttribute("province", "0");
+        	session.setAttribute("city", "0");
 	    }
 	    if (email.compareTo("")==0 && phone.compareTo("")==0)
 	    {
@@ -109,9 +113,9 @@ public class CreateComplainServlet extends HttpServlet{
     	 if(description.length()<=0 || description.compareTo("describe situation")==0)badArg=true;
          else session.setAttribute("description", description);
          if(selectProvince==null)badArg=true;
-         else{if(selectProvince.length()<=0 || selectProvince.compareTo("0")==0)badArg=true;}
+         else{if(selectProvince.length()<=0 || selectProvince.compareTo("0")==0)badArg=true;else session.setAttribute("province", selectProvince);}
          if(selectCity==null)badArg=true;
-         else{if(selectCity.length()<=0 || selectCity.compareTo("0")==0)badArg=true;}
+         else{if(selectCity.length()<=0 || selectCity.compareTo("0")==0)badArg=true; else session.setAttribute("city", selectCity);}
          
          if(email.length()>0)user=email;
          else user=phone;

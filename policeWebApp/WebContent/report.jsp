@@ -17,6 +17,12 @@
     	}
     }
     String language = (String)session.getAttribute("language");
+    String province;
+    String city;
+    if(session.getAttribute("province")==null){ province = "0";}
+    else {province = (String)session.getAttribute("province");}
+    if(session.getAttribute("city")==null){ city = "0";}
+    else { city = (String)session.getAttribute("city");}
     %>
     <title><%=UtilsDB.getWord(language, "reportTitle") %></title>
     <%@ page import= "com.policeApp.db.DataBaseStandardUtilities" %>
@@ -66,11 +72,13 @@
 			    </div>
 			    <div class="form-group">
 			    	<select id="province" name="province" class="form-control"  <%=DataBaseStandardUtilities.makeDynamicProvinceCity() %> style="height:34px;">
-						<%=DataBaseStandardUtilities.getProvince()%>
+						<%=DataBaseStandardUtilities.getProvince(province)%>
 					</select>
 				</div>
 			    <div class="form-group">
-					<select id="city" name="city" class="form-control"  onchange="addCityFunction()" style="height:34px;"></select>
+					<select id="city" name="city" class="form-control"  onchange="addCityFunction()" style="height:34px;">
+					<%=UtilsDB.createSelectListCity(DataBaseStandardUtilities.getCityArray(), province, city) %>
+					</select>
 			    </div>
 			    <div class="form-group">
 					<input type="text" name="postalCode" id="postalCode" class="form-control input-sm" placeholder="<%=UtilsDB.getWord(language, "reportPostalCode") %>" value="<%=session.getAttribute("postalCode") %>" style="height:34px;">
@@ -131,16 +139,14 @@
 	    var selectedProvinceIndex = document.getElementById("province").selectedIndex;
 	    var cityElement = document.getElementById("city");
 	    cityElement.length = 0;
-	    var language = '<%= (String)session.getAttribute("language") %>';
 	    cityElement.options[0] = new Option('Select city', '');
-	    if(language == "RUS") {
-	    	cityElement.options[0] = new Option('Выберите город', '');
-	    }
 	    cityElement.selectedIndex = 0;
 	    for (var i = 0; i < array[selectedProvinceIndex-1].length; i++) {
 	    	cityElement.options[cityElement.length] = new Option(array[selectedProvinceIndex-1][i],(i+1) );
 	    }
 	    cityElement.options[cityElement.length]=new Option('add city',i+1 );
+	    document.getElementById("addCity").style.visibility = "hidden";
+		document.getElementById("addCityButton").style.visibility = "hidden";
     }
     </script>
     

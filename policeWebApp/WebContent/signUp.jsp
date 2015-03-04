@@ -19,6 +19,12 @@
     	}
     }
     String language = (String)session.getAttribute("language");
+    String province;
+    String city;
+    if(session.getAttribute("province")==null){ province = "0";}
+    else {province = (String)session.getAttribute("province");}
+    if(session.getAttribute("city")==null){ city = "0";}
+    else { city = (String)session.getAttribute("city");}
     %>
     <title><%=UtilsDB.getWord(language, "signUpTitle") %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0; text/html; charset=UTF-8">
@@ -81,10 +87,10 @@
 					<input type="text" name="userName" id="userName" class="form-control input-sm" placeholder="<%=UtilsDB.getWord(language, "signUpName") %>" value="<%=session.getAttribute("userName") %>">
 			    </div>
 			    <div class="form-group">
-					<input type="text" name="userFirstName" id="userFirstName" class="form-control input-sm" placeholder="<%=UtilsDB.getWord(language, "signUpFirstName") %>" value="<%=session.getAttribute("userFirstName") %>">
+					<input type="text" name="userFirstName" id="userFirstName" class="form-control input-sm" placeholder="<%=UtilsDB.getWord(language, "signFirstName") %>" value="<%=session.getAttribute("userFirstName") %>">
 			    </div>
 			    <div class="form-group">
-					<input type="text" name="userLastName" id="userLastName" class="form-control input-sm" placeholder="<%=UtilsDB.getWord(language, "signUpLastName") %>" value="<%=session.getAttribute("userLastName") %>">
+					<input type="text" name="userLastName" id="userLastName" class="form-control input-sm" placeholder="<%=UtilsDB.getWord(language, "signLastName") %>" value="<%=session.getAttribute("userLastName") %>">
 			    </div>
 			    <div class="form-group">
 					<input type="text" name="email" id="email" class="form-control input-sm" placeholder="<%=UtilsDB.getWord(language, "signUpEmail") %>" value="<%=session.getAttribute("email") %>">
@@ -101,11 +107,13 @@
 			    
 			    <div class="form-group">
 			    	<select id="province" name="province" class="form-control"  <%=DataBaseStandardUtilities.makeDynamicProvinceCity() %> >
-						<%=DataBaseStandardUtilities.getProvince()%>
+						<%=DataBaseStandardUtilities.getProvince(province)%>
 					</select>
 				</div>
 			    <div class="form-group">
-					<select id="city" name="city" class="form-control"  onchange="addCityFunction()"></select>
+					<select id="city" name="city" class="form-control"  onchange="addCityFunction()">
+					<%=UtilsDB.createSelectListCity(DataBaseStandardUtilities.getCityArray(), province, city) %>
+					</select>
 			    </div>
 			</section>
 			<section class="col-md-10">
@@ -165,6 +173,8 @@
 	    	cityElement.options[cityElement.length] = new Option(array[selectedProvinceIndex-1][i],(i+1) );
 	    }
 	    cityElement.options[cityElement.length]=new Option('add city',i+1 );
+	    document.getElementById("addCity").style.visibility = "hidden";
+		document.getElementById("addCityButton").style.visibility = "hidden";
     }
     </script>
     
