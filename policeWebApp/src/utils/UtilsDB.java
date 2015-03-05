@@ -120,6 +120,44 @@ public class UtilsDB {
         return sb.toString();
     }
 	
+	public static String createSelectListProvince(ArrayList<String[]> array, String province) {
+		int pr =0;
+        StringBuffer sb = new StringBuffer();
+        if(province!=null) pr = Integer.parseInt(province);
+        if(pr==0) sb.append("<option value=\"0\" selected=\"selected\">select province</option>");
+        else      sb.append("<option value=\"0\">select province</option>");
+        if(array.size()>0) 
+        {
+        	int i;
+        	for(i=0;i<array.size();i++)
+        	{
+        		if(pr==(i+1)) sb.append("<option value=\"" + array.get(i)[0] + "\"selected=\"selected\">" + array.get(i)[1] + "</option>\n");
+        		else      sb.append("<option value=\"" + array.get(i)[0] + "\">" + array.get(i)[1] + "</option>\n");
+                
+        	}
+        }
+        return sb.toString();
+    }
+	
+	public static String createSelectListCity(ArrayList<String[]> array, String province, String city) {
+		int ct =0;
+		int pr =0;
+        StringBuffer sb = new StringBuffer();
+        if(province!=null) pr = Integer.parseInt(province);
+        if(pr == 0) return "";
+        if(city!=null) ct = Integer.parseInt(city);
+        if(ct==0) sb.append("<option value=\"0\" selected=\"selected\">select city</option>");
+        else      sb.append("<option value=\"0\">select city</option>");
+        int i;
+        for(i=0;i<array.get(pr).length;i++)
+        {
+        	if(ct==(i+1)) sb.append("<option value=\"" + (i+1) + "\"selected=\"selected\">" + array.get(pr-1)[i] + "</option>\n");
+        	else      sb.append("<option value=\"" + (i+1) + "\">" + array.get(pr-1)[i] + "</option>\n");
+        }
+        sb.append("<option value=\"" + (i+1) + "\">add city</option>\n");
+        return sb.toString();
+    }
+	
 	/**
 	 * function convert result from DB to select list
 	 * @param array - ArrayList of String arrays

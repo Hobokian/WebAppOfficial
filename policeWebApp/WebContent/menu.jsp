@@ -38,7 +38,7 @@
 					<div class="panel-heading"><%=UtilsDB.getWord(language, "menuPoliceNews") %></div>
 					<div class="panel-body">
 						<%=UtilsDB.getTwit(twitter_id,1) %>		
-						<%=UtilsDB.getTwit(twitter_id,2) %>				
+						<%=UtilsDB.getTwit(twitter_id,2) %>		
 					</div>
 				</div>
 <script>
