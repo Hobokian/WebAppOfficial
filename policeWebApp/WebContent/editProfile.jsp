@@ -46,10 +46,10 @@
 					<h5 style="height:28px;"><%=UtilsDB.getWord(language, "signUpName") %></h5>
 			    </div>
 			    <div class="form-group">
-					<h5 style="height:28px;"><%=UtilsDB.getWord(language, "signFirstName") %></h5>
+					<h5 style="height:28px;"><%=UtilsDB.getWord(language, "signUpFirstName") %></h5>
 			    </div>
 			    <div class="form-group">
-					<h5 style="height:28px;"><%=UtilsDB.getWord(language, "signLastName") %></h5>
+					<h5 style="height:28px;"><%=UtilsDB.getWord(language, "signUpLastName") %></h5>
 			    </div>
 			    <div class="form-group">
 					<h5 style="height:28px;"><%=UtilsDB.getWord(language, "signUpEmail") %></h5>
@@ -58,10 +58,10 @@
 					<h5 style="height:28px;"><%=UtilsDB.getWord(language, "signUpPhone") %></h5>
 			    </div>
 			    <div class="form-group">
-					<h5 style="height:28px;"><%=UtilsDB.getWord(language, "editUpOldPassword") %></h5>
+					<h5 style="height:28px;"><%=UtilsDB.getWord(language, "editOldPassword") %></h5>
 			    </div>
 			    <div class="form-group">
-					<h5 style="height:28px;"><%=UtilsDB.getWord(language, "editUpNewPassword") %></h5>
+					<h5 style="height:28px;"><%=UtilsDB.getWord(language, "editNewPassword") %></h5>
 			    </div>
 			    <div class="form-group">
 					<h5 style="height:28px;"><%=UtilsDB.getWord(language, "signUpConfirmPassword") %></h5>
@@ -78,7 +78,7 @@
 					<input type="text" name="budge" id="budge" class="form-control input-sm" placeholder="<%=UtilsDB.getWord(language, "signUpBadgeNumber") %>" value="<%=session.getAttribute("budge") %>" >
 			    </div>
 			    <div class="form-group">
-					<input type="text" name="accessCode" id="accessCode" class="form-control input-sm" placeholder="<%=UtilsDB.getWord(language, "signUpAccessCode") %>" value="<%=session.getAttribute("accessCode") %>">
+					<input type="text" name="accessCode" id="accessCode" class="form-control input-sm" placeholder="<%=UtilsDB.getWord(language, "signUpAccessCode") %>" value="<%=session.getAttribute("code") %>">
 			    </div>
 			    <div class="form-group">
 					<input type="text" name="userName" id="userName" class="form-control input-sm" placeholder="<%=UtilsDB.getWord(language, "signUpName") %>" value="<%=session.getAttribute("userName") %>">
@@ -96,7 +96,7 @@
 					<input type="text" name="phoneNumber" id="phoneNumber" class="form-control input-sm" placeholder="<%=UtilsDB.getWord(language, "signUpPhone") %>" value="<%=session.getAttribute("phone") %>">
 			    </div>
 			    <div class="form-group">
-					<input type="password" name="password" id="password" class="form-control input-sm" placeholder="<%=UtilsDB.getWord(language, "editOldPassword") %>">
+					<input type="password" name="oldPassword" id="oldPassword" class="form-control input-sm" placeholder="<%=UtilsDB.getWord(language, "editOldPassword") %>">
 			    </div>
 			    <div class="form-group">
 					<input type="password" name="newPassword" id="newPassword" class="form-control input-sm" placeholder="<%=UtilsDB.getWord(language, "editNewPassword") %>">
@@ -131,8 +131,8 @@
 		<section class="col-md-9">
 			<div class="form-group">
 				<input type="checkbox" id="accept" name="accept" onClick="EnableSubmit(this)"> <a href="signUpAgreement.jsp" onclick="window.open('signUpAgreement.jsp', 'newwindow', 'width=800, height=800'); return false;"><%=UtilsDB.getWord(language, "lisenceAgreement") %></a> <br><br><br><br>
-				<input type="submit" id="signUp" name="action" class="btn btn-primary" value="<%=UtilsDB.getWord(language, "signUpButton") %>" disabled/>
-				<input type="submit" name="action" class="btn btn-primary" value="<%=UtilsDB.getWord(language, "backButton") %>" />
+				<input type="submit" id="signUp" name="action" class="btn btn-primary" value="<%=UtilsDB.getWord(language, "editButton") %>" disabled/>
+				<input type="submit" name="action" class="btn btn-primary" value="<%=UtilsDB.getWord(language, "backButton") %>" /><br><br><br><br><br><br><br><br>
 			</div>
 		</section>
 	  </form>

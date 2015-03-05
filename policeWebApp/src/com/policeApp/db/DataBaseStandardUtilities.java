@@ -278,7 +278,7 @@ public class DataBaseStandardUtilities {
 	  * @return
 	  */
 	 public static boolean addUser(String budge,String userName, String firstName, String lastName, String email,String phone,String password,String province,String city){
-		 String query = "INSERT INTO userinfos (budgeNumber, password, username, fisrt_name, last_name,"+
+		 String query = "INSERT INTO userinfos (budgeNumber, password, username, first_name, last_name,"+
          				" email, phoneNumber, cityLookup_id, province_id) VALUES (" +
          				"\"" +	budge		+ "\"," +
          				"\"" +	password	+ "\"," +
@@ -474,8 +474,16 @@ public class DataBaseStandardUtilities {
 	 }
 	 
 	 public static String[] getUserInfo(String id){
-		 ArrayList<String[]> array=DataBaseQuery.executeQuery("select * from webapp.userinfos where id='"+ id +"'");
+		 ArrayList<String[]> array=DataBaseQuery.executeQuery("select * from webapp.userinfos join accesscode on userinfos.id=accesscode.id where userinfos.id='"+ id +"'");
 		 return array.get(0);
 	 }
+
+	public static boolean editUser(String user_id, String budge, String userName,String firstName, String lastName, String email, String phone, String newPassword, String selectProvince, String selectCity) {
+		String query = "UPDATE userinfos SET budgeNumber=" + "'" + budge + "'" + ", password=" + "'" + newPassword + "'" + 
+				", username=" + "'" + userName + "'" + ", first_name= " + "'" + firstName + "'" + ", last_name=" + "'" + lastName + "'" + 
+				", email=" + "'" + email + "'" + ", phoneNumber=" + "'" + phone + "'" + ", province_id=" + selectProvince + ", citylookup_id=" + selectCity +
+				" WHERE id=" + user_id;
+		return DataBaseQuery.updateQuery(query);
+	}
 
 }

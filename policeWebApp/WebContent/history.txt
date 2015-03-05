@@ -274,3 +274,7 @@ This file for keep tracking history
 
 -------------------------Iaroslav Malyshev -03/03/2015------------------------------------------------------------------
 add ability to set city and province from servlet
+
+-------------------------Joseph Barber -03/05/2015------------------------------------------------------------------
+56. Added editProfile.jsp, EditProfileServlet.java, Contact.jsp, and About.jsp
+	Added functions to DatabaseStandardUtilities: editUser(), and getUserInfo()

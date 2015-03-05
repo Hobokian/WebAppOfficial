@@ -180,6 +180,9 @@ public class Languages {
 		 enLanguage.put("editNewPassword", "New Password");
 		 rusLanguage.put("editNewPassword", ":(");
 		 frLanguage.put("editNewPassword", "");
+		 rusLanguage.put("editButton", "");
+		 frLanguage.put("editButton", "");
+		 enLanguage.put("editButton", "Edit Profile");
 		
 		//report page String
 		 enLanguage.put("reportTitle", "Complaint Form");
