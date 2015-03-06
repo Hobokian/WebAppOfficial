@@ -299,3 +299,11 @@ add ability to set city and province from servlet
 			
 61. welcome.jsp
 		replaced Case table call for session's attribute to direct DBSUtilities.get..() call.
+		
+-------------------------Iaroslav Malyshev -03/03/2015------------------------------------------------------------------
+62. add file MenuServlet.java for holding menu command
+			MenuServlet class
+				function doPost 
+				
+63. edit menu.jsp to add ability to call doPost function of MenuServlet
+

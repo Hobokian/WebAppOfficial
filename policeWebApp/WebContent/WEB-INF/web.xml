@@ -20,6 +20,10 @@
     <servlet-name>editUser</servlet-name>
     <servlet-class>com.policeApp.servlets.EditProfileServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>menu</servlet-name>
+    <servlet-class>com.policeApp.servlets.MenuServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>login</servlet-name>
     <url-pattern>/loginServlet</url-pattern>
@@ -39,6 +43,10 @@
   <servlet-mapping>
     <servlet-name>editUser</servlet-name>
     <url-pattern>/editProfile</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>menu</servlet-name>
+    <url-pattern>/menuServlet</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

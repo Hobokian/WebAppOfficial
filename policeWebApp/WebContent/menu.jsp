@@ -26,6 +26,9 @@
     }
     %>
 <body>
+				<form id="menuItem" name="menuItem" action="menuServlet" method="post">
+					<input type="hidden" name="hdn_menu_command" id="hdn_menu_command"/>
+				</form>
 				<ul class="list-group menu" >
 					<li class="btn list-group-item" onclick="homeMenu()" 			><%=UtilsDB.getWord(language, "menuHome") 				%></li>
 					<li class="btn list-group-item" onclick="myCaseMenu()"			><%=UtilsDB.getWord(language, "menuMyCases") 			%></li>
@@ -44,11 +47,15 @@
 <script>
 	function homeMenu()
 	{
-		window.location.href = 'welcome.jsp?cmd=0';
+		var elem = document.getElementById("hdn_menu_command");
+		elem.value = 0;
+		document.getElementById("menuItem").submit();
 	}
 	function myCaseMenu()
 	{
-		window.location.href = 'welcome.jsp?cmd=1';
+		var elem = document.getElementById("hdn_menu_command");
+		elem.value = 1;
+		document.getElementById("menuItem").submit();
 	}
 	function myCityCaseMenu()
 	{
