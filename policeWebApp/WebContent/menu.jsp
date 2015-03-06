@@ -29,6 +29,7 @@
 				<form id="menuItem" name="menuItem" action="menuServlet" method="post">
 					<input type="hidden" name="hdn_menu_command" id="hdn_menu_command"/>
 				</form>
+				<form id="menuSearch" name="menuSearch" action="searchServlet" method="get"></form>
 				<ul class="list-group menu" >
 					<li class="btn list-group-item" onclick="homeMenu()" 			><%=UtilsDB.getWord(language, "menuHome") 				%></li>
 					<li class="btn list-group-item" onclick="myCaseMenu()"			><%=UtilsDB.getWord(language, "menuMyCases") 			%></li>
@@ -59,19 +60,25 @@
 	}
 	function myCityCaseMenu()
 	{
-		window.location.href = 'welcome.jsp?cmd=2';
+		var elem = document.getElementById("hdn_menu_command");
+		elem.value = 2;
+		document.getElementById("menuItem").submit();
 	}
 	function myProvinceCaseMenu()
 	{
-		window.location.href = 'welcome.jsp?cmd=3';
+		var elem = document.getElementById("hdn_menu_command");
+		elem.value = 3;
+		document.getElementById("menuItem").submit();
 	}
 	function advancedSearchMenu()
 	{
-		window.location.href = 'search.jsp';
+		document.getElementById("menuSearch").submit();
 	}
 	function historyMenu()
 	{
-		window.location.href = 'welcome.jsp?cmd=4';
+		var elem = document.getElementById("hdn_menu_command");
+		elem.value = 4;
+		document.getElementById("menuItem").submit();
 	}
 </script>
 </body>

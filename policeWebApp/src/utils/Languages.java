@@ -182,12 +182,12 @@ public class Languages {
 		 //EDIT
 		 enLanguage.put("editOldPassword", "Old Password");
 		 rusLanguage.put("editOldPassword", ":D");
-		 frLanguage.put("editOldPassword", "");
+		 frLanguage.put("editOldPassword", "Ancien Mot de Passe");
 		 enLanguage.put("editNewPassword", "New Password");
 		 rusLanguage.put("editNewPassword", ":(");
-		 frLanguage.put("editNewPassword", "");
+		 frLanguage.put("editNewPassword", "Nouveau Mot de Passe");
 		 rusLanguage.put("editButton", "");
-		 frLanguage.put("editButton", "");
+		 frLanguage.put("editButton", "Modifier Profil");
 		 enLanguage.put("editButton", "Edit Profile");
 		
 		//Create report page String

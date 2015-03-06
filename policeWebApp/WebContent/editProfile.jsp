@@ -28,6 +28,7 @@
   <body>
 	<div class="wrapper container">
 		<header>
+			<jsp:include page="header.jsp" />
 		</header>
 		<div class="heading">
 			<h1><%=UtilsDB.getWord(language, "signUpTitle") %></h1>
