@@ -133,7 +133,7 @@ public class DataBaseStandardUtilities {
 	  * @param filter string 
 	  * @return string with html table tag with all results
 	  */
-	 public static String getSelectedIncidents(String filter, String user_id)
+	 public static String getSelectedIncidents(String language, String filter, String user_id)
 	 {
 		 StringBuffer sb = new StringBuffer();
 		 String table;
@@ -171,7 +171,7 @@ public class DataBaseStandardUtilities {
 			 sb.append(" where "+filter);
 		 }
 		 ArrayList<String[]> incidentData=DataBaseQuery.executeQuery(sb.toString());
-		 table=UtilsDB.createIncidentReportTable(incidentData, user_id);
+		 table=UtilsDB.createIncidentReportTable(language, incidentData, user_id);
 		 return table;
 	 }
 	 
@@ -372,7 +372,7 @@ public class DataBaseStandardUtilities {
 	  */
 	 public static boolean createIncidentAction(String case_id,String user_id, String comment)
 	 {
-		 String query = "INSERT INTO incident_action ( userInfos_id, incidentReports_id, decription) VALUES (\""
+		 String query = "INSERT INTO incident_action ( userInfos_id, incidentReports_id, description) VALUES (\""
 				 + user_id +  "\",\""
 				 + case_id +  "\",\""
 				 + comment + "\")";
@@ -467,7 +467,7 @@ public class DataBaseStandardUtilities {
 		 ArrayList<String[]> array = getCaseAndUserConnection(case_id, user_id);
 		 if(array.size()!=1)
 			 return false;
-		 String query = "UPDATE incident_action SET decription=\""+comment+"\" WHERE " +
+		 String query = "UPDATE incident_action SET description=\""+comment+"\" WHERE " +
 				"userInfos_id=\"" 		+ user_id +  "\" AND " +
 				"incidentReports_id=" + case_id;
 		 return DataBaseQuery.updateQuery(query);

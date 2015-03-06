@@ -19,7 +19,8 @@ public class Languages {
 		 enLanguage = new HashMap<String, String>();
 		rusLanguage = new HashMap<String, String>();
 		 frLanguage = new HashMap<String, String>();
-		//footer page Strings
+		
+		 //footer page Strings
 		 enLanguage.put("footerTwitter", "Twitter Feed");
 		 frLanguage.put("footerTwitter", "");
 		rusLanguage.put("footerTwitter", "Твиттер");
@@ -41,6 +42,7 @@ public class Languages {
 		 enLanguage.put("footerSocialNetworks", "Social networks");
 		 frLanguage.put("footerSocialNetworks", "");
 		rusLanguage.put("footerSocialNetworks", "Обратная связь");
+		
 		//header page Strings
 		 enLanguage.put("headerHi", "Hi");
 		 frLanguage.put("headerHi", "");
@@ -51,6 +53,7 @@ public class Languages {
 		 enLanguage.put("headerLogout", "Log Out");
 		 frLanguage.put("headerLogout", "");
 		rusLanguage.put("headerLogout", "Выход");
+		
 		//menu page Strings
 		 enLanguage.put("menuPoliceNews", "police news");
 		 frLanguage.put("menuPoliceNews", "");
@@ -85,6 +88,7 @@ public class Languages {
 		 enLanguage.put("splashScreenClose", "Close");
 		 frLanguage.put("splashScreenClose", "");
 		rusLanguage.put("splashScreenClose", "Закрыть");
+		
 		//index page body Strings
 		 enLanguage.put("indexWelcome", "Welcome");
 		 frLanguage.put("indexWelcome", "");
@@ -125,6 +129,7 @@ public class Languages {
 		 enLanguage.put("indexSignUp", "Sign Up");
 		 frLanguage.put("indexSignUp", "");
 		rusLanguage.put("indexSignUp", "Регистрация");
+		
 		//thanks page Strings
 		 enLanguage.put("thanksTitle", "Submission Complete");
 		 frLanguage.put("thanksTitle", "");
@@ -138,6 +143,7 @@ public class Languages {
 		 enLanguage.put("thanksPostMessage", "If you have any questions about your complaint please contact with website support");
 		 frLanguage.put("thanksPostMessage", "");
 		rusLanguage.put("thanksPostMessage", "Если у нас какие нибуть вопросы о вашем очете пожалуйста свяжитесь с тех.поддержкой");
+		
 		//signUp page Strings
 		rusLanguage.put("signUpTitle", "форма регистрации");
 		 frLanguage.put("signUpTitle", "");
@@ -173,7 +179,7 @@ public class Languages {
 		 frLanguage.put("signUpButton", "");
 		 enLanguage.put("signUpButton", "SignUp");
 		
-		//report page String
+		//Create report page String
 		 enLanguage.put("reportTitle", "Complaint Form");
 		 frLanguage.put("reportTitle", "");
 		rusLanguage.put("reportTitle", "отчетная Форма");
@@ -201,6 +207,54 @@ public class Languages {
 		 frLanguage.put("welcomeTitle", "");
 		rusLanguage.put("welcomeTitle", "Полицейское приложение");
 		
+		//Incident Report Table Strings
+		 enLanguage.put("inicdentTablePlate", "Plate Number");
+		 frLanguage.put("inicdentTablePlate", "");
+		rusLanguage.put("inicdentTablePlate", "");
+		 enLanguage.put("inicdentTableProv", "Province");
+		 frLanguage.put("inicdentTableProv", "");
+		rusLanguage.put("inicdentTableProv", "");
+		 enLanguage.put("inicdentTableCity", "City");
+		 frLanguage.put("inicdentTableCity", "");
+		rusLanguage.put("inicdentTableCity", "");
+		 enLanguage.put("inicdentTableStatus", "Status");
+		 frLanguage.put("inicdentTableStatus", "");
+		rusLanguage.put("inicdentTableStatus", "");
+		 enLanguage.put("inicdentTableAction", "Action");
+		 frLanguage.put("inicdentTableAction", "");
+		rusLanguage.put("inicdentTableAction", "");
+		 enLanguage.put("inicdentTableView", "View");
+		 frLanguage.put("inicdentTableView", "");
+		rusLanguage.put("inicdentTableView", "");
+		
+		//Pop Up Window Strings
+		 enLanguage.put("PopUpTake", "Take Case");
+		 frLanguage.put("PopUpTake", "");
+		rusLanguage.put("PopUpTake", "");
+		 enLanguage.put("PopUpDecline", "Decline Case");
+		 frLanguage.put("PopUpDecline", "");
+		rusLanguage.put("PopUpDecline", "");
+		 enLanguage.put("PopUpSave", "Save Changes");
+		 frLanguage.put("PopUpSave", "");
+		rusLanguage.put("PopUpSave", "");
+		 enLanguage.put("PopUpCloseCase", "Close Case");
+		 frLanguage.put("PopUpCloseCase", "");
+		rusLanguage.put("PopUpCloseCase", "");
+		 enLanguage.put("PopUpID", "Record ID:");
+		 frLanguage.put("PopUpID", "");
+		rusLanguage.put("PopUpID", "");
+		 enLanguage.put("PopUpUserDesc", "User Description");
+		 frLanguage.put("PopUpUserDesc", "");
+		rusLanguage.put("PopUpUserDesc", "");
+		 enLanguage.put("PopUpOffNotes", "Officer Notes");
+		 frLanguage.put("PopUpOffNotes", "");
+		rusLanguage.put("PopUpOffNotes", "");
+		 enLanguage.put("PopUpClose", "Close");
+		 frLanguage.put("PopUpClose", "");
+		rusLanguage.put("PopUpClose", "");
+
+		
+	
 		//common Strings
 		rusLanguage.put("addCity", "Добавить Город");
 		 frLanguage.put("addCity", "");

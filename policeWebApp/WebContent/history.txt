@@ -265,3 +265,27 @@ This file for keep tracking history
 -------------------------Iaroslav Malyshev -03/03/2015------------------------------------------------------------------
 add ability to set city and province from servlet
 					
+-------------------------Aaron Deslauriers -03/03/2015--------------------------------------------------------------
+					
+##. modified LoginServlet.java
+		modified doPost()
+			grab the session's language parameter to pass to the DBSU.getSelectedIncidents()
+
+##. modified CaseServlet.java
+		modified doPost()
+			grab the session's language parameter to pass to the DBSU.getSelectedIncidents()
+			removed the Session("table") adding of case table info
+	
+##. Modified DataBaseStandardUtilies.java
+		modified getSelectedIncidents()
+			added language parameter.
+					
+## UtilsDB.java
+		Modified createIncidentTable()
+			modified hard coded table column headers and button name to multi language
+		Modified createPopUpWindow()
+			modified hard coded field labels and button names to multi language
+			
+##. welcome.jsp
+		replaced Case table call for session's attribute to direct DBSUtilities.get..() call.
+		
