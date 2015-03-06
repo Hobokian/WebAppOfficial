@@ -40,7 +40,7 @@
 				<br><br><br><br><br><br><br>	
 			</aside>
 			<section class="col-md-19">
-				<%=session.getAttribute("table")%>
+				<%=DataBaseStandardUtilities.getSelectedIncidents(language,null,(String)session.getAttribute("id"))%>
 			</section>
 		</div>
 	</div>

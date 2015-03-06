@@ -28,8 +28,9 @@ public class DataBaseConnection {
 		 String url = "jdbc:mysql://localhost:3306/";    
 	        String dbName = "webapp";  
 	        String driver = "com.mysql.jdbc.Driver";  
+
 	        String userName = "root";
-	        String password = "purelife14";  
+	        String password = "root";  
 
 
 	        try {

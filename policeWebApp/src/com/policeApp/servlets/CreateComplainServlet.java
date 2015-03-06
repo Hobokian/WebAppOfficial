@@ -110,7 +110,7 @@ public class CreateComplainServlet extends HttpServlet{
          else session.setAttribute("street", street);
     	 if(postalCode.length()<=0)badArg=true;
          else session.setAttribute("postalCode", postalCode);
-    	 if(description.length()<=0 || description.compareTo("describe situation")==0)badArg=true;
+    	 if(description.length()<=0)badArg=true;
          else session.setAttribute("description", description);
          if(selectProvince==null)badArg=true;
          else{if(selectProvince.length()<=0 || selectProvince.compareTo("0")==0)badArg=true;else session.setAttribute("province", selectProvince);}

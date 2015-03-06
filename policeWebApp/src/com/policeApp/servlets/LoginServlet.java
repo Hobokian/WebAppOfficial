@@ -31,10 +31,12 @@ public class LoginServlet extends HttpServlet{
         PrintWriter out = response.getWriter();    
           
         String budge=request.getParameter("username");    
-        String password=request.getParameter("userpass");   
+        String password=request.getParameter("userpass");
           
         HttpSession session = request.getSession(false);  
         password = UtilsDB.encript(password);
+        
+        String language = (String)session.getAttribute("language");
         
         if(DataBaseStandardUtilities.validate(budge, password)){  
             if(session!=null)  
@@ -42,7 +44,7 @@ public class LoginServlet extends HttpServlet{
             	id =DataBaseStandardUtilities.getUserId(budge);
             	session.setAttribute("id", id);
             	session.setAttribute("name", DataBaseStandardUtilities.getName(id));
-            	session.setAttribute("table", DataBaseStandardUtilities.getSelectedIncidents(null,id));
+            	session.setAttribute("table", DataBaseStandardUtilities.getSelectedIncidents(language,null,id));
             	session.setAttribute("twitterProv", DataBaseStandardUtilities.getUsersProvinceTwiterId(id));
             }
             //RequestDispatcher rd=request.getRequestDispatcher("welcome.jsp");    

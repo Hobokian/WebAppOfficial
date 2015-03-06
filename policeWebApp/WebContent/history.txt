@@ -267,9 +267,6 @@ This file for keep tracking history
 
 54. modified file signUp.jsp - added checkbox for license agreement
 
-<<<<<<< HEAD
-55. modified file report.jsp - added checkbox for license agreement
-=======
 55. modified file report.jsp - added checkbox for license agreement
 
 -------------------------Iaroslav Malyshev -03/03/2015------------------------------------------------------------------
@@ -278,3 +275,27 @@ add ability to set city and province from servlet
 -------------------------Joseph Barber -03/05/2015------------------------------------------------------------------
 56. Added editProfile.jsp, EditProfileServlet.java, Contact.jsp, and About.jsp
 	Added functions to DatabaseStandardUtilities: editUser(), and getUserInfo()
+					
+-------------------------Aaron Deslauriers -03/03/2015--------------------------------------------------------------
+					
+57. modified LoginServlet.java
+		modified doPost()
+			grab the session's language parameter to pass to the DBSU.getSelectedIncidents()
+
+58. modified CaseServlet.java
+		modified doPost()
+			grab the session's language parameter to pass to the DBSU.getSelectedIncidents()
+			removed the Session("table") adding of case table info
+	
+59. Modified DataBaseStandardUtilies.java
+		modified getSelectedIncidents()
+			added language parameter.
+					
+60. UtilsDB.java
+		Modified createIncidentTable()
+			modified hard coded table column headers and button name to multi language
+		Modified createPopUpWindow()
+			modified hard coded field labels and button names to multi language
+			
+61. welcome.jsp
+		replaced Case table call for session's attribute to direct DBSUtilities.get..() call.

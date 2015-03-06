@@ -133,7 +133,7 @@ public class DataBaseStandardUtilities {
 	  * @param filter string 
 	  * @return string with html table tag with all results
 	  */
-	 public static String getSelectedIncidents(String filter, String user_id)
+	 public static String getSelectedIncidents(String language, String filter, String user_id)
 	 {
 		 StringBuffer sb = new StringBuffer();
 		 String table;
@@ -171,7 +171,7 @@ public class DataBaseStandardUtilities {
 			 sb.append(" where "+filter);
 		 }
 		 ArrayList<String[]> incidentData=DataBaseQuery.executeQuery(sb.toString());
-		 table=UtilsDB.createIncidentReportTable(incidentData, user_id);
+		 table=UtilsDB.createIncidentReportTable(language, incidentData, user_id);
 		 return table;
 	 }
 	 

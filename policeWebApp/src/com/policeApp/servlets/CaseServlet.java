@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import utils.UtilsDB;
+
 import com.policeApp.db.DataBaseStandardUtilities;
 
 
@@ -24,26 +26,29 @@ public class CaseServlet extends HttpServlet{
             throws ServletException, IOException { 
     	response.setContentType("text/html");    
         PrintWriter out = response.getWriter();    
-    	String caseId = request.getParameter("hdn_case_id");
+        String caseId = request.getParameter("hdn_case_id");
     	String userId = request.getParameter("hdn_user_id");
     	String action = request.getParameter("action");
     	String notes = request.getParameter("officerNotes");
-        if (action.compareTo("Take Case")==0)
+        HttpSession session = request.getSession(false);
+        String language = (String)session.getAttribute("language");
+        
+        if (action.compareTo(UtilsDB.getWord(language, "PopUpTake"))==0)
         {
         	if(!DataBaseStandardUtilities.takeCase(caseId, userId))
         		out.print("<p style=\"color:red\">DataBase failed</p>");  
         } 
-        if (action.compareTo("Close Case")==0)
+        if (action.compareTo(UtilsDB.getWord(language, "PopUpCloseCase"))==0)
         {
         	if(!DataBaseStandardUtilities.closeCase(caseId, userId, notes))
         		out.print("<p style=\"color:red\">DataBase failed</p>");  
         } 
-        if (action.compareTo("Decline Case")==0)
+        if (action.compareTo(UtilsDB.getWord(language, "PopUpDecline"))==0)
         {
         	if(!DataBaseStandardUtilities.declineCase(caseId, userId))
         		out.print("<p style=\"color:red\">DataBase failed</p>");  
         }
-        if (action.compareTo("Save Changes")==0)
+        if (action.compareTo(UtilsDB.getWord(language, "PopUpSave"))==0)
         {
         	if(!DataBaseStandardUtilities.updateCaseComment(caseId, userId, notes))
         		out.print("<p style=\"color:red\">DataBase failed</p>");  
@@ -53,11 +58,6 @@ public class CaseServlet extends HttpServlet{
         	//do nothing for now
         } 
 
-        HttpSession session = request.getSession(false);  
-        if(session!=null)  
-        {
-        	session.setAttribute("table", DataBaseStandardUtilities.getSelectedIncidents(null,userId));
-        }
     	RequestDispatcher rd=request.getRequestDispatcher("welcome.jsp");    
         rd.forward(request,response);
     	out.close();
