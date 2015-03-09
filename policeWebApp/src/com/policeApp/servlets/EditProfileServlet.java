@@ -141,6 +141,7 @@ public class EditProfileServlet extends HttpServlet {
 	        		newPassword = UtilsDB.encript(newPassword);
 	        		if(DataBaseStandardUtilities.editUser(user_id, budge, userName, firstName, lastName, email, phone, newPassword, selectProvince, selectCity))
 	        		{
+	        			session.invalidate();
 	        			response.sendRedirect("index.jsp");
 	        		}
 	        		else

@@ -10,6 +10,7 @@
   <body>
 	<div class="wrapper container">
 		<header>
+			<jsp:include page="header.jsp" />
 		</header>
 		<div class="heading">
 			<h1>Submission Complete</h1>
@@ -30,44 +31,7 @@
 	</div>
 	
 	<footer>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 twitter">
-					<h3>Twitter feed</h3>
-					<time datetime="2015-02-10"><a href="#">10 feb</a></time>
-					<p>
-						I made website
-					</p>
-				</div>
-				<div class="col-md-4 sitemap">
-					<h3>Sitemap</h3>
-					<div class="row">
-						<div class="col-md-12">
-							<a href="About.jsp">About</a>
-							<a href="">Services</a>
-						</div>
-						<div class="col-md-12">
-							<a href="">Support</a>
-							<a href="Contact.jsp">Contact</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 social">
-					<h3>Social networks</h3>
-					<a href="http://twitter.com/" class="social-icon twitter"></a>
-					<a href="http://facebook.com/" class="social-icon facebook"></a>
-					<a href="http://plus.google.com/" class="social-icon google-plus"></a>
-					<a href="http://vimeo.com/" class="social-icon-small vimeo"></a>
-					<a href="http://youtube.com/" class="social-icon-small youtube"></a>
-					<a href="http://flickr.com/" class="social-icon-small flickr"></a>
-					<a href="http://instagram.com/" class="social-icon-small instagram"></a>
-					<a href="/rss/" class="social-icon-small rss"></a>
-				</div>
-				<div class="col-md-8 footer-logo">
-					some picture here
-				</div>
-			</div>
-		</div>
+		<jsp:include page="footer.jsp" />
 	</footer>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
