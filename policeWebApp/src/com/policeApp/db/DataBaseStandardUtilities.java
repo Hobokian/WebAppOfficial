@@ -164,12 +164,13 @@ public class DataBaseStandardUtilities {
 				 + "join "
 				 + "incident_status "
 				 + "on "
-				 + "incidentreports.incident_status_id = incident_status.id");
+				 + "incidentreports.incident_status_id = incident_status.id ");
 		 //sb.append("select * from webapp.incidentreports inner join webapp.location on incidentreports.location_id=location.id");
 		 if(filter!=null)
 		 {
-			 sb.append(" where "+filter);
+			 sb.append(filter + " ");
 		 }
+		 sb.append("order by incidentreports.id DESC");
 		 ArrayList<String[]> incidentData=DataBaseQuery.executeQuery(sb.toString());
 		 table=UtilsDB.createIncidentReportTable(language, incidentData, user_id);
 		 return table;
@@ -222,6 +223,13 @@ public class DataBaseStandardUtilities {
 		 if(array.size()==1)
 			 userName=array.get(0)[3] + " " +array.get(0)[4];
 		 return userName;
+	 }
+	 
+	 public static String getUsersCityID(String id){
+		 String userCityID = "";
+		 ArrayList<String[]> array=DataBaseQuery.executeQuery("select userinfos.citylookup_id from userinfos where userinfos.id = " + id);
+		 userCityID= array.get(0)[0];
+		 return userCityID;
 	 }
 	 
 	 public static String getUserId(String budge){
@@ -440,6 +448,14 @@ public class DataBaseStandardUtilities {
 		 return array.get(0)[0];
 	 }
 	 
+	 public static String getUsersProvinceID(String badge_id)
+	 {
+		 String province = "";
+		 ArrayList<String[]> array=DataBaseQuery.executeQuery("select userinfos.province_id from userinfos where userinfos.id = " + badge_id);
+		 province= array.get(0)[0];
+		 return province;
+	 }
+
 	 public static String getUsersProvince(String badge_id)
 	 {
 		 String province = "";

@@ -40,7 +40,8 @@
 				<br><br><br><br><br><br><br>	
 			</aside>
 			<section class="col-md-19">
-				<%=DataBaseStandardUtilities.getSelectedIncidents(language,null,(String)session.getAttribute("id"))%>
+				
+				<%=DataBaseStandardUtilities.getSelectedIncidents(language,(String)session.getAttribute("filter"),(String)session.getAttribute("id"))%>
 			</section>
 		</div>
 	</div>

@@ -307,3 +307,17 @@ add ability to set city and province from servlet
 				
 63. edit menu.jsp to add ability to call doPost function of MenuServlet
 
+-------------------------Aaron Deslauriers -03/09/2015--------------------------------------------------------------
+					
+64. DataBaseStandardUtilities.java
+		modified getSelectedIncidents()
+			changed the filter condition append to remove the hard coded "where "
+		added getUsersCityID() function
+			to get specific users city_id only
+		added getUsersProvinceID()
+			to get specific users province_id only
+			
+65. MenuServlet.java
+		modified doPost()
+			added filters for menu button items
+		
