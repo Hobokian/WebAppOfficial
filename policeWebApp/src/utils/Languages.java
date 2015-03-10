@@ -181,12 +181,12 @@ public class Languages {
 		 
 		 //EDIT
 		 enLanguage.put("editOldPassword", "Old Password");
-		 rusLanguage.put("editOldPassword", ":D");
+		 rusLanguage.put("editOldPassword", "Старый пароль");
 		 frLanguage.put("editOldPassword", "Ancien Mot de Passe");
 		 enLanguage.put("editNewPassword", "New Password");
-		 rusLanguage.put("editNewPassword", ":(");
+		 rusLanguage.put("editNewPassword", "Новый пароль");
 		 frLanguage.put("editNewPassword", "Nouveau Mot de Passe");
-		 rusLanguage.put("editButton", "");
+		 rusLanguage.put("editButton", "Править");
 		 frLanguage.put("editButton", "Modifier Profil");
 		 enLanguage.put("editButton", "Edit Profile");
 		
@@ -221,45 +221,45 @@ public class Languages {
 		//Incident Report Table Strings
 		 enLanguage.put("inicdentTablePlate", "Plate Number");
 		 frLanguage.put("inicdentTablePlate", "Nombre de Plaque");
-		rusLanguage.put("inicdentTablePlate", "");
+		rusLanguage.put("inicdentTablePlate", "Номер");
 		 enLanguage.put("inicdentTableProv", "Province");
 		 frLanguage.put("inicdentTableProv", "Province");
-		rusLanguage.put("inicdentTableProv", "");
+		rusLanguage.put("inicdentTableProv", "Провинция");
 		 enLanguage.put("inicdentTableCity", "City");
 		 frLanguage.put("inicdentTableCity", "Ville");
-		rusLanguage.put("inicdentTableCity", "");
+		rusLanguage.put("inicdentTableCity", "Город");
 		 enLanguage.put("inicdentTableStatus", "Status");
 		 frLanguage.put("inicdentTableStatus", "Condition");
-		rusLanguage.put("inicdentTableStatus", "");
+		rusLanguage.put("inicdentTableStatus", "Статус");
 		 enLanguage.put("inicdentTableAction", "Action");
 		 frLanguage.put("inicdentTableAction", "Action");
-		rusLanguage.put("inicdentTableAction", "");
+		rusLanguage.put("inicdentTableAction", "Действие");
 		 enLanguage.put("inicdentTableView", "View");
 		 frLanguage.put("inicdentTableView", "Vue");
-		rusLanguage.put("inicdentTableView", "");
+		rusLanguage.put("inicdentTableView", "Вид");
 		
 		//Pop Up Window Strings
 		 enLanguage.put("PopUpTake", "Take Case");
 		 frLanguage.put("PopUpTake", "Prenez Case");
-		rusLanguage.put("PopUpTake", "");
+		rusLanguage.put("PopUpTake", "Взять Дело");
 		 enLanguage.put("PopUpDecline", "Decline Case");
 		 frLanguage.put("PopUpDecline", "Déclin Case");
-		rusLanguage.put("PopUpDecline", "");
+		rusLanguage.put("PopUpDecline", "Отклонить Дело");
 		 enLanguage.put("PopUpSave", "Save Changes");
 		 frLanguage.put("PopUpSave", "Enregistrer");
-		rusLanguage.put("PopUpSave", "");
+		rusLanguage.put("PopUpSave", "Сохранить");
 		 enLanguage.put("PopUpCloseCase", "Close Case");
 		 frLanguage.put("PopUpCloseCase", "Ferme Case");
-		rusLanguage.put("PopUpCloseCase", "");
+		rusLanguage.put("PopUpCloseCase", "Закрыть Дело");
 		 enLanguage.put("PopUpID", "Record ID: ");
 		 frLanguage.put("PopUpID", "Enregistrement ID: ");
-		rusLanguage.put("PopUpID", "");
+		rusLanguage.put("PopUpID", "Запись №: ");
 		 enLanguage.put("PopUpUserDesc", "User Description");
 		 frLanguage.put("PopUpUserDesc", "Description de l'utilisateur");
-		rusLanguage.put("PopUpUserDesc", "");
+		rusLanguage.put("PopUpUserDesc", "Описание");
 		 enLanguage.put("PopUpOffNotes", "Officer Notes");
 		 frLanguage.put("PopUpOffNotes", "Remarques Officer");
-		rusLanguage.put("PopUpOffNotes", "");
+		rusLanguage.put("PopUpOffNotes", "Пометки");
 		 enLanguage.put("PopUpClose", "Close");
 		 frLanguage.put("PopUpClose", "Ferme");
 		rusLanguage.put("PopUpClose", "");
@@ -284,6 +284,8 @@ public class Languages {
 		 frLanguage.put("about", "Feed Twitter");
 		rusLanguage.put("about", "Твиттер");
 		
+
+		rusLanguage.put("PopUpClose", "Зактыть");
 
 		
 	
