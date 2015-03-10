@@ -263,6 +263,27 @@ public class Languages {
 		 enLanguage.put("PopUpClose", "Close");
 		 frLanguage.put("PopUpClose", "Ferme");
 		rusLanguage.put("PopUpClose", "");
+		
+		//Contact Us and About jsp
+		enLanguage.put("contactTitle", "Contact Us");
+		 frLanguage.put("contactTitle", "Feed Twitter");
+		rusLanguage.put("contactTitle", "Твиттер");
+		enLanguage.put("contactDesc", "For more information please contact us at: jbadym@gmail.com");
+		 frLanguage.put("contactDesc", "Feed Twitter");
+		rusLanguage.put("contactDesc", "Твиттер");
+		enLanguage.put("contact", "We will contact you as soon as possible.");
+		 frLanguage.put("contact", "Feed Twitter");
+		rusLanguage.put("contact", "Твиттер");
+		enLanguage.put("aboutTitle", "Twitter Feed");
+		 frLanguage.put("aboutTitle", "Feed Twitter");
+		rusLanguage.put("aboutTitle", "Твиттер");
+		enLanguage.put("aboutDesc", "What it's all about:");
+		 frLanguage.put("aboutDesc", "Feed Twitter");
+		rusLanguage.put("aboutDesc", "Твиттер");
+		enLanguage.put("about", "This is a web application program that that police can access to report/review traffic incidents, including links to video (stored off site, i.e. youtube, etc..)reported anonymously or not by witnesses.");
+		 frLanguage.put("about", "Feed Twitter");
+		rusLanguage.put("about", "Твиттер");
+		
 
 		
 	

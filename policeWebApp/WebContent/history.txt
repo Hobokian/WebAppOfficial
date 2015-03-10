@@ -323,5 +323,5 @@ add ability to set city and province from servlet
 			
 -------------------------Joseph Barber -03/09/2015--------------------------------------------------------------
 
-66.  
+66.  Fixed Contact and About to be dynamic for languages
 		

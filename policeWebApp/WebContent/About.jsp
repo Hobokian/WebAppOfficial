@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" import="java.sql.*"%>
+<%@page import="utils.UtilsDB"%>
+<%@page import="utils.Languages"%>
 <html>
   <head>
     <title>Register Form</title>
@@ -6,6 +8,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/styles.css" rel="stylesheet">
 	<link href="http://fonts.googleapis.com/css?family=Oswald:400,300" rel="stylesheet">
+	<%
+	if(request.getParameter("language")!=null) {
+		session.setAttribute("language",request.getParameter("language"));
+	}
+    if(session.getAttribute("language")==null){
+    	if(request.getParameter("language")==null) {
+    		session.setAttribute("language",Languages.ENGLISH_LANGUAGE);
+    	}
+    	else
+    	{
+    		session.setAttribute("language",request.getParameter("language"));
+    	}
+    }
+    String language = (String)session.getAttribute("language");
+    %>
   </head>
   <body>
 	<div class="wrapper container">
@@ -13,7 +30,7 @@
 			<jsp:include page="header.jsp" />
 		</header>
 		<div class="heading">
-			<h1>Submission Complete</h1>
+			<h1><%=UtilsDB.getWord(language, "aboutTitle") %></h1>
 		</div>
 	  <form action="createReport" method="GET"> 
 		<div class="row">
@@ -21,10 +38,8 @@
 			<section class="col-md-10">
 				<div>
 				<p>
-				<h2>What it's all about:</h2><br>
-				This is a web application program that that police can access to report/review traffic incidents, 
-				including links to video (stored off site, i.e. youtube, etc..)
-				reported anonymously or not by witnesses.<br>
+				<h2><%=UtilsDB.getWord(language, "aboutTitle") %></h2><br>
+				<%=UtilsDB.getWord(language, "about") %><br>
 				</div>
 			</section>		
 		</div>
