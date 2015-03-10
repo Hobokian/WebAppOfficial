@@ -325,7 +325,7 @@ public class UtilsDB {
 	    String page=strArr[strArr.length-1];
 	    String pageJSP="";
 	    String selectProvince="";
-	    if(page.compareTo("signUpPage")==0) //"createReport"
+	    if(page.compareTo("signUp.jsp")==0) //"createReport"
 	    {
 	    	String budge=request.getParameter("budge");    
 	        String accessCode=request.getParameter("accessCode");

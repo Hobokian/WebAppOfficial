@@ -133,6 +133,7 @@ public class SignUpPageServlet extends HttpServlet{
 	        {
 	        	if(password.compareTo(passwordConfirm)==0)
 	        	{
+	        		password = UtilsDB.encript(password);
 	        		if(DataBaseStandardUtilities.addUser(budge, userName, firstName, lastName, email, phone, password, selectProvince, selectCity))
 	        		{
 	        			//RequestDispatcher rd=request.getRequestDispatcher("index.jsp");    
