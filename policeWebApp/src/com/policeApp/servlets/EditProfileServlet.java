@@ -80,7 +80,6 @@ public class EditProfileServlet extends HttpServlet {
         
         String user_id=(String) session.getAttribute("id");
         String budge=request.getParameter("budge");    
-        String accessCode=request.getParameter("accessCode");
         String email=request.getParameter("email");  
         String userName=request.getParameter("userName");  
         String firstName=request.getParameter("userFirstName"); 
@@ -92,13 +91,10 @@ public class EditProfileServlet extends HttpServlet {
         String selectProvince=request.getParameter("province");
         String selectCity=request.getParameter("city");
         
-        oldPassword = UtilsDB.encript(oldPassword);
         
         
         if(budge.length()<=0)badArg=true;
         else session.setAttribute("budge", budge);
-        if(accessCode.length()<=0)badArg=true;
-        else session.setAttribute("accessCode", accessCode);
         if(userName.length()<=0)badArg=true;
         else session.setAttribute("userName", userName);
         if(firstName.length()<=0)badArg=true;
@@ -110,8 +106,6 @@ public class EditProfileServlet extends HttpServlet {
         if(phone.length()<=0)badArg=true;
         else session.setAttribute("phone", phone);
         if(oldPassword.length()<=0)badArg=true;
-        if(newPassword.length()<=0)badArg=true;
-        if(passwordConfirm.length()<=0)badArg=true;
         if(selectProvince==null)badArg=true;
         else{if(selectProvince.length()<=0 || selectProvince.compareTo("0")==0)badArg=true;else session.setAttribute("province", selectProvince);}
         if(selectCity==null)badArg=true;
@@ -125,23 +119,21 @@ public class EditProfileServlet extends HttpServlet {
         }
         else 
         {
-	        if(!DataBaseStandardUtilities.checkAccessCode(accessCode, selectProvince, selectCity))
-	        {
-	        	out.print("<p style=\"color:red\">wrong Access Code</p>");    
-	            response.sendRedirect("editProfile.jsp");
-	        }
+            oldPassword = UtilsDB.encript(oldPassword);
 	        if(!DataBaseStandardUtilities.validate(budge, oldPassword)){ 
 	        	out.print("<p style=\"color:red\">Old password does NOT match</p>");    
 	            response.sendRedirect("editProfile.jsp");
 	        }
-	        else
-	        {
+	        
+	        if(newPassword.length() > 0){
+	        
 	        	if(newPassword.compareTo(passwordConfirm)==0)
 	        	{
 	        		newPassword = UtilsDB.encript(newPassword);
 	        		if(DataBaseStandardUtilities.editUser(user_id, budge, userName, firstName, lastName, email, phone, newPassword, selectProvince, selectCity))
 	        		{
 	        			session.invalidate();
+	        			session.setAttribute("bFirst", 1);
 	        			response.sendRedirect("index.jsp");
 	        		}
 	        		else
@@ -156,8 +148,20 @@ public class EditProfileServlet extends HttpServlet {
 	        		out.print("<p style=\"color:red\">there is no match password and confirm password field</p>");    
 	        		response.sendRedirect("editProfile.jsp");
 	        	}
-	        	
 	        }
+	        else{
+		        if(DataBaseStandardUtilities.editUser(user_id, budge, userName, firstName, lastName, email, phone, null, selectProvince, selectCity))
+	    		{
+	            	session.setAttribute("name", DataBaseStandardUtilities.getName(user_id));
+	    			response.sendRedirect("welcome.jsp");
+	    		}
+	    		else
+	    		{
+	    			out.print("<p style=\"color:red\">DataBase failed</p>");    
+	    			response.sendRedirect("editProfile.jsp");
+	    		}
+	        }
+	        	
         }
         out.close();
 	}

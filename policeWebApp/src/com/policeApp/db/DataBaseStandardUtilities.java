@@ -495,8 +495,11 @@ public class DataBaseStandardUtilities {
 	 }
 
 	public static boolean editUser(String user_id, String budge, String userName,String firstName, String lastName, String email, String phone, String newPassword, String selectProvince, String selectCity) {
-		String query = "UPDATE userinfos SET budgeNumber=" + "'" + budge + "'" + ", password=" + "'" + newPassword + "'" + 
-				", username=" + "'" + userName + "'" + ", first_name= " + "'" + firstName + "'" + ", last_name=" + "'" + lastName + "'" + 
+		String query = "UPDATE userinfos SET budgeNumber=" + "'" + budge + "'" ;
+		if(newPassword != null){
+			query += ", password=" + "'" + newPassword + "'" ;
+		}	
+		query += ", username=" + "'" + userName + "'" + ", first_name= " + "'" + firstName + "'" + ", last_name=" + "'" + lastName + "'" + 
 				", email=" + "'" + email + "'" + ", phoneNumber=" + "'" + phone + "'" + ", province_id=" + selectProvince + ", citylookup_id=" + selectCity +
 				" WHERE id=" + user_id;
 		return DataBaseQuery.updateQuery(query);
