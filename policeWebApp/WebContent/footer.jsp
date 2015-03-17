@@ -26,12 +26,12 @@ String language = langCookie.getValue();
 					<h3><%=UtilsDB.getWord(language, "footerSitemap") %></h3>
 					<div class="row">
 						<div class="col-md-12">
-							<a href=""><%=UtilsDB.getWord(language, "footerAbout") %></a>
+							<a href="About.jsp"><%=UtilsDB.getWord(language, "footerAbout") %></a>
 							<a href=""><%=UtilsDB.getWord(language, "footerServices") %></a>
 						</div>
 						<div class="col-md-12">
 							<a href=""><%=UtilsDB.getWord(language, "footerSupport") %></a>
-							<a href=""><%=UtilsDB.getWord(language, "footerContact") %></a>
+							<a href="Contact.jsp"><%=UtilsDB.getWord(language, "footerContact") %></a>
 						</div>
 					</div>
 				</div>
