@@ -8,17 +8,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-<%if(session.getAttribute("language")==null){
-    	if(request.getParameter("language")==null) {
-    		session.setAttribute("language",Languages.ENGLISH_LANGUAGE);
-    	}
-    	else
-    	{
-    		session.setAttribute("language",request.getParameter("language"));
-    	}
-    }
-    String language = (String)session.getAttribute("language");
-    %>
+<%  	Cookie langCookie = UtilsDB.getLangCookie(request, response);
+if(request.getParameter("language")!=null) {
+	langCookie.setValue(request.getParameter("language"));
+	UtilsDB.setLangCookie(request, response, langCookie);
+}
+String language = langCookie.getValue();
+%>
+
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 twitter">

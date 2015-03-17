@@ -7,24 +7,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
-<%if(session.getAttribute("language")==null){
-    	if(request.getParameter("language")==null) {
-    		session.setAttribute("language",Languages.ENGLISH_LANGUAGE);
-    	}
-    	else
-    	{
-    		session.setAttribute("language",request.getParameter("language"));
-    	}
-    }
-    String language = (String)session.getAttribute("language");
-    long twitter_id;
-    if(session.getAttribute("twitterProv")==null)
-    {
-    	twitter_id = 39728435;
-    } else {
-    	twitter_id = Long.parseLong((String)session.getAttribute("twitterProv"));
-    }
-    %>
+  <%
+	Cookie langCookie = UtilsDB.getLangCookie(request, response);
+	if(request.getParameter("language")!=null) {
+		langCookie.setValue(request.getParameter("language"));
+		UtilsDB.setLangCookie(request, response, langCookie);
+	}
+	String language = langCookie.getValue();
+	long twitter_id;
+	if(session.getAttribute("twitterProv")==null)
+	{
+		twitter_id = 39728435;
+	} else {
+		twitter_id = Long.parseLong((String)session.getAttribute("twitterProv"));
+	}
+	%>
 <body>
 				<form id="menuItem" name="menuItem" action="menuServlet" method="post">
 					<input type="hidden" name="hdn_menu_command" id="hdn_menu_command"/>

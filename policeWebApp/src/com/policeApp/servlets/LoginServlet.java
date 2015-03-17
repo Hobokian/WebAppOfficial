@@ -3,13 +3,17 @@
 import java.io.IOException;  
 import java.io.PrintWriter;  
  
+
 import javax.servlet.ServletException;  
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;  
 import javax.servlet.http.HttpServletRequest;  
 import javax.servlet.http.HttpServletResponse;  
 import javax.servlet.http.HttpSession;  
   
+
 import utils.UtilsDB;
+
 import com.policeApp.db.DataBaseStandardUtilities;
   
 /**
@@ -36,7 +40,8 @@ public class LoginServlet extends HttpServlet{
         HttpSession session = request.getSession(false);  
         password = UtilsDB.encript(password);
         
-        String language = (String)session.getAttribute("language");
+        Cookie langCookie = UtilsDB.getLangCookie(request, response) ;
+        String language = langCookie.getValue();
         
         if(DataBaseStandardUtilities.validate(budge, password)){  
             if(session!=null)  

@@ -1,25 +1,18 @@
-<%@page import="utils.UtilsDB"%>
-<%@page import="utils.Languages"%>
+<%@ page import="utils.UtilsDB"%>
+<%@ page import="utils.Languages"%>
 <%@ page import= "com.policeApp.db.DataBaseStandardUtilities" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" 
 	pageEncoding="UTF-8"%>
 <html>
   <head>
   <%
+	Cookie langCookie = UtilsDB.getLangCookie(request, response);
 	if(request.getParameter("language")!=null) {
-		session.setAttribute("language",request.getParameter("language"));
+		langCookie.setValue(request.getParameter("language"));
+		UtilsDB.setLangCookie(request, response, langCookie);
 	}
-    if(session.getAttribute("language")==null){
-    	if(request.getParameter("language")==null) {
-    		session.setAttribute("language",Languages.ENGLISH_LANGUAGE);
-    	}
-    	else
-    	{
-    		session.setAttribute("language",request.getParameter("language"));
-    	}
-    }
-    String language = (String)session.getAttribute("language");
-    %>
+  String language = langCookie.getValue();
+  %>
     <title><%=UtilsDB.getWord(language, "signUpTitle") %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0; text/html; charset=UTF-8">
     <link href="css/styles.css" rel="stylesheet">

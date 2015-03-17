@@ -5,19 +5,12 @@
 <html>
   <head>
   <%
-  if(request.getParameter("language")!=null) {
-		session.setAttribute("language",request.getParameter("language"));
+	Cookie langCookie = UtilsDB.getLangCookie(request, response);
+	if(request.getParameter("language")!=null) {
+		langCookie.setValue(request.getParameter("language"));
+		UtilsDB.setLangCookie(request, response, langCookie);
 	}
-  if(session.getAttribute("language")==null){
-  	if(request.getParameter("language")==null) {
-  		session.setAttribute("language",Languages.ENGLISH_LANGUAGE);
-  	}
-  	else
-  	{
-  		session.setAttribute("language",request.getParameter("language"));
-  	}
-  }
-  String language = (String)session.getAttribute("language");
+  String language = langCookie.getValue();
   %>
     <title><%=UtilsDB.getWord(language, "splashScreenTitle") %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -72,7 +65,7 @@
 			  <form action="createReport" method="get"> 
 			    <h4 style=" text-align: center;"><%=UtilsDB.getWord(language, "indexComplaint") %></h4>
 				<div class="row">
-					<section class="col-md-4">
+					<section class="col-md-6">
 						<div class="form-group">
 							<h5><%=UtilsDB.getWord(language, "indexEmail") %></h5>
 			    		</div>
@@ -83,7 +76,7 @@
 							<h5><%=UtilsDB.getWord(language, "indexPhone") %></h5>
 			    		</div>
 					</section>
-					<section class="col-md-20">
+					<section class="col-md-18">
 						<div class="form-group">
 							<input type="text" name="email" id="email" class="form-control input-sm" placeholder="<%=UtilsDB.getWord(language, "indexEmail") %>" >
 			    		</div>

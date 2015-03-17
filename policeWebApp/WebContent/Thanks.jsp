@@ -4,20 +4,13 @@
 <html>
   <head>
   <%
+	Cookie langCookie = UtilsDB.getLangCookie(request, response);
 	if(request.getParameter("language")!=null) {
-		session.setAttribute("language",request.getParameter("language"));
+		langCookie.setValue(request.getParameter("language"));
+		UtilsDB.setLangCookie(request, response, langCookie);
 	}
-    if(session.getAttribute("language")==null){
-    	if(request.getParameter("language")==null) {
-    		session.setAttribute("language",Languages.ENGLISH_LANGUAGE);
-    	}
-    	else
-    	{
-    		session.setAttribute("language",request.getParameter("language"));
-    	}
-    }
-    String language = (String)session.getAttribute("language");
-    %>
+  	String language = langCookie.getValue();
+  %>
     <title><%=UtilsDB.getWord(language, "thanksTitle") %></title>
     <%@ page import= "com.policeApp.db.DataBaseStandardUtilities" %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

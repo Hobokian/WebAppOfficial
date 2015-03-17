@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -377,5 +378,28 @@ public class UtilsDB {
         response.sendRedirect(pageJSP);
 	    out.close();
     }
+	
+	public static void setLangCookie(HttpServletRequest request, HttpServletResponse response, Cookie langCookie){
+		response.addCookie(langCookie);
+	}
+	
+	public static Cookie getLangCookie(HttpServletRequest request, HttpServletResponse response){
+		  Cookie[] cookies = request.getCookies();
+		  Cookie langCookie = null;
+		  if (cookies != null){
+			  for(int i = 0; i<cookies.length; ++i){
+				  if (cookies[i].getName().equals("language")){
+				  	langCookie = cookies[i];
+				  	break;
+				  }
+			  }
+		  }
+		  if (langCookie == null){
+			  langCookie = new Cookie("language", Languages.ENGLISH_LANGUAGE);
+			  langCookie.setMaxAge(24*60*60);
+			  response.addCookie(langCookie);
+		  }
+		  return langCookie;	
+	}
 
 }

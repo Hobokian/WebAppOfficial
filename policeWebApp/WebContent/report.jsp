@@ -4,19 +4,12 @@
 <html>
   <head>
   <%
+	Cookie langCookie = UtilsDB.getLangCookie(request, response);
 	if(request.getParameter("language")!=null) {
-		session.setAttribute("language",request.getParameter("language"));
+		langCookie.setValue(request.getParameter("language"));
+		UtilsDB.setLangCookie(request, response, langCookie);
 	}
-    if(session.getAttribute("language")==null){
-    	if(request.getParameter("language")==null) {
-    		session.setAttribute("language",Languages.ENGLISH_LANGUAGE);
-    	}
-    	else
-    	{
-    		session.setAttribute("language",request.getParameter("language"));
-    	}
-    }
-    String language = (String)session.getAttribute("language");
+  	String language = langCookie.getValue();
     String province;
     String city;
     if(session.getAttribute("province")==null){ province = "0";}
