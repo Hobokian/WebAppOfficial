@@ -16,7 +16,7 @@
     	if(request.getParameter("language")==null) {
     		session.setAttribute("language",Languages.ENGLISH_LANGUAGE);
     	}
-    	else
+    	else//small change
     	{
     		session.setAttribute("language",request.getParameter("language"));
     	}
