@@ -490,8 +490,8 @@ public class DataBaseStandardUtilities {
 	 }
 	 
 	 public static String[] getUserInfo(String id){
-		 ArrayList<String[]> array=DataBaseQuery.executeQuery("select * from webapp.userinfos join accesscode on userinfos.id=accesscode.id where userinfos.id='"+ id +"'");
-		 return array.get(0);
+		 ArrayList<String[]> array=DataBaseQuery.executeQuery("select * from webapp.userinfos where userinfos.id="+ id);
+		 return array.get(0); 
 	 }
 
 	public static boolean editUser(String user_id, String budge, String userName,String firstName, String lastName, String email, String phone, String newPassword, String selectProvince, String selectCity) {
