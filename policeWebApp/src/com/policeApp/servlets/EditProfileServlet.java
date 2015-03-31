@@ -47,7 +47,6 @@ public class EditProfileServlet extends HttpServlet {
         	session.setAttribute("userLastName", userInfo[4]);
         	session.setAttribute("email", userInfo[6]);
         	session.setAttribute("phone", userInfo[7]);
-        	session.setAttribute("code", userInfo[11]);
         	//Province
         	//City
         	RequestDispatcher rd=request.getRequestDispatcher("editProfile.jsp");    
