@@ -60,7 +60,7 @@ public class Languages {
 		rusLanguage.put("menuPoliceNews", "Новости");
 		 enLanguage.put("menuHome", "Home");
 		 frLanguage.put("menuHome", "Accueil");
-		rusLanguage.put("menuHome", "домашняя станица");
+		rusLanguage.put("menuHome", "домашняя станиц");
 		 enLanguage.put("menuMyCases", "My Cases");
 		 frLanguage.put("menuMyCases", "Mes Cases");
 		rusLanguage.put("menuMyCases", "Мои дела");
@@ -69,7 +69,7 @@ public class Languages {
 		rusLanguage.put("menuMyCityCases", "Городские Дела");
 		 enLanguage.put("menuMyProvinceCases", "My Province's Cases");
 		 frLanguage.put("menuMyProvinceCases", "Cas De Ma Province");
-		rusLanguage.put("menuMyProvinceCases", "Провинциальные дела");
+		rusLanguage.put("menuMyProvinceCases", "Провинциальные");
 		 enLanguage.put("menuHistory", "History");
 		 frLanguage.put("menuHistory", "Histoire");
 		rusLanguage.put("menuHistory", "История");
