@@ -5,10 +5,12 @@ import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;  
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;  
 import javax.servlet.http.HttpServletRequest;  
 import javax.servlet.http.HttpServletResponse;  
 import javax.servlet.http.HttpSession;  
+
 import utils.UtilsDB;
 
 import com.policeApp.db.DataBaseStandardUtilities;
@@ -25,8 +27,7 @@ public class MenuServlet extends HttpServlet{
            throws ServletException, IOException { 
 	   
         HttpSession session = request.getSession(false);
-		response.setContentType("text/html");    
-		PrintWriter out = response.getWriter();    
+		response.setContentType("text/html");      
 		int searchCmd = Integer.parseInt((String)request.getParameter("hdn_menu_command"));
 		String filter = "";
 		
@@ -61,12 +62,7 @@ public class MenuServlet extends HttpServlet{
 		}
 		
 		session.setAttribute("filter", filter); 	   
-       
-       //TODO 
-       //do menu command
-		RequestDispatcher rd=request.getRequestDispatcher("welcome.jsp");    
-		rd.forward(request,response);
-		out.close();
+        response.sendRedirect("welcome.jsp");
  
    }    
 }
