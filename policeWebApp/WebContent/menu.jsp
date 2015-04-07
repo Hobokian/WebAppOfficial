@@ -32,7 +32,6 @@
 					<li class="btn list-group-item" onclick="myCaseMenu()"			><%=UtilsDB.getWord(language, "menuMyCases") 			%></li>
 					<li class="btn list-group-item" onclick="myCityCaseMenu()"		><%=UtilsDB.getWord(language, "menuMyCityCases") 		%></li>
 					<li class="btn list-group-item" onclick="myProvinceCaseMenu()"	><%=UtilsDB.getWord(language, "menuMyProvinceCases") 	%></li>
-					<li class="btn list-group-item" onclick="advancedSearchMenu()"	><%=UtilsDB.getWord(language, "menuAdvancedSearch") 	%></li>
 					<li class="btn list-group-item" onclick="historyMenu()"			><%=UtilsDB.getWord(language, "menuHistory") 			%></li>
 				</ul>
 				<div class="panel panel-primary">
