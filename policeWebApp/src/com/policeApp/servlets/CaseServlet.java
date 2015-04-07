@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,8 +31,8 @@ public class CaseServlet extends HttpServlet{
     	String userId = request.getParameter("hdn_user_id");
     	String action = request.getParameter("action");
     	String notes = request.getParameter("officerNotes");
-        HttpSession session = request.getSession(false);
-        String language = (String)session.getAttribute("language");
+        Cookie langCookie = UtilsDB.getLangCookie(request, response) ;
+        String language = langCookie.getValue();
         
         if (action.compareTo(UtilsDB.getWord(language, "PopUpTake"))==0)
         {

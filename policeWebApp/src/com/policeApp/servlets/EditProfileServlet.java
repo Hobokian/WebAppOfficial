@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -62,7 +63,8 @@ public class EditProfileServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);  
-    	String language = (String)session.getAttribute("language");
+        Cookie langCookie = UtilsDB.getLangCookie(request, response) ;
+        String language = langCookie.getValue();
     	request.setCharacterEncoding("UTF-8");
     	String action = request.getParameter("action");
         if (action.compareTo(UtilsDB.getWord(language, "addCity"))==0) {

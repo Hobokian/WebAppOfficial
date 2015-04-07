@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.io.PrintWriter;  
 
 import javax.servlet.ServletException;  
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;  
 import javax.servlet.http.HttpServletRequest;  
 import javax.servlet.http.HttpServletResponse;  
 import javax.servlet.http.HttpSession;  
   
+
 
 
 import utils.UtilsDB;
@@ -61,8 +63,9 @@ public class SignUpPageServlet extends HttpServlet{
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response)    
             throws ServletException, IOException { 
-    	HttpSession session = request.getSession(false);  
-    	String language = (String)session.getAttribute("language");
+    	HttpSession session = request.getSession(false);
+        Cookie langCookie = UtilsDB.getLangCookie(request, response) ;
+        String language = langCookie.getValue();
     	request.setCharacterEncoding("UTF-8");
     	String action = request.getParameter("action");
         if (action.compareTo(UtilsDB.getWord(language, "addCity"))==0) {
@@ -81,8 +84,8 @@ public class SignUpPageServlet extends HttpServlet{
           
         String budge=request.getParameter("budge");    
         String accessCode=request.getParameter("accessCode");
-        String userName=request.getParameter("email");  
-        String email=request.getParameter("userName");  
+        String userName=request.getParameter("userName");  
+        String email=request.getParameter("email");  
         String firstName=request.getParameter("userFirstName"); 
         String lastName=request.getParameter("userLastName"); 
         String phone=request.getParameter("phoneNumber");  
